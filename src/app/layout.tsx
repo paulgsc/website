@@ -1,7 +1,12 @@
+import { ThemeProvider } from "@/components/providers";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster as DefaultToaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn, fontSans } from "@/lib";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,8 +61,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.className
+          )}
+        >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div vaul-drawer-wrapper="">
+              <div className="relative flex min-h-screen flex-col bg-background">
+                <main className="flex-1">{children}</main>
+              </div>
+            </div>
+
+            <ThemeSwitcher />
+
+            <DefaultToaster />
+            <Sonner />
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
   );
 }
