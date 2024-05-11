@@ -1,12 +1,13 @@
 import { ThemeProvider } from "@/components/providers";
+import { SiteNav } from "@/components/site-nav";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster as DefaultToaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config";
+import { cn, fontSans } from "@/lib";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn, fontSans } from "@/lib";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -78,6 +79,7 @@ export default function RootLayout({
           >
             <div vaul-drawer-wrapper="">
               <div className="relative flex min-h-screen flex-col bg-background">
+                <SiteNav />
                 <main className="flex-1">{children}</main>
               </div>
             </div>
