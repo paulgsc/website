@@ -1,3 +1,11 @@
+/*
+ * This React component is adapted from the "shadcn-landing-page" repository
+ * by leoMirandaa, available under the MIT License.
+ *
+ * Repository: https://github.com/leoMirandaa/shadcn-landing-page
+ * License: MIT (https://opensource.org/licenses/MIT)
+ */
+
 export const Statistics = () => {
   interface statsProps {
     quantity: string;
