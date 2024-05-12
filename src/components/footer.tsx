@@ -1,9 +1,10 @@
+import { siteConfig } from "@/config";
 import { Icons } from "./icons";
 import OpenHours from "./open-hours";
 
 const socialLinks = [
   {
-    href: "https://youtube.com",
+    href: siteConfig.links.youtube,
     icon: <Icons.youtube aria-hidden="true" className="h-7 w-7 text-red-600" />,
   },
   {

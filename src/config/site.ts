@@ -6,6 +6,7 @@ export const siteConfig = {
   links: {
     twitter: "https://twitter.com/maishatu",
     github: "https://github.com/paulgsc",
+    youtube: "https://www.youtube.com/@aulpgdev",
   },
 };
 
