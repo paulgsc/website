@@ -8,6 +8,7 @@ import { cn, fontSans } from "@/lib";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -83,7 +84,7 @@ export default function RootLayout({
                 <main className="flex-1">{children}</main>
               </div>
             </div>
-
+            <Footer />
             <ThemeSwitcher />
 
             <DefaultToaster />
