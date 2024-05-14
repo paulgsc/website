@@ -8,6 +8,6 @@ export const siteConfig = {
     github: "https://github.com/paulgsc",
     youtube: "https://www.youtube.com/@aulpgdev",
   },
-};
+} as const;
 
 export type SiteConfig = typeof siteConfig;
