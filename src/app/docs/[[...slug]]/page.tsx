@@ -1,20 +1,20 @@
-import { notFound } from "next/navigation";
 import { allDocs } from "contentlayer/generated";
+import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
+import { ChevronRightIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRightIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import Balancer from "react-wrap-balancer";
 
+import { Mdx } from "@/components/mdx-components";
+import { DocsPager } from "@/components/pager";
+import { DashboardTableOfContents } from "@/components/tock";
+import { badgeVariants } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
-import { Mdx } from "@/components/mdx-components";
-import { DocsPager } from "@/components/pager";
-import { DashboardTableOfContents } from "@/components/toc";
-import { badgeVariants } from "@/registry/new-york/ui/badge";
-import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 
 interface DocPageProps {
   params: {
