@@ -1,16 +1,14 @@
-// @sts-nocheck
 import { existsSync, promises as fs, readFileSync } from "fs";
+import template from "lodash.template";
 import { tmpdir } from "os";
 import path, { basename } from "path";
 import { cwd } from "process";
-import template from "lodash.template";
 import { rimraf } from "rimraf";
-import { Project, ScriptKind, SourceFile, SyntaxKind } from "ts-morph";
-
-import { colorMapping, colors } from "../registry/colors";
-import { registry } from "../registry/registry";
-import { Registry, registrySchema } from "../registry/schema";
-import { themes } from "../registry/themes";
+import { Project, ScriptKind, SyntaxKind } from "ts-morph";
+import { colorMapping, colors } from "../src/registry/colors";
+import { registry } from "../src/registry/registry";
+import { Registry, registrySchema } from "../src/registry/schema";
+import { themes } from "../src/registry/themes";
 
 const REGISTRY_PATH = path.join(process.cwd(), "public/registry");
 
@@ -35,194 +33,193 @@ import * as React from "react"
 export const Index: Record<string, any> = {
 `;
 
-  for (const style of styles) {
-    index += `  "${style.name}": {`;
+  index += `  "${"default"}": {`;
 
-    // Build style index.
-    for (const item of registry) {
-      const resolveFiles = item.files.map(
-        (file) => `registry/${style.name}/${file}`
-      );
-      const type = item.type.split(":")[1];
-      let sourceFilename = "";
+  // Build style index.
+  for (const item of registry) {
+    const resolveFiles = item.files.map(
+      (file) => `registry/${"default"}/${file}`
+    );
+    const type = item.type.split(":")[1];
+    let sourceFilename = "";
 
-      let chunks: any = [];
-      if (item.type === "components:block") {
-        const file = resolveFiles[0];
-        const filename = path.basename(file);
-        const raw = await fs.readFile(file, "utf8");
-        const tempFile = await createTempSourceFile(filename);
-        const sourceFile = project.createSourceFile(tempFile, raw, {
-          scriptKind: ScriptKind.TSX,
+    let chunks: any = [];
+    if (item.type === "components:block") {
+      const file = resolveFiles[0];
+      const filename = path.basename(file);
+      const raw = await fs.readFile(file, "utf8");
+      const tempFile = await createTempSourceFile(filename);
+      const sourceFile = project.createSourceFile(tempFile, raw, {
+        scriptKind: ScriptKind.TSX,
+      });
+
+      // Find all imports.
+      const imports = new Map<
+        string,
+        {
+          module: string;
+          text: string;
+          isDefault?: boolean;
+        }
+      >();
+      sourceFile.getImportDeclarations().forEach((node) => {
+        const module = node.getModuleSpecifier().getLiteralValue();
+        node.getNamedImports().forEach((item) => {
+          imports.set(item.getText(), {
+            module,
+            text: node.getText(),
+          });
         });
 
-        // Find all imports.
-        const imports = new Map<
-          string,
-          {
-            module: string;
-            text: string;
-            isDefault?: boolean;
-          }
-        >();
-        sourceFile.getImportDeclarations().forEach((node) => {
-          const module = node.getModuleSpecifier().getLiteralValue();
-          node.getNamedImports().forEach((item) => {
-            imports.set(item.getText(), {
-              module,
-              text: node.getText(),
-            });
+        const defaultImport = node.getDefaultImport();
+        if (defaultImport) {
+          imports.set(defaultImport.getText(), {
+            module,
+            text: defaultImport.getText(),
+            isDefault: true,
           });
+        }
+      });
 
-          const defaultImport = node.getDefaultImport();
-          if (defaultImport) {
-            imports.set(defaultImport.getText(), {
-              module,
-              text: defaultImport.getText(),
-              isDefault: true,
-            });
-          }
+      // Find all opening tags with x-chunk attribute.
+      const components = sourceFile
+        .getDescendantsOfKind(SyntaxKind.JsxOpeningElement)
+        .filter((node) => {
+          return node.getAttribute("x-chunk") !== undefined;
         });
 
-        // Find all opening tags with x-chunk attribute.
-        const components = sourceFile
-          .getDescendantsOfKind(SyntaxKind.JsxOpeningElement)
-          .filter((node) => {
-            return node.getAttribute("x-chunk") !== undefined;
+      chunks = await Promise.all(
+        components.map(async (component, index) => {
+          const chunkName = `${item.name}-chunk-${index}`;
+
+          // Get the value of x-chunk attribute.
+          const attr = component
+            .getAttributeOrThrow("x-chunk")
+            .asKindOrThrow(SyntaxKind.JsxAttribute);
+
+          const description = attr
+            .getInitializerOrThrow()
+            .asKindOrThrow(SyntaxKind.StringLiteral)
+            .getLiteralValue();
+
+          // Delete the x-chunk attribute.
+          attr.remove();
+
+          // Add a new attribute to the component.
+          component.addAttribute({
+            name: "x-chunk",
+            initializer: `"${chunkName}"`,
           });
 
-        chunks = await Promise.all(
-          components.map(async (component, index) => {
-            const chunkName = `${item.name}-chunk-${index}`;
+          // Get the value of x-chunk-container attribute.
+          const containerAttr = component
+            .getAttribute("x-chunk-container")
+            ?.asKindOrThrow(SyntaxKind.JsxAttribute);
 
-            // Get the value of x-chunk attribute.
-            const attr = component
-              .getAttributeOrThrow("x-chunk")
-              .asKindOrThrow(SyntaxKind.JsxAttribute);
+          const containerClassName = containerAttr
+            ?.getInitializer()
+            ?.asKindOrThrow(SyntaxKind.StringLiteral)
+            .getLiteralValue();
 
-            const description = attr
-              .getInitializerOrThrow()
-              .asKindOrThrow(SyntaxKind.StringLiteral)
-              .getLiteralValue();
+          containerAttr?.remove();
 
-            // Delete the x-chunk attribute.
-            attr.remove();
+          const parentJsxElement = component.getParentIfKindOrThrow(
+            SyntaxKind.JsxElement
+          );
 
-            // Add a new attribute to the component.
-            component.addAttribute({
-              name: "x-chunk",
-              initializer: `"${chunkName}"`,
-            });
-
-            // Get the value of x-chunk-container attribute.
-            const containerAttr = component
-              .getAttribute("x-chunk-container")
-              ?.asKindOrThrow(SyntaxKind.JsxAttribute);
-
-            const containerClassName = containerAttr
-              ?.getInitializer()
-              ?.asKindOrThrow(SyntaxKind.StringLiteral)
-              .getLiteralValue();
-
-            containerAttr?.remove();
-
-            const parentJsxElement = component.getParentIfKindOrThrow(
-              SyntaxKind.JsxElement
+          // Find all opening tags on component.
+          const children = parentJsxElement
+            .getDescendantsOfKind(SyntaxKind.JsxOpeningElement)
+            .map((node) => {
+              return node.getTagNameNode().getText();
+            })
+            .concat(
+              parentJsxElement
+                .getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)
+                .map((node) => {
+                  return node.getTagNameNode().getText();
+                })
             );
 
-            // Find all opening tags on component.
-            const children = parentJsxElement
-              .getDescendantsOfKind(SyntaxKind.JsxOpeningElement)
-              .map((node) => {
-                return node.getTagNameNode().getText();
-              })
-              .concat(
-                parentJsxElement
-                  .getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)
-                  .map((node) => {
-                    return node.getTagNameNode().getText();
-                  })
+          const componentImports = new Map<
+            string,
+            string | string[] | Set<string>
+          >();
+          children.forEach((child) => {
+            const importLine = imports.get(child);
+            if (importLine) {
+              const imports = componentImports.get(importLine.module) || [];
+
+              const newImports = importLine.isDefault
+                ? importLine.text
+                : new Set([...imports, child]);
+
+              componentImports.set(
+                importLine.module,
+                importLine?.isDefault ? newImports : Array.from(newImports)
               );
+            }
+          });
 
-            const componentImports = new Map<
-              string,
-              string | string[] | Set<string>
-            >();
-            children.forEach((child) => {
-              const importLine = imports.get(child);
-              if (importLine) {
-                const imports = componentImports.get(importLine.module) || [];
-
-                const newImports = importLine.isDefault
-                  ? importLine.text
-                  : new Set([...imports, child]);
-
-                componentImports.set(
-                  importLine.module,
-                  importLine?.isDefault ? newImports : Array.from(newImports)
-                );
-              }
-            });
-
-            const componnetImportLines = Array.from(
-              componentImports.keys()
-            ).map((key) => {
+          const componnetImportLines = Array.from(componentImports.keys()).map(
+            (key) => {
               const values = componentImports.get(key);
               const specifier = Array.isArray(values)
                 ? `{${values.join(",")}}`
                 : values;
 
               return `import ${specifier} from "${key}"`;
-            });
+            }
+          );
 
-            const code = `
+          const code = `
             ${componnetImportLines.join("\n")}
 
             export default function Component() {
               return (${parentJsxElement.getText()})
             }`;
 
-            const targetFile = file.replace(item.name, `${chunkName}`);
-            const targetFilePath = path.join(
-              cwd(),
-              `registry/${style.name}/${type}/${chunkName}.tsx`
-            );
+          const targetFile = file.replace(item.name, `${chunkName}`);
+          const targetFilePath = path.join(
+            cwd(),
+            `registry/${"default"}/${type}/${chunkName}.tsx`
+          );
 
-            // Write component file.
-            rimraf.sync(targetFilePath);
-            await fs.writeFile(targetFilePath, code, "utf8");
+          // Write component file.
+          rimraf.sync(targetFilePath);
+          await fs.writeFile(targetFilePath, code, "utf8");
 
-            return {
-              name: chunkName,
-              description,
-              component: `React.lazy(() => import("@/registry/${style.name}/${type}/${chunkName}")),`,
-              file: targetFile,
-              container: {
-                className: containerClassName,
-              },
-            };
-          })
-        );
+          return {
+            name: chunkName,
+            description,
+            component: `React.lazy(() => import("@/registry/${"default"}/${type}/${chunkName}")),`,
+            file: targetFile,
+            container: {
+              className: containerClassName,
+            },
+          };
+        })
+      );
 
-        // // Write the source file for blocks only.
-        sourceFilename = `__registry__/${style.name}/${type}/${item.name}.tsx`;
-        const sourcePath = path.join(process.cwd(), sourceFilename);
-        if (!existsSync(sourcePath)) {
-          await fs.mkdir(sourcePath, { recursive: true });
-        }
-
-        rimraf.sync(sourcePath);
-        await fs.writeFile(sourcePath, sourceFile.getText());
+      // // Write the source file for blocks only.
+      sourceFilename = `__registry__/${"default"}/${type}/${item.name}.tsx`;
+      const sourcePath = path.join(process.cwd(), sourceFilename);
+      if (!existsSync(sourcePath)) {
+        await fs.mkdir(sourcePath, { recursive: true });
       }
 
-      index += `
+      rimraf.sync(sourcePath);
+      await fs.writeFile(sourcePath, sourceFile.getText());
+    }
+
+    index += `
     "${item.name}": {
       name: "${item.name}",
       type: "${item.type}",
       registryDependencies: ${JSON.stringify(item.registryDependencies)},
-      component: React.lazy(() => import("@/registry/${style.name}/${type}/${
-        item.name
-      }")),
+      component: React.lazy(() => import("@/registry/${"default"}/${type}/${
+      item.name
+    }")),
       source: "${sourceFilename}",
       files: [${resolveFiles.map((file) => `"${file}"`)}],
       category: "${item.category}",
@@ -239,11 +236,10 @@ export const Index: Record<string, any> = {
       }`
       )}]
     },`;
-    }
-
-    index += `
-  },`;
   }
+
+  index += `
+  },`;
 
   index += `
 }
@@ -270,47 +266,51 @@ export const Index: Record<string, any> = {
 // Build registry/styles/[style]/[name].json.
 // ----------------------------------------------------------------------------
 async function buildStyles(registry: Registry) {
-  for (const style of styles) {
-    const targetPath = path.join(REGISTRY_PATH, "styles", style.name);
+  const targetPath = path.join(REGISTRY_PATH, "styles", "default");
 
-    // Create directory if it doesn't exist.
-    if (!existsSync(targetPath)) {
-      await fs.mkdir(targetPath, { recursive: true });
+  // Create directory if it doesn't exist.
+  if (!existsSync(targetPath)) {
+    await fs.mkdir(targetPath, { recursive: true });
+  }
+
+  for (const item of registry) {
+    if (item.type !== "components:ui") {
+      continue;
     }
 
-    for (const item of registry) {
-      if (item.type !== "components:ui") {
-        continue;
-      }
-
-      const files = item.files?.map((file) => {
-        const content = readFileSync(
-          path.join(process.cwd(), "registry", style.name, file),
-          "utf8"
-        );
-
-        return {
-          name: basename(file),
-          content,
-        };
-      });
-
-      const payload = {
-        ...item,
-        files,
-      };
-
-      await fs.writeFile(
-        path.join(targetPath, `${item.name}.json`),
-        JSON.stringify(payload, null, 2),
+    const files = item.files?.map((file) => {
+      const content = readFileSync(
+        path.join(process.cwd(), "registry", "default", file),
         "utf8"
       );
-    }
+
+      return {
+        name: basename(file),
+        content,
+      };
+    });
+
+    const payload = {
+      ...item,
+      files,
+    };
+
+    await fs.writeFile(
+      path.join(targetPath, `${item.name}.json`),
+      JSON.stringify(payload, null, 2),
+      "utf8"
+    );
   }
 
   // ----------------------------------------------------------------------------
   // Build registry/styles/index.json.
   // ----------------------------------------------------------------------------
+  const styles = [
+    {
+      name: "default",
+      label: "Default",
+    },
+  ];
   const stylesJson = JSON.stringify(styles, null, 2);
   await fs.writeFile(
     path.join(REGISTRY_PATH, "styles/index.json"),
