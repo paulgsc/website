@@ -1,17 +1,19 @@
+import { ValidUrlOrLocalRoute } from "./url-types";
+
 interface NavigationLink {
-  link: string;
+  link: ValidUrlOrLocalRoute;
   label: string;
   target?: string;
 }
 
 interface SocialLink {
   icon: string;
-  link: string;
+  link: ValidUrlOrLocalRoute;
   alt: string;
 }
 
 interface FooterLink {
-  link: string;
+  link: ValidUrlOrLocalRoute;
   text: string;
 }
 
