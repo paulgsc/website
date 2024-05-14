@@ -11,9 +11,8 @@ import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
-
-import { rehypeComponent } from "./lib/rehype-component";
-import { rehypeNpmCommand } from "./lib/rehype-npm-command";
+import { rehypeNpmCommand } from "./src/lib/rehype-npm-command";
+import { rehypeComponent } from "./src/lib/rehype-component";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
