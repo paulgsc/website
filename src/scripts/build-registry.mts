@@ -10,7 +10,6 @@ import { Project, ScriptKind, SourceFile, SyntaxKind } from "ts-morph";
 import { colorMapping, colors } from "../registry/colors";
 import { registry } from "../registry/registry";
 import { Registry, registrySchema } from "../registry/schema";
-import { styles } from "../registry/styles";
 import { themes } from "../registry/themes";
 
 const REGISTRY_PATH = path.join(process.cwd(), "public/registry");
