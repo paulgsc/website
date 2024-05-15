@@ -1,5 +1,5 @@
+import { Style, Theme } from "@/types";
 import { create } from "zustand";
-import { Style, Theme } from "../../types";
 
 type Config = {
   style: Style["name"];
@@ -13,7 +13,7 @@ const initialConfig: Config = {
   radius: 0.5,
 };
 
-export const useConfigStore = create<Config>((set) => ({
+export const useConfig = create<Config>((set) => ({
   ...initialConfig,
   setStyle: (style: Style["name"]) => set((state) => ({ ...state, style })),
   setTheme: (theme: Theme["name"]) => set((state) => ({ ...state, theme })),
