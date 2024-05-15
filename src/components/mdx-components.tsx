@@ -1,16 +1,32 @@
 // @ts-nocheck
 "use client";
 
-import * as React from "react";
+import { useMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import * as React from "react";
 import { NpmCommands } from "types/unist";
 
+import { Callout } from "@/components/callout";
+import { CodeBlockWrapper } from "@/components/code-block-wrapper";
+import { ComponentExample } from "@/components/component-example";
+import { ComponentPreview } from "@/components/component-preview";
+import { ComponentSource } from "@/components/component-source";
+import { CopyButton, CopyNpmCommandButton } from "@/components/copy-button";
+import { FrameworkDocs } from "@/components/framework-docs";
+import { StyleWrapper } from "@/components/style-wrapper";
+import { useConfig } from "@/hooks/use-config";
 import { Event } from "@/lib/events";
 import { cn } from "@/lib/utils";
-import { useConfig } from "@/hooks/use-config";
-import { Callout } from "@/components/callout";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { AspectRatio } from "./ui/aspect-ratio";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 const components = {
   Accordion,
