@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { useConfigStore } from "@/hooks";
+import { useConfig } from "@/hooks";
 
 export function ThemeSwitcher() {
-  const config = useConfigStore();
+  const config = useConfig();
   const segment = useSelectedLayoutSegment();
 
   React.useEffect(() => {

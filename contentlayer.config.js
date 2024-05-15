@@ -79,7 +79,7 @@ export const Doc = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "./content",
+  contentDirPath: "./src/content",
   documentTypes: [Doc],
   mdx: {
     remarkPlugins: [remarkGfm, codeImport],
@@ -115,7 +115,7 @@ export default makeSource({
         {
           getHighlighter: async () => {
             const theme = await loadTheme(
-              path.join(process.cwd(), "/lib/themes/dark.json")
+              path.join(process.cwd(), "/src/lib/themes/dark.json")
             );
             return await getHighlighter({ theme });
           },
