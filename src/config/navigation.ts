@@ -1,7 +1,7 @@
-import { Navigationonfig } from "@/types";
+import { NavigationConfig } from "@/types";
 import { siteConfig } from "./site";
 
-export const siteNavConfig: Navigationonfig = {
+export const siteNavConfig: NavigationConfig = {
   topNavigation: {
     docs: {
       link: "docs",

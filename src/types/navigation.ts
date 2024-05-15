@@ -24,7 +24,7 @@ interface SideNavigationItem {
 
 type SideNavigation = Record<string, SideNavigationItem>;
 
-export interface Navigationonfig {
+export interface NavigationConfig {
   topNavigation: Record<string, NavigationLink>;
   footerLinks: FooterLink[];
   socialLinks: SocialLink[];
