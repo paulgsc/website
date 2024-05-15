@@ -14,7 +14,6 @@ import { ComponentPreview } from "@/components/component-preview";
 import { ComponentSource } from "@/components/component-source";
 import { CopyButton, CopyNpmCommandButton } from "@/components/copy-button";
 import { FrameworkDocs } from "@/components/framework-docs";
-import { StyleWrapper } from "@/components/style-wrapper";
 import { useConfig } from "@/hooks/use-config";
 import { Event } from "@/lib/events";
 import { cn } from "@/lib/utils";
@@ -177,7 +176,7 @@ const components = {
     __event__?: Event["name"];
   } & NpmCommands) => {
     return (
-      <StyleWrapper styleName={__style__}>
+      <>
         <pre
           className={cn(
             "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
@@ -207,7 +206,7 @@ const components = {
               className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
             />
           )}
-      </StyleWrapper>
+      </>
     );
   },
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
