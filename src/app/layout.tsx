@@ -8,7 +8,7 @@ import { cn, fontSans } from "@/lib";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
-import Footer from "@/components/footer";
+import Footer from "@/components/layout-components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
