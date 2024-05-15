@@ -2,7 +2,6 @@ import { allDocs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
-import { ChevronRightIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
@@ -15,6 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
 
 interface DocPageProps {
   params: {
@@ -93,7 +93,7 @@ export default async function DocPage({ params }: DocPageProps) {
           <div className="overflow-hidden text-ellipsis whitespace-nowrap">
             Docs
           </div>
-          <ChevronRightIcon className="h-4 w-4" />
+          <Icons.chevronRight className="h-4 w-4" />
           <div className="font-medium text-foreground">{doc.title}</div>
         </div>
         <div className="space-y-2">
@@ -116,7 +116,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 Docs
-                <ExternalLinkIcon className="h-3 w-3" />
+                <Icons.externalLink className="h-3 w-3" />
               </Link>
             )}
             {doc.links?.api && (
