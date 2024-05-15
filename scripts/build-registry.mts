@@ -258,8 +258,11 @@ export const Index: Record<string, any> = {
   );
 
   // Write style index.
-  rimraf.sync(path.join(process.cwd(), "__registry__/index.tsx"));
-  await fs.writeFile(path.join(process.cwd(), "__registry__/index.tsx"), index);
+  rimraf.sync(path.join(process.cwd(), "src/__registry__/index.tsx"));
+  await fs.writeFile(
+    path.join(process.cwd(), "src/__registry__/index.tsx"),
+    index
+  );
 }
 
 // ----------------------------------------------------------------------------
