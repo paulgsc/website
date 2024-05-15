@@ -5,11 +5,10 @@ import * as React from "react";
 
 import { CopyButton } from "@/components/copy-button";
 import { Icons } from "@/components/icons";
-import { V0Button } from "@/components/v0-button";
 import { useConfig } from "@/hooks/use-config";
 import { cn } from "@/lib/utils";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { ThemeWrapper } from "./theme-wrapper";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
