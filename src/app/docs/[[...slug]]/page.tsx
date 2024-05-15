@@ -127,7 +127,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 API Reference
-                <ExternalLinkIcon className="h-3 w-3" />
+                <Icons.externalLink className="h-3 w-3" />
               </Link>
             )}
           </div>
