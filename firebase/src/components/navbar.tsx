@@ -12,9 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Menu } from "lucide-react";
-import { LogoIcon } from "./Icons";
 import { Icons } from "./icons";
 import { ModeToggle } from "./mode-toggle";
 import { Button, buttonVariants } from "./ui/button";
@@ -51,8 +49,8 @@ export function Navbar() {
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
             <a href="/" className="ml-2 font-bold text-xl flex">
-              <LogoIcon />
-              ShadcnUI/React
+              <Icons.logo className="w-6 h-6" />
+              PgDev
             </a>
           </NavigationMenuItem>
 
@@ -125,7 +123,7 @@ export function Navbar() {
                 href="https://github.com/kirklin/shadcn-landing-page-template.git"
                 target="_blank"
               >
-                <GitHubLogoIcon className="w-5 h-5" />
+                <Icons.gitHub className="w-5 h-5" />
               </a>
             </Button>
 
