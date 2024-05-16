@@ -11,7 +11,6 @@ import { Registry, registrySchema } from "../src/registry/schema";
 import { themes } from "../src/registry/themes";
 
 const REGISTRY_PATH = path.join(process.cwd(), "public/registry");
-
 // ----------------------------------------------------------------------------
 // Build __registry__/index.tsx.
 // ----------------------------------------------------------------------------
@@ -202,7 +201,7 @@ export const Index: Record<string, any> = {
       );
 
       // // Write the source file for blocks only.
-      sourceFilename = `__registry__/${"default"}/${type}/${item.name}.tsx`;
+      sourceFilename = `src/__registry__/${"default"}/${type}/${item.name}.tsx`;
       const sourcePath = path.join(process.cwd(), sourceFilename);
       if (!existsSync(sourcePath)) {
         await fs.mkdir(sourcePath, { recursive: true });
