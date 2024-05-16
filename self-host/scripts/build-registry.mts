@@ -37,7 +37,7 @@ export const Index: Record<string, any> = {
   // Build style index.
   for (const item of registry) {
     const resolveFiles = item.files.map(
-      (file) => `registry/${"default"}/${file}`
+      (file) => `src/registry/${"default"}/${file}`
     );
     const type = item.type.split(":")[1];
     let sourceFilename = "";
@@ -181,7 +181,7 @@ export const Index: Record<string, any> = {
           const targetFile = file.replace(item.name, `${chunkName}`);
           const targetFilePath = path.join(
             cwd(),
-            `registry/${"default"}/${type}/${chunkName}.tsx`
+            `src/registry/${"default"}/${type}/${chunkName}.tsx`
           );
 
           // Write component file.
@@ -282,7 +282,7 @@ async function buildStyles(registry: Registry) {
 
     const files = item.files?.map((file) => {
       const content = readFileSync(
-        path.join(process.cwd(), "registry", "default", file),
+        path.join(process.cwd(), "src", "registry", "default", file),
         "utf8"
       );
 
