@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Menu } from "lucide-react";
-import { Button, buttonVariants } from "./ui/button";
-import { ModeToggle } from "./mode-toggle";
-import { LogoIcon } from "./Icons";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -12,11 +12,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Menu } from "lucide-react";
+import { LogoIcon } from "./Icons";
+import { Icons } from "./icons";
+import { ModeToggle } from "./mode-toggle";
+import { Button, buttonVariants } from "./ui/button";
 
 interface RouteProps {
   href: string;
@@ -94,7 +95,7 @@ export function Navbar() {
                       variant: "secondary",
                     })}`}
                   >
-                    <GitHubLogoIcon className="mr-2 w-5 h-5" />
+                    <Icons.gitHub className="mr-2 w-5 h-5" />
                     Github
                   </a>
                 </nav>
