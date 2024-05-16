@@ -8,7 +8,7 @@ import Balancer from "react-wrap-balancer";
 
 import { Mdx } from "@/components/mdx-components";
 import { DocsPager } from "@/components/pager";
-import { DashboardTableOfContents } from "@/components/tock";
+import { DashboardTableOfContents } from "@/components/toc";
 import { badgeVariants } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { siteConfig } from "@/config/site";
