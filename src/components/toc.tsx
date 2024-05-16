@@ -21,7 +21,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
             .map((id) => id?.split("#")[1])
         : [],
     [toc]
-  );
+  ) as string[];
   const activeHeading = useActiveItem(itemIds);
   const mounted = useMounted();
 
@@ -38,7 +38,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 }
 
 function useActiveItem(itemIds: string[]) {
-  const [activeId, setActiveId] = React.useState(null);
+  const [activeId, setActiveId] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -75,7 +75,7 @@ function useActiveItem(itemIds: string[]) {
 interface TreeProps {
   tree: TableOfContents;
   level?: number;
-  activeItem?: string;
+  activeItem?: string | null;
 }
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
