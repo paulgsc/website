@@ -27,3 +27,5 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CONSULTING_LLC_6302F }}
           projectId: consulting-llc-6302f
           entryPoint: firebase
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
