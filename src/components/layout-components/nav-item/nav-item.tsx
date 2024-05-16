@@ -17,6 +17,7 @@ type NavItemProps = {
   type?: NavItemType;
   className?: string;
   target?: HTMLAttributeAnchorTarget | undefined;
+  showExt?: boolean;
 };
 
 const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
@@ -24,6 +25,7 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
   children,
   className,
   target,
+  showExt = true,
 }) => (
   <ActiveLink
     href={href}
@@ -34,10 +36,10 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
     allowSubPath={href.startsWith("/")}
     target={target}
   >
-    <span className="text-sm font-medium leading-5">{children}</span>
+    {children}
 
-    {(href.startsWith("http") || target === "_blank") && (
-      <Icons.externalLink className="size-3 dark:text-neutral-200 text-white opacity-50" />
+    {((showExt && href.startsWith("http")) || target === "_blank") && (
+      <Icons.externalLink className="size-3 dark:text-neutral-200 text-gray-500 opacity-50" />
     )}
   </ActiveLink>
 );

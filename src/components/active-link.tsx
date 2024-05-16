@@ -18,7 +18,7 @@ type ActiveLocalizedLinkProps = ComponentProps<typeof Link> & {
 
 const ActiveLink: FC<ActiveLocalizedLinkProps> = ({
   children,
-  activeClassName = "bg-green-600 text-white opacity-50",
+  activeClassName = "text-white opacity-50",
   allowSubPath = false,
   className,
   href = "",

@@ -35,16 +35,18 @@ const Footer: FC = () => {
   const openJSlink = siteNavConfig.footerLinks.at(-1)!;
 
   return (
-    <footer className="flex flex-col items-center gap-6 border-t border-neutral-200 bg-white py-4 dark:border-neutral-900 dark:bg-neutral-950 sm:px-8 md:flex-row md:justify-between md:py-5">
+    <footer className="flex flex-col items-center gap-6 border-t border-neutral-200 bg-zinc-50 py-4 dark:border-neutral-900 dark:bg-neutral-950 sm:px-8 md:flex-row md:justify-between md:py-5">
       <div className="flex flex-wrap content-start items-center justify-center gap-1 self-stretch">
         {siteNavConfig.footerLinks.map((item) => (
           <NavItem
             type="footer"
-            className="whitespace-nowrap capitalize tracking-tight text-gray-500 hover:bg-gray-100/80"
+            className="whitespace-nowrap capitalize tracking-tight text-black hover:bg-gray-100/80"
             href={item.link}
             key={item.link}
           >
-            {item.text}
+            <span className="text-sm text-black font-medium leading-5">
+              {item.text}
+            </span>
           </NavItem>
         ))}
       </div>
@@ -62,7 +64,12 @@ const Footer: FC = () => {
             const className = footerSocialIcons[social.icon].classname;
 
             return (
-              <NavItem key={social.icon} href={social.link} type="footer">
+              <NavItem
+                key={social.icon}
+                href={social.link}
+                type="footer"
+                showExt={false}
+              >
                 <SocialIcon className={className} aria-label={social.link} />
               </NavItem>
             );
