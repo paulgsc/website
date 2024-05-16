@@ -8,13 +8,27 @@ import type { FC, SVGProps } from "react";
 
 import { Icons } from "@/components/icons";
 import { siteNavConfig } from "@/config";
-import NavItem from "../nav-item";
+import NavItem from "../nav-item/nav-item";
+import { json } from "stream/consumers";
+import { IconProps } from "@/types";
 
-const footerSocialIcons: Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
-  github: Icons.gitHub,
-  youtube: Icons.youtube,
-  Linkedin: Icons.linkedin,
-  linkedin: Icons.buymeCoffee,
+interface SocialIconProps {
+  classname: string;
+  icon: React.FC<IconProps>;
+}
+const footerSocialIcons: Record<string, SocialIconProps> = {
+  github: {
+    icon: Icons.gitHub,
+    classname: "h-4 w-4 text-black",
+  },
+  youtube: {
+    icon: Icons.youtube,
+    classname: "w-7 h-7 text-red-600",
+  },
+  twitter: {
+    icon: Icons.twitter,
+    classname: "w-3 h-3",
+  },
 };
 
 const Footer: FC = () => {
@@ -30,23 +44,26 @@ const Footer: FC = () => {
             href={item.link}
             key={item.link}
           >
-            {item.text}
+            foo
           </NavItem>
         ))}
       </div>
 
       <div className="flex flex-col items-center gap-1 md:flex-row">
-        <NavItem type="footer" href={openJSlink.link}>
-          &copy; {openJSlink.text}
-        </NavItem>
+        {Array.isArray(openJSlink) && (
+          <NavItem type="footer" href={openJSlink.link}>
+            &copy; {openJSlink.text}
+          </NavItem>
+        )}
 
         <div className="flex items-center gap-1">
-          {siteNavConfig.socialLinks.map((link) => {
-            const SocialIcon = footerSocialIcons[link.icon];
+          {siteNavConfig.socialLinks.map((social) => {
+            const SocialIcon = footerSocialIcons[social.icon].icon;
+            const className = footerSocialIcons[social.icon].classname;
 
             return (
-              <NavItem key={link.icon} href={link.link} type="footer">
-                <SocialIcon width={20} height={20} aria-label={link.link} />
+              <NavItem key={social.icon} href={social.link} type="footer">
+                <SocialIcon className={className} aria-label={social.link} />
               </NavItem>
             );
           })}

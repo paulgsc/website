@@ -1,4 +1,4 @@
-type IconProps = React.HTMLAttributes<SVGElement>;
+import { IconProps } from "@/types";
 
 export const Icons = {
   logo: (props: IconProps) => (
@@ -9,7 +9,7 @@ export const Icons = {
         y1="128"
         x2="128"
         y2="208"
-        fill="none"
+        fill="currentColor"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"

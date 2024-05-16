@@ -28,7 +28,7 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
   <ActiveLink
     href={href}
     className={cn(
-      "inline-flex items-center gap-2 rounded px-3 py-2 bg-green-600",
+      "inline-flex items-center gap-2 rounded px-3 py-2",
       className
     )}
     allowSubPath={href.startsWith("/")}
