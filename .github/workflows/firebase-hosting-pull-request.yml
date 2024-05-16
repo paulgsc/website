@@ -26,3 +26,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CONSULTING_LLC_6302F }}
           projectId: consulting-llc-6302f
+          entryPoint: firebase
