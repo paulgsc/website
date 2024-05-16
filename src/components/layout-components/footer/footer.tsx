@@ -37,14 +37,14 @@ const Footer: FC = () => {
   return (
     <footer className="flex flex-col items-center gap-6 border-t border-neutral-200 bg-white py-4 dark:border-neutral-900 dark:bg-neutral-950 sm:px-8 md:flex-row md:justify-between md:py-5">
       <div className="flex flex-wrap content-start items-center justify-center gap-1 self-stretch">
-        {siteNavConfig.footerLinks.slice(0, -1).map((item) => (
+        {siteNavConfig.footerLinks.map((item) => (
           <NavItem
             type="footer"
-            className="whitespace-nowrap"
+            className="whitespace-nowrap capitalize tracking-tight text-gray-500 hover:bg-gray-100/80"
             href={item.link}
             key={item.link}
           >
-            foo
+            {item.text}
           </NavItem>
         ))}
       </div>

@@ -34,7 +34,7 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
     allowSubPath={href.startsWith("/")}
     target={target}
   >
-    <span className="text-sm font-medium leading-5 text-white">{children}</span>
+    <span className="text-sm font-medium leading-5 ">{children}</span>
 
     {(href.startsWith("http") || target === "_blank") && (
       <Icons.externalLink className="size-3 dark:text-neutral-200 text-white opacity-50" />

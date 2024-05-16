@@ -9,7 +9,12 @@ export const siteNavConfig: NavigationConfig = {
       target: "_blank",
     },
   },
-  footerLinks: [],
+  footerLinks: [
+    {
+      link: "/about/meet-the-creator",
+      text: "meet the creator",
+    },
+  ],
   socialLinks: [
     {
       icon: "github",
