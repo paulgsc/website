@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/registry/default/ui/button"
-import { Checkbox } from "@/registry/default/ui/checkbox"
+import { Button } from "@/registry/default/ui/button";
+import { Checkbox } from "@/registry/default/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -14,12 +14,12 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/registry/default/ui/form"
-import { toast } from "@/registry/default/ui/use-toast"
+} from "@/registry/default/ui/form";
+import { toast } from "@/registry/default/ui/use-toast";
 
 const FormSchema = z.object({
   mobile: z.boolean().default(false).optional(),
-})
+});
 
 export default function CheckboxReactHookFormSingle() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -27,7 +27,7 @@ export default function CheckboxReactHookFormSingle() {
     defaultValues: {
       mobile: true,
     },
-  })
+  });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
@@ -37,7 +37,7 @@ export default function CheckboxReactHookFormSingle() {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -69,5 +69,5 @@ export default function CheckboxReactHookFormSingle() {
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
+  );
 }

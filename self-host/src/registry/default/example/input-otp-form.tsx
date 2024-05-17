@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/registry/default/ui/button"
+import { Button } from "@/registry/default/ui/button";
 import {
   Form,
   FormControl,
@@ -13,19 +13,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/registry/default/ui/form"
+} from "@/registry/default/ui/form";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/registry/default/ui/input-otp"
-import { toast } from "@/registry/default/ui/use-toast"
+} from "@/registry/default/ui/input-otp";
+import { toast } from "@/registry/default/ui/use-toast";
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
     message: "Your one-time password must be 6 characters.",
   }),
-})
+});
 
 export default function InputOTPForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -33,7 +33,7 @@ export default function InputOTPForm() {
     defaultValues: {
       pin: "",
     },
-  })
+  });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
@@ -43,7 +43,7 @@ export default function InputOTPForm() {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -78,5 +78,5 @@ export default function InputOTPForm() {
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
+  );
 }

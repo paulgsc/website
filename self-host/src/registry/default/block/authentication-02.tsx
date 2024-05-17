@@ -1,23 +1,23 @@
-import Link from "next/link"
+import Link from "next/link";
 
-import { Button } from "@/registry/default/ui/button"
+import { Button } from "@/registry/default/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/default/ui/card"
-import { Input } from "@/registry/default/ui/input"
-import { Label } from "@/registry/default/ui/label"
+} from "@/registry/default/ui/card";
+import { Input } from "@/registry/default/ui/input";
+import { Label } from "@/registry/default/ui/label";
 
 export const description =
-  "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account."
+  "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account.";
 
-export const iframeHeight = "600px"
+export const iframeHeight = "600px";
 
 export const containerClassName =
-  "w-full h-screen flex items-center justify-center px-4"
+  "w-full h-screen flex items-center justify-center px-4";
 
 export default function LoginForm() {
   return (
@@ -63,5 +63,5 @@ export default function LoginForm() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

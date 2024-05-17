@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/registry/default/ui/button"
+import { Button } from "@/registry/default/ui/button";
 import {
   Form,
   FormControl,
@@ -13,15 +13,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/registry/default/ui/form"
-import { Input } from "@/registry/default/ui/input"
-import { toast } from "@/registry/default/ui/use-toast"
+} from "@/registry/default/ui/form";
+import { Input } from "@/registry/default/ui/input";
+import { toast } from "@/registry/default/ui/use-toast";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-})
+});
 
 export default function InputForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -29,7 +29,7 @@ export default function InputForm() {
     defaultValues: {
       username: "",
     },
-  })
+  });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
@@ -39,7 +39,7 @@ export default function InputForm() {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -64,5 +64,5 @@ export default function InputForm() {
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
+  );
 }
