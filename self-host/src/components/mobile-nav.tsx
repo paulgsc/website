@@ -64,15 +64,15 @@ export function MobileNav() {
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            {siteNavConfig.mainNav?.map(
+            {Object.values(siteNavConfig.topNavigation).map(
               (item) =>
-                item.href && (
+                item.link && (
                   <MobileLink
-                    key={item.href}
-                    href={item.href}
+                    key={item.link}
+                    href={item.link}
                     onOpenChange={setOpen}
                   >
-                    {item.title}
+                    {item.label}
                   </MobileLink>
                 )
             )}
