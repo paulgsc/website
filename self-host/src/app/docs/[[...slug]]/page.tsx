@@ -6,15 +6,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
+import { Icons } from "@/components/icons";
 import { Mdx } from "@/components/mdx-components";
-import { DocsPager } from "@/components/pager";
 import { DashboardTableOfContents } from "@/components/toc";
 import { badgeVariants } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
 
 interface DocPageProps {
   params: {
@@ -135,7 +134,6 @@ export default async function DocPage({ params }: DocPageProps) {
         <div className="pb-12 pt-8">
           <Mdx code={doc.body.code} />
         </div>
-        <DocsPager doc={doc} />
       </div>
       {doc.toc && (
         <div className="hidden text-sm xl:block">
