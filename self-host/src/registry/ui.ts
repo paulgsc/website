@@ -7,10 +7,4 @@ export const ui: Registry = [
     dependencies: ["@radix-ui/react-accordion"],
     files: ["ui/accordion.tsx"],
   },
-  {
-    name: "tooltip",
-    type: "components:ui",
-    dependencies: ["@radix-ui/react-tooltip"],
-    files: ["ui/tooltip.tsx"],
-  },
 ];

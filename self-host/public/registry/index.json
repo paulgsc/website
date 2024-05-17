@@ -8,15 +8,5 @@
       "ui/accordion.tsx"
     ],
     "type": "components:ui"
-  },
-  {
-    "name": "tooltip",
-    "dependencies": [
-      "@radix-ui/react-tooltip"
-    ],
-    "files": [
-      "ui/tooltip.tsx"
-    ],
-    "type": "components:ui"
   }
 ]

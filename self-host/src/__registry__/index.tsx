@@ -16,17 +16,6 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
-    "tooltip": {
-      name: "tooltip",
-      type: "components:ui",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/ui/tooltip")),
-      source: "",
-      files: ["src/registry/default/ui/tooltip.tsx"],
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
     "accordion-demo": {
       name: "accordion-demo",
       type: "components:example",
