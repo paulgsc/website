@@ -15,6 +15,8 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Install pnpm globally
+RUN npm install -g pnpm
 
 # Rebuild the source code only when needed
 FROM base AS builder
