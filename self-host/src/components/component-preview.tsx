@@ -9,6 +9,7 @@ import { useConfig } from "@/hooks/use-config";
 import { cn } from "@/lib/utils";
 import { ThemeWrapper } from "./theme-wrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { styles } from "@/registry/styles";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -28,7 +29,8 @@ export function ComponentPreview({
   description,
   ...props
 }: ComponentPreviewProps) {
-  const [config] = useConfig();
+  const config = useConfig();
+  const index = styles.findIndex((style) => style.name === config.style);
 
   const Codes = React.Children.toArray(children) as React.ReactElement[];
   const Code = Codes[index];
