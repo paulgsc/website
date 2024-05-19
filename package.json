@@ -47,6 +47,7 @@
     }
   ],
   "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
     "eslint": "^8.41.0",
     "eslint-config-next": "13.3.0",
     "eslint-config-prettier": "^8.8.0",
@@ -64,5 +65,15 @@
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2"
+  },
+  "lint-staged": {
+    "self-host/**/*.{js,ts,tsx}": [
+      "eslint --config self-host/.eslintrc.js --fix",
+      "prettier --write"
+    ],
+    "firebase/**/*.{js,ts,tsx}": [
+      "eslint --config firebase/.eslintrc.js --fix",
+      "prettier --write"
+    ]
   }
 }

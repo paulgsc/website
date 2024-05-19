@@ -5,4 +5,5 @@
 npx lint-staged
 
 # verify typescript staged files
-npx tsc --build .
+npx tsc --build self-host/tsconfig.json
+npx tsc --build firebase/tsconfig.json
