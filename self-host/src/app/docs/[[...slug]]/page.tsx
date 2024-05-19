@@ -1,44 +1,45 @@
-import { allDocs } from "contentlayer/generated";
-import { notFound } from "next/navigation";
+import { notFound } from "next/navigation"
+import { allDocs } from "contentlayer/generated"
 
-import "@/styles/mdx.css";
-import type { Metadata } from "next";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
+import "@/styles/mdx.css"
 
-import { Icons } from "@/components/icons";
-import { Mdx } from "@/components/mdx-components";
-import { DashboardTableOfContents } from "@/components/toc";
-import { badgeVariants } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { siteConfig } from "@/config/site";
-import { getTableOfContents } from "@/lib/toc";
-import { absoluteUrl, cn } from "@/lib/utils";
+import type { Metadata } from "next"
+import Link from "next/link"
+import Balancer from "react-wrap-balancer"
+
+import { siteConfig } from "@/config/site"
+import { getTableOfContents } from "@/lib/toc"
+import { absoluteUrl, cn } from "@/lib/utils"
+import { badgeVariants } from "@/components/ui/badge"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Icons } from "@/components/icons"
+import { Mdx } from "@/components/mdx-components"
+import { DashboardTableOfContents } from "@/components/toc"
 
 interface DocPageProps {
   params: {
-    slug: string[];
-  };
+    slug: string[]
+  }
 }
 
 async function getDocFromParams({ params }: DocPageProps) {
-  const slug = params.slug?.join("/") || "";
-  const doc = allDocs.find((doc) => doc.slugAsParams === slug);
+  const slug = params.slug?.join("/") || ""
+  const doc = allDocs.find((doc) => doc.slugAsParams === slug)
 
   if (!doc) {
-    return null;
+    return null
   }
 
-  return doc;
+  return doc
 }
 
 export async function generateMetadata({
   params,
 }: DocPageProps): Promise<Metadata> {
-  const doc = await getDocFromParams({ params });
+  const doc = await getDocFromParams({ params })
 
   if (!doc) {
-    return {};
+    return {}
   }
 
   return {
@@ -65,7 +66,7 @@ export async function generateMetadata({
       images: [siteConfig.ogImage],
       creator: "@shadcn",
     },
-  };
+  }
 }
 
 export async function generateStaticParams(): Promise<
@@ -73,26 +74,24 @@ export async function generateStaticParams(): Promise<
 > {
   return allDocs.map((doc) => ({
     slug: doc.slugAsParams.split("/"),
-  }));
+  }))
 }
 
 export default async function DocPage({ params }: DocPageProps) {
-  const doc = await getDocFromParams({ params });
+  const doc = await getDocFromParams({ params })
 
   if (!doc) {
-    notFound();
+    notFound()
   }
 
-  const toc = await getTableOfContents(doc.body.raw);
+  const toc = await getTableOfContents(doc.body.raw)
 
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
         <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
-          <div className="overflow-hidden text-ellipsis whitespace-nowrap">
-            Docs
-          </div>
-          <Icons.chevronRight className="h-4 w-4" />
+          <div className="truncate">Docs</div>
+          <Icons.chevronRight className="size-4" />
           <div className="font-medium text-foreground">{doc.title}</div>
         </div>
         <div className="space-y-2">
@@ -115,7 +114,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 Docs
-                <Icons.externalLink className="h-3 w-3" />
+                <Icons.externalLink className="size-3" />
               </Link>
             )}
             {doc.links?.api && (
@@ -126,7 +125,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 API Reference
-                <Icons.externalLink className="h-3 w-3" />
+                <Icons.externalLink className="size-3" />
               </Link>
             )}
           </div>
@@ -147,5 +146,5 @@ export default async function DocPage({ params }: DocPageProps) {
         </div>
       )}
     </main>
-  );
+  )
 }
