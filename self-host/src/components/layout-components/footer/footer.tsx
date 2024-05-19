@@ -4,13 +4,12 @@
  * The original code is licensed under the MIT License.
  */
 
-import type { FC, SVGProps } from "react";
+import type { FC } from "react";
 
 import { Icons } from "@/components/icons";
 import { siteNavConfig } from "@/config";
-import NavItem from "../nav-item/nav-item";
-import { json } from "stream/consumers";
 import { IconProps } from "@/types";
+import { default as NavItem, default as NavLink } from "./nav-link";
 
 interface SocialIconProps {
   classname: string;
@@ -38,7 +37,7 @@ const Footer: FC = () => {
     <footer className="flex flex-col items-center gap-6 border-t border-neutral-200 bg-zinc-50 py-4 dark:border-neutral-900 dark:bg-neutral-950 sm:px-8 md:flex-row md:justify-between md:py-5">
       <div className="flex flex-wrap content-start items-center justify-center gap-1 self-stretch">
         {siteNavConfig.footerLinks.map((item) => (
-          <NavItem
+          <NavLink
             type="footer"
             className="whitespace-nowrap capitalize tracking-tight text-black hover:bg-gray-100/80"
             href={item.link}
@@ -47,7 +46,7 @@ const Footer: FC = () => {
             <span className="text-sm text-black font-medium leading-5">
               {item.text}
             </span>
-          </NavItem>
+          </NavLink>
         ))}
       </div>
 
