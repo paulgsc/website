@@ -1,5 +1,4 @@
 import { ThemeProvider } from "@/components/providers";
-import { SiteNav } from "@/components/site-nav";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster as DefaultToaster } from "@/components/ui/toaster";
@@ -9,6 +8,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Footer from "@/components/layout-components/footer/footer";
+import { SiteNav } from "@/components/layout-components/navbar/site-nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
