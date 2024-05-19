@@ -1,0 +1,43 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "apps for my self hosted website",
+  "homepage": "karibu.maishatu.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Paul Mwangi Gathondu",
+    "email": "paulgathondudev@gmail.com",
+    "url": "https://github.com/paulgsc"
+  },
+  "license": "MIT",
+  "keywords": [
+    "portfolio",
+    "website",
+    "opensource",
+    "nopaywall",
+    "no-sign-up-wall",
+    "nextjs",
+    "rust"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulgsc/website"
+  },
+  "bugs": {
+    "url": "https://github.com/paulgsc/website/issues",
+    "email": "paulgathondudev@gmail.com"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/pgdev"
+    },
+    {
+      "type": "Buy me a coffee",
+      "url": "https://www.buymeacoffee.com/pgdev"
+    }
+  ]
+}
