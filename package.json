@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "apps for my self hosted website",
   "homepage": "karibu.maishatu.com",
-  "main": "index.js",
+  "workspaces": [
+    "self-host/*",
+    "firebase/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "typecheck": "turbo run typecheck",
+    "prepare": "husky install"
   },
   "author": {
     "name": "Paul Mwangi Gathondu",
@@ -39,5 +45,24 @@
       "type": "Buy me a coffee",
       "url": "https://www.buymeacoffee.com/pgdev"
     }
-  ]
+  ],
+  "dependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-next": "13.3.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-turbo": "^1.9.9",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-tailwindcss": "^3.12.0",
+    "postcss": "^8.4.24",
+    "prettier": "^3.2.5",
+    "pretty-quick": "^4.0.0",
+    "tailwindcss": "^3.4.0",
+    "tailwindcss-animate": "^1.0.5",
+    "tsx": "^4.1.4",
+    "turbo": "^1.9.9"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2"
+  }
 }
