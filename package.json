@@ -8,9 +8,9 @@
     "firebase/*"
   ],
   "scripts": {
-    "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix",
-    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint --filter=./self-host",
+    "lint:fix": "turbo run lint:fix --filter=./self-host",
+    "typecheck": "turbo run typecheck --filter=./self-host",
     "prepare": "husky install"
   },
   "author": {
