@@ -1,26 +1,29 @@
-import { useState } from "react";
+import { useState } from "react"
+import { Menu } from "lucide-react"
 
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { Icons } from "./icons";
-import { ModeToggle } from "./mode-toggle";
-import { Button, buttonVariants } from "./ui/button";
+} from "@/components/ui/sheet"
+
+import { Icons } from "./icons"
+import { ModeToggle } from "./mode-toggle"
+import { Button, buttonVariants } from "./ui/button"
 
 interface RouteProps {
-  href: string;
-  label: string;
+  href: string
+  label: string
 }
+
+export type Test = "apple"
 
 const routeList: RouteProps[] = [
   {
@@ -39,10 +42,10 @@ const routeList: RouteProps[] = [
     href: "#faq",
     label: "FAQ",
   },
-];
+]
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
@@ -132,5 +135,5 @@ export function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
     </header>
-  );
+  )
 }
