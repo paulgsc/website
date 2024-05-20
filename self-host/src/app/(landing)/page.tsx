@@ -1,12 +1,15 @@
-import Image from "next/image";
-import { About } from "./components/about";
+import type { FC } from "react"
 
-export default function Home() {
+import { About } from "./components/about"
+
+const Home: FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ">
-      <div className="z-10 w-full lg:max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+      <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex lg:max-w-5xl">
         <About />
       </div>
     </main>
-  );
+  )
 }
+
+export default Home
