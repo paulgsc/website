@@ -1,19 +1,16 @@
-"use client";
+"use client"
 
-import * as React from "react";
+// eslint-disable-next-line no-restricted-syntax
+import React from "react"
 
-import { cn } from "@/lib/utils";
-import { CodeBlockWrapper } from "@/components/code-block-wrapper";
+import { cn } from "@/lib/utils"
+import { CodeBlockWrapper } from "@/components/code-block-wrapper"
 
-interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {
-  src: string;
-}
+type ComponentSourceProps = {
+  src: string
+} & React.HTMLAttributes<HTMLDivElement>
 
-export function ComponentSource({
-  children,
-  className,
-  ...props
-}: ComponentSourceProps) {
+const ComponentSource = ({ children, className }: ComponentSourceProps) => {
   return (
     <CodeBlockWrapper
       expandButtonTitle="Expand"
@@ -21,5 +18,7 @@ export function ComponentSource({
     >
       {children}
     </CodeBlockWrapper>
-  );
+  )
 }
+
+export default ComponentSource
