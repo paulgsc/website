@@ -1,10 +1,13 @@
+// eslint-disable-next-line import/order
+import type { Metadata } from "next"
+import Link from "next/link"
+// eslint-disable-next-line import/order
 import { notFound } from "next/navigation"
-import { allDocs } from "contentlayer/generated"
 
 import "@/styles/mdx.css"
 
-import type { Metadata } from "next"
-import Link from "next/link"
+// eslint-disable-next-line import/order
+import { allPages } from "contentlayer/generated"
 import Balancer from "react-wrap-balancer"
 
 import { siteConfig } from "@/config/site"
@@ -13,18 +16,18 @@ import { absoluteUrl, cn } from "@/lib/utils"
 import { badgeVariants } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Icons } from "@/components/icons"
-import { Mdx } from "@/components/mdx-components"
+import Mdx from "@/components/mdx-components"
 import { DashboardTableOfContents } from "@/components/toc"
 
-interface DocPageProps {
+type DocPageProps = {
   params: {
-    slug: string[]
+    slug: Array<string>
   }
 }
 
 async function getDocFromParams({ params }: DocPageProps) {
   const slug = params.slug?.join("/") || ""
-  const doc = allDocs.find((doc) => doc.slugAsParams === slug)
+  const doc = allPages.find((doc) => doc.slugAsParams === slug)
 
   if (!doc) {
     return null
@@ -70,14 +73,14 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<
-  DocPageProps["params"][]
+  Array<DocPageProps["params"]>
 > {
-  return allDocs.map((doc) => ({
+  return allPages.map((doc) => ({
     slug: doc.slugAsParams.split("/"),
   }))
 }
 
-export default async function DocPage({ params }: DocPageProps) {
+const Page = async ({ params }: DocPageProps) => {
   const doc = await getDocFromParams({ params })
 
   if (!doc) {
@@ -89,17 +92,17 @@ export default async function DocPage({ params }: DocPageProps) {
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
-        <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+        <div className="text-muted-foreground mb-4 flex items-center space-x-1 text-sm">
           <div className="truncate">Docs</div>
           <Icons.chevronRight className="size-4" />
-          <div className="font-medium text-foreground">{doc.title}</div>
+          <div className="text-foreground font-medium">{doc.title}</div>
         </div>
         <div className="space-y-2">
           <h1 className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}>
             {doc.title}
           </h1>
           {doc.description && (
-            <p className="text-lg text-muted-foreground">
+            <p className="text-muted-foreground text-lg">
               <Balancer>{doc.description}</Balancer>
             </p>
           )}
@@ -148,3 +151,5 @@ export default async function DocPage({ params }: DocPageProps) {
     </main>
   )
 }
+
+export default Page
