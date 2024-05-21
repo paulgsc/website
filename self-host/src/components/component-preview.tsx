@@ -1,68 +1,67 @@
-"use client";
+"use client"
 
-import { Index } from "@/__registry__";
-import * as React from "react";
+// eslint-disable-next-line no-restricted-syntax
+import React, { Suspense, useMemo } from "react"
+import { Index } from "@/__registry__"
 
-import { CopyButton } from "@/components/copy-button";
-import { Icons } from "@/components/icons";
-import { useConfig } from "@/hooks/use-config";
-import { cn } from "@/lib/utils";
-import { ThemeWrapper } from "./theme-wrapper";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { styles } from "@/registry/styles";
+import { cn } from "@/lib/utils"
+import { useConfig } from "@/hooks/use-config"
+import { Icons } from "@/components/icons"
+import { styles } from "@/registry/styles"
 
-interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: string;
-  extractClassname?: boolean;
-  extractedClassNames?: string;
-  align?: "center" | "start" | "end";
-  description?: string;
-}
+import CopyButton from "./copy-button"
+import { ThemeWrapper } from "./theme-wrapper"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
-export function ComponentPreview({
+type ComponentPreviewProps = {
+  name: string
+  extractClassname?: boolean
+  extractedClassNames?: string
+  align?: "center" | "start" | "end"
+  description?: string
+} & React.HTMLAttributes<HTMLDivElement>
+
+const ComponentPreview = ({
   name,
   children,
   className,
-  extractClassname,
-  extractedClassNames,
   align = "center",
-  description,
   ...props
-}: ComponentPreviewProps) {
-  const config = useConfig();
-  const index = styles.findIndex((style) => style.name === config.style);
+}: ComponentPreviewProps) => {
+  const config = useConfig()
+  const index = styles.findIndex((style) => style.name === config.style)
 
-  const Codes = React.Children.toArray(children) as React.ReactElement[];
-  const Code = Codes[index];
+  const Codes = React.Children.toArray(children) as Array<React.ReactElement>
+  const Code = Codes[index]
 
-  const Preview = React.useMemo(() => {
-    const Component = Index[config.style][name]?.component;
+  const Preview = useMemo(() => {
+    const Component = Index[config.style][name]?.component
 
     if (!Component) {
       return (
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Component{" "}
-          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+          <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
             {name}
           </code>{" "}
           not found in registry.
         </p>
-      );
+      )
     }
 
-    return <Component />;
-  }, [name, config.style]);
+    return <Component />
+  }, [name, config.style])
 
-  const codeString = React.useMemo(() => {
+  const codeString = useMemo(() => {
     if (
       typeof Code?.props["data-rehype-pretty-code-fragment"] !== "undefined"
     ) {
       const [Button] = React.Children.toArray(
         Code.props.children
-      ) as React.ReactElement[];
-      return Button?.props?.value || Button?.props?.__rawString__ || null;
+      ) as Array<React.ReactElement>
+      return Button?.props?.value || Button?.props?.__rawString__ || null
     }
-  }, [Code]);
+  }, [Code])
 
   return (
     <div
@@ -74,13 +73,13 @@ export function ComponentPreview({
           <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
             <TabsTrigger
               value="preview"
-              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+              className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
             >
               Preview
             </TabsTrigger>
             <TabsTrigger
               value="code"
-              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+              className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
             >
               Code
             </TabsTrigger>
@@ -92,7 +91,7 @@ export function ComponentPreview({
               <CopyButton
                 value={codeString}
                 variant="outline"
-                className="h-7 w-7 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:size-3.5"
+                className="text-foreground hover:bg-muted hover:text-foreground size-7 opacity-100 [&_svg]:size-3.5"
               />
             </div>
           </div>
@@ -107,16 +106,16 @@ export function ComponentPreview({
                 }
               )}
             >
-              <React.Suspense
+              <Suspense
                 fallback={
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <div className="text-muted-foreground flex items-center text-sm">
+                    <Icons.spinner className="mr-2 size-4 animate-spin" />
                     Loading...
                   </div>
                 }
               >
                 {Preview}
-              </React.Suspense>
+              </Suspense>
             </div>
           </ThemeWrapper>
         </TabsContent>
@@ -129,5 +128,7 @@ export function ComponentPreview({
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }
+
+export default ComponentPreview

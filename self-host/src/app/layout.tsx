@@ -1,16 +1,20 @@
-import { ThemeProvider } from "@/components/providers";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Toaster as DefaultToaster } from "@/components/ui/toaster";
-import { siteConfig } from "@/config";
-import { cn, fontSans } from "@/lib";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@/styles/globals.css";
-import Footer from "@/components/layout-components/footer/footer";
-import { SiteNav } from "@/components/layout-components/navbar/site-nav";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { siteConfig } from "@/config"
+// eslint-disable-next-line import/order
+import { cn, fontSans } from "@/lib"
 
-const inter = Inter({ subsets: ["latin"] });
+import { Toaster as Sonner } from "@/components/ui/sonner"
+import { Toaster as DefaultToaster } from "@/components/ui/toaster"
+import Footer from "@/components/layout-components/footer/footer"
+import { SiteNav } from "@/components/layout-components/navbar/site-nav"
+import { ThemeProvider } from "@/components/providers"
+import { ThemeSwitcher } from "@/components/theme-switcher"
+
+import "@/styles/globals.css"
+
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
@@ -56,11 +60,13 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
-};
+}
+// eslint-disable-next-line react/function-component-definition
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  // eslint-disable-next-line no-undef
+  children: React.ReactNode
 }>) {
   return (
     <>
@@ -68,7 +74,7 @@ export default function RootLayout({
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "bg-background min-h-screen font-sans antialiased",
             fontSans.className
           )}
         >
@@ -79,19 +85,22 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <div vaul-drawer-wrapper="">
-              <div className="relative flex min-h-screen flex-col bg-background">
+              <div className="bg-background relative flex-col">
                 <SiteNav />
-                <main className="flex-1">{children}</main>
+                <div className="flex w-full min-w-0 items-center justify-center px-4 py-14 md:px-14 lg:px-28">
+                  {children}
+                </div>
               </div>
             </div>
-            <Footer />
+
             <ThemeSwitcher />
 
             <DefaultToaster />
             <Sonner />
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
     </>
-  );
+  )
 }

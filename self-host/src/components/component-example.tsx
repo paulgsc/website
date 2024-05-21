@@ -1,41 +1,45 @@
-"use client";
+"use client"
 
-import * as React from "react";
+// eslint-disable-next-line no-restricted-syntax
+import React, { useMemo } from "react"
 
-import { cn } from "@/lib/utils";
-import { CopyButton, CopyWithClassNames } from "@/components/copy-button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { cn } from "@/lib/utils"
 
-interface ComponentExampleProps extends React.HTMLAttributes<HTMLDivElement> {
-  extractClassname?: boolean;
-  extractedClassNames?: string;
-  align?: "center" | "start" | "end";
-  src?: string;
-}
+import CopyButton, { CopyWithClassNames } from "./copy-button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
-export function ComponentExample({
+type ComponentExampleProps = {
+  extractClassname?: boolean
+  extractedClassNames?: string
+  align?: "center" | "start" | "end"
+  src?: string
+  // eslint-disable-next-line no-undef
+} & React.HTMLAttributes<HTMLDivElement>
+
+export const ComponentExample = ({
   children,
   className,
-  extractClassname,
   extractedClassNames,
   align = "center",
-  src: _,
+
   ...props
-}: ComponentExampleProps) {
+}: ComponentExampleProps) => {
   const [Example, Code, ...Children] = React.Children.toArray(
     children
-  ) as React.ReactElement[];
+    // eslint-disable-next-line no-undef
+  ) as Array<React.ReactElement>
 
-  const codeString = React.useMemo(() => {
+  const codeString = useMemo(() => {
     if (
       typeof Code?.props["data-rehype-pretty-code-fragment"] !== "undefined"
     ) {
       const [, Button] = React.Children.toArray(
         Code.props.children
-      ) as React.ReactElement[];
-      return Button?.props?.value || Button?.props?.__rawString__ || null;
+        // eslint-disable-next-line no-undef
+      ) as Array<React.ReactElement>
+      return Button?.props?.value || Button?.props?.__rawString__ || null
     }
-  }, [Code]);
+  }, [Code])
 
   return (
     <div
@@ -47,13 +51,13 @@ export function ComponentExample({
           <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
             <TabsTrigger
               value="preview"
-              className="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+              className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
             >
               Preview
             </TabsTrigger>
             <TabsTrigger
               value="code"
-              className="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+              className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
             >
               Code
             </TabsTrigger>
@@ -98,5 +102,5 @@ export function ComponentExample({
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }

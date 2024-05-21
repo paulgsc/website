@@ -4,7 +4,7 @@ import { About } from "./components/about"
 
 const Home: FC = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between ">
+    <main className="flex  flex-col items-center justify-between ">
       <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex lg:max-w-5xl">
         <About />
       </div>

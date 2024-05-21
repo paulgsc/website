@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { FC } from "react";
+import type { FC } from "react"
 
 const GlobalErrorPage: FC<{ error: Error }> = ({ error }) => {
   // @todo: implement our own sentry error handling
   // captureException(error);
-
+  console.error(error)
   return (
     <html>
       <body>
@@ -19,7 +19,7 @@ const GlobalErrorPage: FC<{ error: Error }> = ({ error }) => {
         </main>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default GlobalErrorPage;
+export default GlobalErrorPage
