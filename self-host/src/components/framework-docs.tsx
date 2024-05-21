@@ -1,22 +1,24 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { allDocs } from "contentlayer/generated";
+import type { HTMLAttributes } from "react"
+import { allPages } from "contentlayer/generated"
 
-import { Mdx } from "./mdx-components";
+import Mdx from "./mdx-components"
 
-interface FrameworkDocsProps extends React.HTMLAttributes<HTMLDivElement> {
-  data: string;
-}
+type FrameworkDocsProps = {
+  data: string
+} & HTMLAttributes<HTMLDivElement>
 
-export function FrameworkDocs({ ...props }: FrameworkDocsProps) {
-  const frameworkDoc = allDocs.find(
+const FrameworkDocs = ({ ...props }: FrameworkDocsProps) => {
+  const frameworkDoc = allPages.find(
     (doc) => doc.slug === `/docs/installation/${props.data}`
-  );
+  )
 
   if (!frameworkDoc) {
-    return null;
+    return null
   }
 
-  return <Mdx code={frameworkDoc.body.code} />;
+  return <Mdx code={frameworkDoc.body.code} />
 }
+
+export default FrameworkDocs

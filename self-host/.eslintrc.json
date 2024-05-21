@@ -1,4 +1,5 @@
 {
+  "extends": ["../.eslintrc.json"],
   "overrides": [
     {
       "files": ["**/*.{js,mjs,ts,tsx,mdx}"],
@@ -27,11 +28,24 @@
       }
     },
     {
+      "files": ["**/*.{mdx,tsx}"],
+      "rules": {
+        "react/function-component-definition": [
+          "error",
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ]
+      }
+    },
+    {
       "files": ["**/*.md?(x)"],
       "extends": "plugin:mdx/recommended",
       "rules": {
         "react/jsx-no-undef": "off",
-        "@next/next/no-img-element": "off"
+        "@next/next/no-img-element": "off",
+        "react/no-unescaped-entities": "off"
       }
     }
   ]
