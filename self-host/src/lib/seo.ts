@@ -1,29 +1,40 @@
-import { siteConfig } from "@/config";
-import { Metadata } from "next";
+import type { Metadata } from "next"
+import type { OpenGraphType } from "next/dist/lib/metadata/types/opengraph-types"
+import { siteConfig } from "@/config"
 
-export default function constructMetadata({
+import { absoluteUrl } from "./utils"
+
+export default async function constructMetadata({
   title = siteConfig.name,
   description = siteConfig.description,
   image = siteConfig.ogImage,
   icons = "/favicon.ico",
+  url,
+  type = "website",
   noIndex = false,
 }: {
-  title?: string;
-  description?: string;
-  image?: string;
-  icons?: string;
-  noIndex?: boolean;
-} = {}): Metadata {
+  title?: string
+  description?: string
+  image?: string
+  icons?: string
+  noIndex?: boolean
+  url?: string | URL
+  type?: OpenGraphType
+} = {}): Promise<Metadata> {
   return {
     title,
     description,
     openGraph: {
-      type: "website",
+      type: type,
       locale: "en_US",
-      url: siteConfig.url,
+      url: url
+        ? typeof url === "string"
+          ? absoluteUrl(url)
+          : url
+        : siteConfig.name,
       title,
       description,
-      siteName: siteConfig.name,
+      siteName: "karibu.maishatu.com",
       images: [
         {
           url: image,
@@ -35,18 +46,18 @@ export default function constructMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: title,
+      description: description,
       images: [image],
       creator: "@pgdev",
     },
     icons,
-    metadataBase: new URL(""),
+    metadataBase: new URL(absoluteUrl("")),
     ...(noIndex && {
       robots: {
         index: false,
         follow: false,
       },
     }),
-  };
+  }
 }
