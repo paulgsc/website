@@ -1,87 +1,31 @@
 // eslint-disable-next-line import/order
-import type { Metadata } from "next"
 import Link from "next/link"
 // eslint-disable-next-line import/order
 import { notFound } from "next/navigation"
 
 import "@/styles/mdx.css"
 
+import { generateStaticParams, getPageFromParams } from "@/lib"
+import type { ContentlayerPagePropsWithoutRootPath } from "@/types"
 // eslint-disable-next-line import/order
-import { allPages } from "contentlayer/generated"
 import Balancer from "react-wrap-balancer"
 
-import { siteConfig } from "@/config/site"
 import { getTableOfContents } from "@/lib/toc"
-import { absoluteUrl, cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { badgeVariants } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Icons } from "@/components/icons"
 import Mdx from "@/components/mdx-components"
 import { DashboardTableOfContents } from "@/components/toc"
 
-type DocPageProps = {
-  params: {
-    slug: Array<string>
-  }
-}
+// We add the rootPath to the params since the [[...slug]] pattern in Next.js
+// is exclusive of the path and only generates the params for the slug part.
+const rootPath = ["about"]
 
-async function getDocFromParams({ params }: DocPageProps) {
-  const slug = params.slug?.join("/") || ""
-  const doc = allPages.find((doc) => doc.slugAsParams === slug)
+generateStaticParams({ rootPath: rootPath })
 
-  if (!doc) {
-    return null
-  }
-
-  return doc
-}
-
-export async function generateMetadata({
-  params,
-}: DocPageProps): Promise<Metadata> {
-  const doc = await getDocFromParams({ params })
-
-  if (!doc) {
-    return {}
-  }
-
-  return {
-    title: doc.title,
-    description: doc.description,
-    openGraph: {
-      title: doc.title,
-      description: doc.description,
-      type: "article",
-      url: absoluteUrl(doc.slug),
-      images: [
-        {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: siteConfig.name,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: doc.title,
-      description: doc.description,
-      images: [siteConfig.ogImage],
-      creator: "@shadcn",
-    },
-  }
-}
-
-export async function generateStaticParams(): Promise<
-  Array<DocPageProps["params"]>
-> {
-  return allPages.map((doc) => ({
-    slug: doc.slugAsParams.split("/"),
-  }))
-}
-
-const Page = async ({ params }: DocPageProps) => {
-  const doc = await getDocFromParams({ params })
+const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
+  const doc = await getPageFromParams({ params, rootPath })
 
   if (!doc) {
     notFound()
