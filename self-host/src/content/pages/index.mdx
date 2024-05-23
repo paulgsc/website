@@ -5,9 +5,8 @@ description: Powered by amazing open source projects.
 
 <section>
  <YoutubeBadge />
-
   <div>
-    <h1 className="special">Run JavaScript Everywhere</h1>
+    <h1 className="bg-gradient-subtle-gray dark:bg-gradient-subtle-white bg-clip-text text-4xl leading-[3rem] -tracking-[0.045rem] [-webkit-text-fill-color:transparent] md:text-5xl md:leading-[4rem] md:-tracking-[0.06rem]">Run JavaScript Everywhere</h1>
 
     Node.js® is a free, open-source, cross-platform JavaScript runtime
     environment that lets developers create servers, web apps,
@@ -15,4 +14,113 @@ description: Powered by amazing open source projects.
 
   </div>
 
+</section>
+
+<section>
+<Tabs defaultValue="welcome">
+
+<TabsList>
+  <TabsTrigger value="welcome">Karibu</TabsTrigger>
+  <TabsTrigger value="projects">Flagship</TabsTrigger>
+  <TabsTrigger value="log">TLDR</TabsTrigger>
+  <TabsTrigger value="status">Vipi</TabsTrigger>
+  <TabsTrigger value="github">Contribute</TabsTrigger>
+</TabsList>
+<TabsContent value="welcome">
+    ```js displayName="Create an HTTP Server"
+    // server.mjs
+    import { createServer } from 'node:http';
+
+    const server = createServer((req, res) => {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end('Hello World!\n');
+    });
+
+    // starts a simple http server locally on port 3000
+    server.listen(3000, '127.0.0.1', () => {
+      console.log('Listening on 127.0.0.1:3000');
+    });
+
+    // run with `node server.mjs`
+    ```
+
+  </TabsContent>
+  <TabsContent value="projects">
+    ```js displayName="Write Tests"
+    // tests.mjs
+    import assert from 'node:assert';
+    import test from 'node:test';
+
+    test('that 1 is equal 1', () => {
+      assert.strictEqual(1, 1);
+    });
+
+    test('that throws as 1 is not equal 2', () => {
+      // throws an exception because 1 != 2
+      assert.strictEqual(1, 2);
+    });
+
+    // run with `node tests.mjs`
+    ```
+
+  </TabsContent>
+  <TabsContent value="log">
+    ```js displayName="Read and Hash a File"
+    // crypto.mjs
+    import { createHash } from 'node:crypto';
+    import { readFile } from 'node:fs/promises';
+
+    const hasher = createHash('sha1');
+
+    hasher.setEncoding('hex');
+    // ensure you have a `package.json` file for this test!
+    hasher.write(await readFile('package.json'));
+    hasher.end();
+
+    const fileHash = hasher.read();
+
+    // run with `node crypto.mjs`
+    ```
+
+  </TabsContent>
+  <TabsContent value="status">
+    ```js displayName="Streams Pipeline"
+    // streams.mjs
+    import { pipeline } from 'node:stream/promises';
+    import { createReadStream, createWriteStream } from 'node:fs';
+    import { createGzip } from 'node:zlib';
+
+    // ensure you have a `package.json` file for this test!
+    await pipeline
+    (
+      createReadStream('package.json'),
+      createGzip(),
+      createWriteStream('package.json.gz')
+    );
+
+    // run with `node streams.mjs`
+    ```
+
+  </TabsContent>
+  <TabsContent value="github">
+    ```js displayName="Work with Threads"
+    // threads.mjs
+    import { Worker, isMainThread,
+      workerData, parentPort } from 'node:worker_threads';
+
+    if (isMainThread) {
+      const data = 'some data';
+      const worker = new Worker(import.meta.filename, { workerData: data });
+      worker.on('message', msg => console.log('Reply from Thread:', msg));
+    } else {
+      const source = workerData;
+      parentPort.postMessage(btoa(source.toUpperCase()));
+    }
+
+    // run with `node threads.mjs`
+    ```
+
+  </TabsContent>
+  </Tabs>
+  Learn more what Node.js is able to offer with our [Learning materials](/learn).
 </section>
