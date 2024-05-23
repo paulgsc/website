@@ -40,7 +40,7 @@ const components = {
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "font-heading mt-2 scroll-m-20 text-4xl font-bold",
+        "font-heading mt-2 hidden scroll-m-20 text-4xl font-bold",
         className
       )}
       {...props}
