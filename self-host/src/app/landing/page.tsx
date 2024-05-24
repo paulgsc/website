@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, type FC } from "react"
 
 import Autoplay from "@/lib/embla-fork/autoplay"
