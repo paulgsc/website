@@ -3,11 +3,12 @@
 import { useRef, type FC } from "react"
 
 import Autoplay from "@/lib/embla-fork/autoplay"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
+  CarouselIndicatorContent,
+  CarouselIndicatorItem,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
@@ -37,17 +38,17 @@ const Home: FC = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
+        <CarouselIndicatorContent>
           {Array.from({ length: 4 }).map((_, index) => (
-            <Button
+            <CarouselIndicatorItem
               key={index}
-              className="m-0 size-3 rounded-full p-0"
               aria-current="true"
               aria-label="Slide 1"
               data-carousel-slide-to="0"
-            ></Button>
+            />
           ))}
-        </div>
+        </CarouselIndicatorContent>
+
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
