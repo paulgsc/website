@@ -35,6 +35,7 @@ type CarouselContextProps = {
   api: ReturnType<typeof useEmblaCarousel>[1]
   scrollPrev: () => void
   scrollNext: () => void
+  scrollTo: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
 } & CarouselProps
@@ -94,6 +95,15 @@ const Carousel = forwardRef<
       api?.scrollNext()
     }, [api])
 
+    const scrollTo = useCallback(() => {
+      if (!api) return
+      const { index } = api?.internalEngine() ?? {}
+      if (!index) return
+      console.log(index)
+      const lastIndex = api?.scrollSnapList().length - 1
+      api?.scrollTo(lastIndex, false)
+    }, [api])
+
     const handleKeyDown = useCallback(
       (event: KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "ArrowLeft") {
@@ -139,6 +149,7 @@ const Carousel = forwardRef<
             orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
           scrollNext,
+          scrollTo,
           canScrollPrev,
           canScrollNext,
         }}
@@ -260,6 +271,51 @@ const CarouselNext = forwardRef<
 })
 CarouselNext.displayName = "CarouselNext"
 
+const CarouselIndicatorContent = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      role="group"
+      aria-roledescription="indicator"
+      className={cn(
+        "absolute bottom-5 left-1/2 z-30 flex min-w-0 shrink-0 grow-0 basis-full -translate-x-1/2 space-x-3 rtl:space-x-reverse",
+        className
+      )}
+      {...props}
+    />
+  )
+})
+
+CarouselIndicatorContent.displayName = "CarouselIndicatorContent"
+
+type CarouselIndicatorItemProps = {
+  index?: number
+  jump?: boolean
+} & ComponentProps<typeof Button>
+
+const CarouselIndicatorItem = forwardRef<
+  HTMLButtonElement,
+  CarouselIndicatorItemProps
+>(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  const { scrollTo, canScrollNext, canScrollPrev } = useCarousel()
+
+  return (
+    <Button
+      ref={ref}
+      variant={variant}
+      size={size}
+      className={cn("m-0 size-3 rounded-full p-0", className)}
+      disabled={!canScrollPrev && !canScrollNext}
+      onClick={scrollTo}
+      {...props}
+    />
+  )
+})
+CarouselIndicatorItem.displayName = "CarouselIndicatorItem"
+
 export {
   type CarouselApi,
   Carousel,
@@ -267,4 +323,6 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselIndicatorContent,
+  CarouselIndicatorItem,
 }
