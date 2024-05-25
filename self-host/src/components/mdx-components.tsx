@@ -17,32 +17,15 @@ import ComponentPreview from "./component-preview"
 import ComponentSource from "./component-source"
 import CopyButton, { CopyNpmCommandButton } from "./copy-button"
 import FrameworkDocs from "./framework-docs"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion"
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
 import { AspectRatio } from "./ui/aspect-ratio"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import YoutubeBadge from "./youtube-badge"
 
 const components = {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  Alert,
-  AlertTitle,
-  AlertDescription,
   YoutubeBadge,
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn(
-        "font-heading mt-2 hidden scroll-m-20 text-4xl font-bold",
-        className
-      )}
+      className={cn("font-heading scroll-m-20 text-4xl font-bold", className)}
       {...props}
     />
   ),
