@@ -35,7 +35,8 @@ type CarouselContextProps = {
   api: ReturnType<typeof useEmblaCarousel>[1]
   scrollPrev: () => void
   scrollNext: () => void
-  scrollTo: () => void
+  // eslint-disable-next-line no-unused-vars
+  scrollTo: (index?: number) => void
   canScrollPrev: boolean
   canScrollNext: boolean
 } & CarouselProps
@@ -95,14 +96,18 @@ const Carousel = forwardRef<
       api?.scrollNext()
     }, [api])
 
-    const scrollTo = useCallback(() => {
-      if (!api) return
-      const { index } = api?.internalEngine() ?? {}
-      if (!index) return
-      console.log(index)
-      const lastIndex = api?.scrollSnapList().length - 1
-      api?.scrollTo(lastIndex, false)
-    }, [api])
+    const scrollTo = useCallback(
+      (index?: number) => {
+        if (!api || typeof index === "undefined") return
+        const lastIndex = api?.scrollSnapList().length - 1
+        const sanitizeIndex = Math.max(
+          0,
+          index > lastIndex ? index % lastIndex : index
+        )
+        api?.scrollTo(sanitizeIndex, false)
+      },
+      [api]
+    )
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent<HTMLDivElement>) => {
@@ -299,7 +304,7 @@ type CarouselIndicatorItemProps = {
 const CarouselIndicatorItem = forwardRef<
   HTMLButtonElement,
   CarouselIndicatorItemProps
->(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+>(({ className, variant = "outline", size = "icon", index, ...props }, ref) => {
   const { scrollTo, canScrollNext, canScrollPrev } = useCarousel()
 
   return (
@@ -309,7 +314,9 @@ const CarouselIndicatorItem = forwardRef<
       size={size}
       className={cn("m-0 size-3 rounded-full p-0", className)}
       disabled={!canScrollPrev && !canScrollNext}
-      onClick={scrollTo}
+      onClick={() => {
+        scrollTo(index)
+      }}
       {...props}
     />
   )
