@@ -52,6 +52,11 @@ export const Page = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    openGraphMetaType: {
+      type: "string",
+      required: false,
+      default: "website",
+    },
     published: {
       type: "boolean",
       default: true,

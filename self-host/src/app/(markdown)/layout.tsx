@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { constructMetadata, getPageFromParams } from "@/lib"
 import type { ContentlayerPagePropsWithoutRootPath } from "@/types"
 
+import type { OpenGraphType } from "@/lib/seo"
+
 export async function generateMetadata({
   params,
 }: ContentlayerPagePropsWithoutRootPath): Promise<Metadata> {
@@ -14,7 +16,7 @@ export async function generateMetadata({
   return constructMetadata({
     title: doc.title,
     description: doc.description,
-    type: "website",
+    type: (doc.openGraphMetaType as OpenGraphType) ?? "website",
     url: doc.slug,
   })
 }
