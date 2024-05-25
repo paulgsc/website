@@ -1,8 +1,8 @@
-export const components: {
-  title: string;
-  href: string;
-  description: string;
-}[] = [
+export const navMenuData: Array<{
+  title: string
+  href: string
+  description: string
+}> = [
   {
     title: "Google Sheets Automation for Financial Reporting",
     href: "/projects/google-sheets-automation",
@@ -45,4 +45,4 @@ export const components: {
     description:
       "Built a modern blogging platform with Next.js and React, featuring server-side rendering and a rich content editor.",
   },
-];
+]

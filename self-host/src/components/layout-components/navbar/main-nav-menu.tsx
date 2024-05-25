@@ -1,6 +1,8 @@
-"use client";
+"use client"
 
-import { Icons } from "@/components/icons";
+import Link from "next/link"
+import { navMenuData } from "@/config"
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,12 +11,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import ListItem from "./nav-list-item";
-import Link from "next/link";
-import { components } from "../data/freelance-navigation";
+} from "@/components/ui/navigation-menu"
+import { Icons } from "@/components/icons"
 
-export default function MainNavigationMenu() {
+import ListItem from "./nav-list-item"
+
+const MainNavigationMenu = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -30,20 +32,20 @@ export default function MainNavigationMenu() {
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.8fr_1fr]">
               <li className="row-span-3">
-                <article className="h-full grid lg:grid-rows-[.2fr_1fr] mx-auto p-0.5">
+                <article className="mx-auto grid h-full p-0.5 lg:grid-rows-[.2fr_1fr]">
                   <h5 className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
                     Flagship - ShelfSight
                   </h5>
 
-                  <div className="h-full flex flex-col items-end justify-center text-balance mx-auto">
-                    <p className="text-sm leading-tight break-words text-ellipsis tracking-wide text-muted-foreground mb-4">
+                  <div className="mx-auto flex h-full flex-col items-end justify-center text-balance">
+                    <p className="text-muted-foreground mb-4 text-ellipsis break-words text-sm leading-tight tracking-wide">
                       ShelfSight: Cycle counting grocery items using Computer
                       vision and barcode detection.
                     </p>
                     <NavigationMenuLink asChild>
                       <a
                         href="#"
-                        className="inline-flex items-center px-3 py-2 text-xs font-medium text-center rounded-sm text-cyan-500 no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground inline-flex items-center rounded-sm px-3 py-2 text-center text-xs font-medium text-cyan-500 no-underline outline-none transition-colors"
                       >
                         Read more
                         <Icons.arrowRight />
@@ -68,7 +70,7 @@ export default function MainNavigationMenu() {
           <NavigationMenuTrigger>Freelancing</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {navMenuData.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -81,7 +83,7 @@ export default function MainNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/blog" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Blog
             </NavigationMenuLink>
@@ -104,5 +106,7 @@ export default function MainNavigationMenu() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-  );
+  )
 }
+
+export default MainNavigationMenu

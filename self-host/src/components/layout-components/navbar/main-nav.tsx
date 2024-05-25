@@ -1,26 +1,28 @@
-"use client";
-import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
-import MainNavigationMenu from "./main-nav-menu";
+"use client"
 
-interface NavLink {
-  href: string;
-  label: string;
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
+
+import MainNavigationMenu from "./main-nav-menu"
+
+type NavLink = {
+  href: string
+  label: string
 }
 
-const navLinks: NavLink[] = [];
+const navLinks: Array<NavLink> = []
 
-export function MainNav() {
-  const pathname = usePathname();
+const MainNav = () => {
+  const pathname = usePathname()
 
   return (
     <div className="mr-4 hidden md:flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Icons.logo className="h-6 w-6" />
+        <Icons.logo className="size-6" />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
@@ -32,7 +34,7 @@ export function MainNav() {
             key={href}
             href={href}
             className={cn(
-              "transition-colors hover:text-foreground/80",
+              "hover:text-foreground/80 transition-colors",
               pathname === href || pathname?.startsWith(href)
                 ? "text-foreground"
                 : "text-foreground/60"
@@ -43,5 +45,7 @@ export function MainNav() {
         ))}
       </nav>
     </div>
-  );
+  )
 }
+
+export default MainNav
