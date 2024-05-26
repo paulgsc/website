@@ -1,12 +1,1 @@
-[
-  {
-    "name": "accordion",
-    "dependencies": [
-      "@radix-ui/react-accordion"
-    ],
-    "files": [
-      "ui/accordion.tsx"
-    ],
-    "type": "components:ui"
-  }
-]
+[]

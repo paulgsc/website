@@ -1,5 +1,11 @@
 {
   "extends": ["../.eslintrc.json"],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn", "cva"],
+      "config": "tailwind.config.cjs"
+    }
+  },
   "overrides": [
     {
       "files": ["**/*.{js,mjs,ts,tsx,mdx}"],
@@ -7,26 +13,14 @@
       "plugins": ["import"],
       "extends": ["eslint:recommended", "next", "next/core-web-vitals"],
       "rules": {
-        "@next/next/no-html-link-for-pages": "off",
-        "import/order": [
-          "error",
-          {
-            "groups": [
-              "builtin",
-              "external",
-              "internal",
-              ["sibling", "parent"],
-              "index",
-              "unknown"
-            ],
-            "newlines-between": "always",
-            "alphabetize": {
-              "order": "asc",
-              "caseInsensitive": true
-            }
-          }
-        ]
+        "@next/next/no-html-link-for-pages": "off"
       }
+    },
+    {
+      "files": ["**/*.{js,mjs,ts,tsx,mdx}"],
+      "env": { "es6": true, "node": true },
+      "plugins": ["import"],
+      "extends": ["eslint:recommended", "next", "next/core-web-vitals"]
     },
     {
       "files": ["**/*.{mdx,tsx}"],
@@ -48,6 +42,10 @@
         "@next/next/no-img-element": "off",
         "react/no-unescaped-entities": "off"
       }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
     }
   ]
 }

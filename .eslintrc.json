@@ -13,7 +13,6 @@
       "config": "tailwind.config.cjs"
     }
   },
-
   "overrides": [
     {
       "files": ["public/**/*.js"],
