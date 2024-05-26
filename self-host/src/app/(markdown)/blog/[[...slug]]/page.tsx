@@ -37,7 +37,7 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   console.log(toc)
 
   return (
-    <main className="flex flex-1 flex-col">
+    <div className="flex flex-1 flex-col">
       <section className="max-w-md:flex max-w-md:shrink max-w-md:flex-col w-full  md:grid md:grid-cols-[.1fr_.35fr_.45fr_.1fr] 2xl:grid-cols-[.1fr_.35fr_.45fr_.1fr]">
         <Card className=" col-start-2 border-none shadow-none">
           <CardHeader>
@@ -59,7 +59,7 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
       </section>
       <BlogCategories />
       {/* <RecommededBlogs blogAuthor="Paul M Gathondu" /> */}
-    </main>
+    </div>
   )
 }
 
