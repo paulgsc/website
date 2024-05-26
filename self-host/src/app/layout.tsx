@@ -72,30 +72,23 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body
-          className={cn(
-            "bg-background min-h-screen font-sans antialiased",
-            fontSans.className
-          )}
-        >
+        <body className={cn("min-h-screen antialiased", fontSans.className)}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            <div vaul-drawer-wrapper="">
-              <div className="bg-background relative flex-col">
+            <div vault-drawer-wrapper="">
+              <div className="relative flex flex-col">
                 <SiteNav />
-                <div className="flex w-full min-w-0 items-center justify-center px-4 py-14 md:px-14 lg:px-28">
+                <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
                   {children}
-                </div>
+                </main>
                 <Footer />
               </div>
             </div>
-
             <ThemeSwitcher />
-
             <DefaultToaster />
             <Sonner />
           </ThemeProvider>
