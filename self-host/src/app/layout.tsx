@@ -90,6 +90,7 @@ export default function RootLayout({
                 <div className="flex w-full min-w-0 items-center justify-center px-4 py-14 md:px-14 lg:px-28">
                   {children}
                 </div>
+                <Footer />
               </div>
             </div>
 
@@ -97,7 +98,6 @@ export default function RootLayout({
 
             <DefaultToaster />
             <Sonner />
-            <Footer />
           </ThemeProvider>
         </body>
       </html>
