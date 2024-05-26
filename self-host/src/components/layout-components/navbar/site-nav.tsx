@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { siteConfig } from "@/config"
 
-import { cn } from "@/lib/utils"
+import cn from "@/lib/utils/cn"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import { MobileNav } from "@/components/mobile-nav"
+import MobileNav from "@/components/mobile-nav"
 import { ModeToggle } from "@/components/mode-toggle"
 
 import MainNav from "./main-nav"

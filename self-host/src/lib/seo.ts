@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { siteConfig } from "@/config"
 
-import { absoluteUrl } from "./utils"
+import { absoluteUrl } from "./utils/url-utils"
 
 export type OpenGraphType =
   | "article"

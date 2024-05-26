@@ -1,7 +1,8 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react"
+import type { ComponentPropsWithoutRef, ElementRef } from "react"
+import { forwardRef } from "react"
 import { Fallback, Image, Root } from "@radix-ui/react-avatar"
 
-import { cn } from "@/lib/utils"
+import cn from "@/lib/utils/cn"
 
 const Avatar = forwardRef<
   ElementRef<typeof Root>,
@@ -10,7 +11,7 @@ const Avatar = forwardRef<
   <Root
     ref={ref}
     className={cn(
-      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      "relative flex size-10 shrink-0 overflow-hidden rounded-full",
       className
     )}
     {...props}
@@ -24,7 +25,7 @@ const AvatarImage = forwardRef<
 >(({ className, ...props }, ref) => (
   <Image
     ref={ref}
-    className={cn("aspect-square h-full w-full", className)}
+    className={cn("aspect-square size-full", className)}
     {...props}
   />
 ))
@@ -37,7 +38,7 @@ const AvatarFallback = forwardRef<
   <Fallback
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted",
+      "bg-muted flex size-full items-center justify-center rounded-full",
       className
     )}
     {...props}

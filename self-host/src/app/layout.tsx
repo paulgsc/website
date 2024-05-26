@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { siteConfig } from "@/config"
-// eslint-disable-next-line import/order
-import { cn, fontSans } from "@/lib"
 
 import { Toaster as Sonner } from "@/components/ui/sonner"
 import { Toaster as DefaultToaster } from "@/components/ui/toaster"
@@ -12,6 +10,9 @@ import { ThemeProvider } from "@/components/providers"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 
 import "@/styles/globals.css"
+
+import { fontSans } from "@/lib/fonts"
+import cn from "@/lib/utils/cn"
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] })

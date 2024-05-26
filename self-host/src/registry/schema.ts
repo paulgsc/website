@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const blockChunkSchema = z.object({
   name: z.string(),
@@ -11,7 +11,7 @@ export const blockChunkSchema = z.object({
       className: z.string().nullish(),
     })
     .optional(),
-});
+})
 
 export const registryEntrySchema = z.object({
   name: z.string(),
@@ -30,13 +30,13 @@ export const registryEntrySchema = z.object({
   category: z.string().optional(),
   subcategory: z.string().optional(),
   chunks: z.array(blockChunkSchema).optional(),
-});
+})
 
-export const registrySchema = z.array(registryEntrySchema);
+export const registrySchema = z.array(registryEntrySchema)
 
-export type RegistryEntry = z.infer<typeof registryEntrySchema>;
+export type RegistryEntry = z.infer<typeof registryEntrySchema>
 
-export type Registry = z.infer<typeof registrySchema>;
+export type Registry = z.infer<typeof registrySchema>
 
 export const blockSchema = registryEntrySchema.extend({
   type: z.literal("components:block"),
@@ -50,8 +50,8 @@ export const blockSchema = registryEntrySchema.extend({
     .optional(),
   code: z.string(),
   highlightedCode: z.string(),
-});
+})
 
-export type Block = z.infer<typeof blockSchema>;
+export type Block = z.infer<typeof blockSchema>
 
-export type BlockChunk = z.infer<typeof blockChunkSchema>;
+export type BlockChunk = z.infer<typeof blockChunkSchema>

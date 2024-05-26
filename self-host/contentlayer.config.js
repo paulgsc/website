@@ -52,6 +52,14 @@ export const Page = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    author: {
+      type: "string",
+      required: false,
+    },
+    date: {
+      type: "date",
+      required: false,
+    },
     openGraphMetaType: {
       type: "string",
       required: false,

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import cn from "@/lib/utils/cn"
 import { Icons } from "@/components/icons"
 
 import MainNavigationMenu from "./main-nav-menu"
