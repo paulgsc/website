@@ -4,21 +4,21 @@
  * The original code is licensed under the MIT License.
  */
 
-import type { FC, HTMLAttributeAnchorTarget, PropsWithChildren } from "react";
+import type { FC, HTMLAttributeAnchorTarget, PropsWithChildren } from "react"
 
-import { Icons } from "@/components/icons";
-import { cn } from "@/lib/utils";
-import ActiveLink from "@/components/active-link";
+import { cn } from "@/lib/utils"
+import ActiveLink from "@/components/active-link"
+import { Icons } from "@/components/icons"
 
-type NavItemType = "nav" | "footer";
+type NavItemType = "nav" | "footer"
 
 type NavItemProps = {
-  href: string;
-  type?: NavItemType;
-  className?: string;
-  target?: HTMLAttributeAnchorTarget | undefined;
-  showExt?: boolean;
-};
+  href: string
+  type?: NavItemType
+  className?: string
+  target?: HTMLAttributeAnchorTarget | undefined
+  showExt?: boolean
+}
 
 const NavLink: FC<PropsWithChildren<NavItemProps>> = ({
   href = "",
@@ -39,9 +39,9 @@ const NavLink: FC<PropsWithChildren<NavItemProps>> = ({
     {children}
 
     {((showExt && href.startsWith("http")) || target === "_blank") && (
-      <Icons.externalLink className="size-3 dark:text-neutral-200 text-gray-500 opacity-50" />
+      <Icons.externalLink className="size-3 text-gray-500 opacity-50 dark:text-neutral-200" />
     )}
   </ActiveLink>
-);
+)
 
-export default NavLink;
+export default NavLink

@@ -6,7 +6,7 @@ import { cn, fontSans } from "@/lib"
 
 import { Toaster as Sonner } from "@/components/ui/sonner"
 import { Toaster as DefaultToaster } from "@/components/ui/toaster"
-import Footer from "@/components/layout-components/footer/footer"
+import Footer from "@/components/footer/footer"
 import SiteNav from "@/components/layout-components/navbar/site-nav"
 import { ThemeProvider } from "@/components/providers"
 import { ThemeSwitcher } from "@/components/theme-switcher"
