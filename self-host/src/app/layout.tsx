@@ -13,6 +13,7 @@ import "@/styles/globals.css"
 
 import { fontSans } from "@/lib/fonts"
 import cn from "@/lib/utils/cn"
+import ChatWrapper from "@/components/chat/chat-wrapper"
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] })
@@ -86,6 +87,7 @@ export default function RootLayout({
                 <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
                   {children}
                 </main>
+                <ChatWrapper />
                 <Footer />
               </div>
             </div>

@@ -61,7 +61,7 @@ const RecommededBlogs: FC<RecommendedBlotProps> = ({
 
                     <div className="">
                       {avatars && (
-                        <p className="text-sm font-semibold text-neutral-900 dark:text-white">
+                        <p className="shrink-0 truncate text-xs font-semibold tracking-tight text-neutral-900 dark:text-white">
                           {avatars.map(({ alt }) => alt).join(", ")}
                         </p>
                       )}
