@@ -45,7 +45,7 @@ const Footer: FC = () => {
             href={item.link}
             key={item.link}
           >
-            <span className="text-sm font-medium leading-5 text-black">
+            <span className="text-muted-foreground text-sm font-medium leading-5">
               {item.text}
             </span>
           </NavLink>

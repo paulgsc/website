@@ -1,5 +1,6 @@
-import { NavigationConfig } from "@/types";
-import { siteConfig } from "./site";
+import type { NavigationConfig } from "@/types"
+
+import { siteConfig } from "./site"
 
 export const siteNavConfig: NavigationConfig = {
   topNavigation: {
@@ -13,6 +14,10 @@ export const siteNavConfig: NavigationConfig = {
     {
       link: "/about/meet-the-creator",
       text: "meet the creator",
+    },
+    {
+      link: "https://www.freeprivacypolicy.com/live/d10d93fb-0516-4a88-8194-4fff1b7e21c3",
+      text: "privacy policy",
     },
   ],
   socialLinks: [
@@ -59,4 +64,4 @@ export const siteNavConfig: NavigationConfig = {
       },
     },
   },
-};
+}
