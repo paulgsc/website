@@ -1,3 +1,7 @@
+import { nanoid } from "nanoid"
+
+import type { MessageType } from "@/types/chat-bot" // Adjust the path as necessary
+
 import Message from "./message"
 
 const markdownContent = `
@@ -15,32 +19,36 @@ const greet = () => {
 `
 
 // Mock static data
-const mockMessages = [
+const mockMessages: Array<MessageType> = [
   {
-    id: 1,
-    text: "Hello!",
-    isUserMessage: true,
-    createdAt: new Date().toString(),
+    id: nanoid(),
+    contentType: "text",
+    content: "Hello!",
+    createdBy: "anonymousPlatypus",
+    createdAt: new Date(),
   },
   {
-    id: 2,
-    text: "Hi there! How can I assist you today?",
-    isUserMessage: false,
-    createdAt: new Date().toString(),
+    id: nanoid(),
+    contentType: "text",
+    content: "Hi there! How can I assist you today?",
+    createdBy: "chatbot",
+    createdAt: new Date(),
   },
   {
-    id: 3,
-    text: markdownContent,
-    isUserMessage: true,
-    createdAt: new Date().toString(),
+    id: nanoid(),
+    contentType: "text",
+    content: markdownContent,
+    createdBy: "anonymousPlatypus",
+    createdAt: new Date(),
   },
   {
-    id: 4,
-    text: "Sure, go ahead and ask your question.",
-    isUserMessage: false,
-    createdAt: new Date().toString(),
+    id: nanoid(),
+    contentType: "text",
+    content: "Sure, go ahead and ask your question.",
+    createdBy: "chatbot",
+    createdAt: new Date(),
   },
-] as const
+]
 
 const Messages = () => {
   return (

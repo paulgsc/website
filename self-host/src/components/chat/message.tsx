@@ -1,20 +1,14 @@
 import { forwardRef } from "react"
 
+import type { MessageType } from "@/types/chat-bot"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Markdown from "@/components/shared-components/markdown/markdown"
 
 import ChatSiteAvatar from "./chat-site-avatar"
 
-type MessageProps = {
-  id: number
-  text: string
-  isUserMessage: boolean
-  createdAt: string
-}
-
 const Message = forwardRef<
   HTMLDivElement,
-  { message: MessageProps; isNextMessageSamePerson: boolean }
+  { message: MessageType; isNextMessageSamePerson: boolean }
 >(({ message }) => {
   return (
     <ScrollArea
@@ -23,7 +17,9 @@ const Message = forwardRef<
     >
       <span className="inline-flex items-start space-x-2.5">
         <ChatSiteAvatar />
-        <Markdown markdown={message.text} />
+        {typeof message.content === "string" && (
+          <Markdown markdown={message.content} />
+        )}
       </span>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
