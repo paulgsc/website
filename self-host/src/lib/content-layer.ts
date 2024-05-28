@@ -5,10 +5,13 @@ export async function getPageFromParams({
   params,
   rootPath,
 }: ContentlayerPageProps) {
+  const allParams = Object.values(params).reduce<Array<string>>((acc, v) => {
+    if (typeof v === "string") return [...acc, v]
+    return [...acc, ...v]
+  }, [])
   const slug = ([] as Array<string>)
-    .concat(rootPath ?? [], params.slug ?? [])
+    .concat(rootPath ?? [], allParams ?? [])
     .join("/")
-
   const doc = allPages.find((doc) => doc.slugAsParams === slug)
 
   if (!doc) {
