@@ -9,6 +9,7 @@ type BlogImageProps = {
   aspectRatio?: "portrait" | "square"
   width?: number
   height?: number
+  sizes: string
 } & HTMLAttributes<HTMLImageElement>
 
 const BlogImage = ({
@@ -16,6 +17,7 @@ const BlogImage = ({
   aspectRatio = "portrait",
   width,
   height,
+  sizes,
   className,
   ...props
 }: BlogImageProps) => {
@@ -25,6 +27,7 @@ const BlogImage = ({
       alt={album.name}
       width={width}
       height={height}
+      sizes={sizes}
       className={cn(
         "size-auto rounded-sm object-cover transition-all hover:scale-105",
         aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square",

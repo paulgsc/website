@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { siteConfig } from "@/config"
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
 
 import { Toaster as Sonner } from "@/components/ui/sonner"
 import { Toaster as DefaultToaster } from "@/components/ui/toaster"
@@ -63,38 +65,46 @@ export const metadata: Metadata = {
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
 }
+
 // eslint-disable-next-line react/function-component-definition
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   // eslint-disable-next-line no-undef
   children: React.ReactNode
 }>) {
+  const locale = await getLocale()
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages()
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <head />
+
         <body className={cn("min-h-screen antialiased", fontSans.className)}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div vault-drawer-wrapper="">
-              <div className="relative flex flex-col">
-                <SiteNav />
-                <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
-                  {children}
-                </main>
-                <ChatWrapper />
-                <Footer />
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div vault-drawer-wrapper="">
+                <div className="relative flex flex-col">
+                  <SiteNav />
+                  <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
+                    {children}
+                  </main>
+                  <Footer />
+                </div>
               </div>
-            </div>
-            <ThemeSwitcher />
-            <DefaultToaster />
-            <Sonner />
-          </ThemeProvider>
+              <ThemeSwitcher />
+              <DefaultToaster />
+              <Sonner />
+            </ThemeProvider>
+          </NextIntlClientProvider>
         </body>
       </html>
     </>
