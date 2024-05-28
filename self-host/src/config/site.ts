@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "pgdev",
+  author: "Paul M Gathondu",
   url: "https://maishatu.com",
   ogImage: "https://maishatu.com/og.jpg",
   description: "Zero user website.",
@@ -8,6 +9,6 @@ export const siteConfig = {
     github: "https://github.com/paulgsc",
     youtube: "https://www.youtube.com/@aulpgdev",
   },
-} as const;
+} as const
 
-export type SiteConfig = typeof siteConfig;
+export type SiteConfig = typeof siteConfig

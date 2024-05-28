@@ -15,6 +15,7 @@ import "@/styles/globals.css"
 
 import { fontSans } from "@/lib/fonts"
 import cn from "@/lib/utils/cn"
+import ChatWrapper from "@/components/chat/chat-wrapper"
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] })
