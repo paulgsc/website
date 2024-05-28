@@ -26,10 +26,10 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
   )
 
   return (
-    <div className="-mb-4 flex items-center overflow-x-auto pb-4">
+    <div className="flex items-center overflow-x-auto ">
       {renderAvatars.map((avatar, index) => (
-        <Avatar key={index}>
-          <AvatarImage src={avatar.src} />
+        <Avatar key={index} className="size-6">
+          <AvatarImage className="" src={avatar.src} />
           <AvatarFallback>
             {getAcronymFromString(avatar.alt ?? "")}
           </AvatarFallback>
