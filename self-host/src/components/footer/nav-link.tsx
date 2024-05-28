@@ -39,7 +39,7 @@ const NavLink: FC<PropsWithChildren<NavItemProps>> = ({
     {children}
 
     {((showExt && href.startsWith("http")) || target === "_blank") && (
-      <Icons.externalLink className="size-3 text-gray-500 opacity-50 dark:text-neutral-200" />
+      <Icons.externalLink className="text-foreground size-3 opacity-50 dark:text-neutral-200" />
     )}
   </ActiveLink>
 )
