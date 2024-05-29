@@ -44,6 +44,7 @@ const Footer: FC = () => {
             className="whitespace-nowrap capitalize tracking-tight text-black hover:bg-gray-100/80"
             href={item.link}
             key={item.link}
+            target="_blank"
           >
             <span className="text-muted-foreground text-sm font-medium leading-5">
               {item.text}
@@ -68,6 +69,7 @@ const Footer: FC = () => {
               <NavItem
                 key={social.icon}
                 href={social.link}
+                target="_blank"
                 type="footer"
                 showExt={false}
               >

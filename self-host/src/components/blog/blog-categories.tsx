@@ -23,7 +23,6 @@ const BlogCategories = () => {
               key={index}
               href={"/"}
               target="_blank"
-              rel="noreferrer"
               className={cn(
                 badgeVariants({ variant: "accent" }),
                 "hover:bg-background shrink-0 rounded-md pe-2.5 ps-2.5 text-sm capitalize tracking-tight saturate-150"
