@@ -1,9 +1,9 @@
-import Link from "next/link"
 import { siteConfig } from "@/config"
 
 import cn from "@/lib/utils/cn"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
+import Link from "@/components/link"
 import MobileNav from "@/components/mobile-nav"
 import { ModeToggle } from "@/components/mode-toggle"
 
@@ -17,11 +17,7 @@ const SiteNav = () => {
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <nav className="flex items-center">
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Link href={siteConfig.links.github} target="_blank">
               <div
                 className={cn(
                   buttonVariants({
@@ -34,11 +30,7 @@ const SiteNav = () => {
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Link href={siteConfig.links.twitter} target="_blank">
               <div
                 className={cn(
                   buttonVariants({
