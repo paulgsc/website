@@ -18,6 +18,7 @@ export const siteNavConfig: NavigationConfig = {
     {
       link: "https://www.freeprivacypolicy.com/live/d10d93fb-0516-4a88-8194-4fff1b7e21c3",
       text: "privacy policy",
+      target: "_blank",
     },
   ],
   socialLinks: [

@@ -44,7 +44,7 @@ const Footer: FC = () => {
             className="whitespace-nowrap capitalize tracking-tight text-black hover:bg-gray-100/80"
             href={item.link}
             key={item.link}
-            target="_blank"
+            target={item.target}
           >
             <span className="text-muted-foreground text-sm font-medium leading-5">
               {item.text}

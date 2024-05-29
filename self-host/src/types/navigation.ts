@@ -1,32 +1,35 @@
-import { ValidUrlOrLocalRoute } from "./url-types";
+import type { HTMLAttributeAnchorTarget } from "react"
+
+import type { ValidUrlOrLocalRoute } from "./url-types"
 
 interface NavigationLink {
-  link: ValidUrlOrLocalRoute;
-  label: string;
-  target?: string;
+  link: ValidUrlOrLocalRoute
+  label: string
+  target?: string
 }
 
 interface SocialLink {
-  icon: string;
-  link: ValidUrlOrLocalRoute;
-  alt: string;
+  icon: string
+  link: ValidUrlOrLocalRoute
+  alt: string
 }
 
 interface FooterLink {
-  link: ValidUrlOrLocalRoute;
-  text: string;
+  link: ValidUrlOrLocalRoute
+  text: string
+  target?: HTMLAttributeAnchorTarget
 }
 
 interface SideNavigationItem {
-  label: string;
-  items: Record<string, NavigationLink>;
+  label: string
+  items: Record<string, NavigationLink>
 }
 
-type SideNavigation = Record<string, SideNavigationItem>;
+type SideNavigation = Record<string, SideNavigationItem>
 
 export interface NavigationConfig {
-  topNavigation: Record<string, NavigationLink>;
-  footerLinks: FooterLink[];
-  socialLinks: SocialLink[];
-  sideNavigation: SideNavigation;
+  topNavigation: Record<string, NavigationLink>
+  footerLinks: Array<FooterLink>
+  socialLinks: Array<SocialLink>
+  sideNavigation: SideNavigation
 }
