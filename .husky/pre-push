@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-protected_branch='dev'
+protected_branch='self-host/dev'
 current_branch=$(git branch --show-current)
 
 if [ $protected_branch = $current_branch ]
