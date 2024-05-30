@@ -5,10 +5,16 @@ import { notFound } from "next/navigation"
 import "@/styles/mdx.css"
 
 import { generateStaticParams, getPageFromParams } from "@/lib"
-import type { ContentlayerPagePropsWithoutRootPath } from "@/types"
+import {
+  SafeValidLayoutSchema,
+  ValidatedLayoutSchema,
+  type ContentlayerPagePropsWithoutRootPath,
+  type Layouts,
+} from "@/types"
 
 import { getTableOfContents } from "@/lib/toc"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import BlogLayout from "@/components/layout-components/BlogLayout"
 // eslint-disable-next-line import/order
 
 import Mdx from "@/components/mdx-components"
@@ -28,10 +34,11 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   }
 
   const toc = await getTableOfContents(doc.body.raw)
-
+  const layout: Layouts = SafeValidLayoutSchema.safeParse(doc.layout).success
+    ? ValidatedLayoutSchema.parse(doc.layout?.trim())
+    : "default"
   return (
-    <div className="relative grid-cols-[.20fr_.65fr_.15fr] md:grid">
-      <aside />
+    <BlogLayout layout={layout}>
       <section className="mx-auto w-full min-w-0">
         <Mdx code={doc.body.code} />
       </section>
@@ -46,7 +53,7 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
           </div>
         </aside>
       )}
-    </div>
+    </BlogLayout>
   )
 }
 

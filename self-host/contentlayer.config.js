@@ -60,6 +60,10 @@ export const Page = defineDocumentType(() => ({
       type: "date",
       required: false,
     },
+    layout: {
+      type: "string",
+      required: false,
+    },
     openGraphMetaType: {
       type: "string",
       required: false,
