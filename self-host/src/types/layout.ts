@@ -7,7 +7,7 @@ export const LayoutSchema = z.union([
 
 export const SafeValidLayoutSchema = z
   .string()
-  .refine((s) => LayoutSchema.safeParse(s.trim()).success)
+  .refine((s) => LayoutSchema.safeParse(s.trim()))
 
 export const ValidLayoutSchema = z
   .string()
