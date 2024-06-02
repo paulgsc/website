@@ -8,3 +8,5 @@ services:
     environment:
       - BUILD_VERSION=${BUILD_VERSION}
       - DOCKER_BUILDKIT=1 # Enable BuildKit for this service
+    # ports:
+    #   - "3000:3000"
