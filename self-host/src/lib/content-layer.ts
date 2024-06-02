@@ -1,5 +1,6 @@
 import type { ContentlayerPageProps } from "@/types"
-import { allPages } from "contentlayer/generated"
+
+import { allPages } from "./../../.contentlayer/generated"
 
 export async function getPageFromParams({
   params,
