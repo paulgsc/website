@@ -5,12 +5,7 @@ import { notFound } from "next/navigation"
 import "@/styles/mdx.css"
 
 import { generateStaticParams, getPageFromParams } from "@/lib"
-import {
-  SafeValidLayoutSchema,
-  ValidatedLayoutSchema,
-  type ContentlayerPagePropsWithoutRootPath,
-  type Layouts,
-} from "@/types"
+import { type ContentlayerPagePropsWithoutRootPath } from "@/types"
 
 import { getTableOfContents } from "@/lib/toc"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -34,11 +29,11 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   }
 
   const toc = await getTableOfContents(doc.body.raw)
-  const layout: Layouts = SafeValidLayoutSchema.safeParse(doc.layout).success
-    ? ValidatedLayoutSchema.parse(doc.layout?.trim())
-    : "default"
+  // const layout: Layouts = SafeValidLayoutSchema.safeParse(doc.layout).success
+  //   ? ValidatedLayoutSchema.parse(doc.layout?.trim())
+  //   : "default"
   return (
-    <BlogLayout layout={layout}>
+    <BlogLayout layout={"channel"}>
       <section className="mx-auto w-full min-w-0">
         <Mdx code={doc.body.code} />
       </section>

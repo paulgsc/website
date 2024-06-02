@@ -65,7 +65,7 @@ export default async function constructMetadata({
       creator: "@pgdev",
     },
     icons,
-    metadataBase: new URL(absoluteUrl(siteConfig.url)),
+    metadataBase: new URL(siteConfig.url),
     ...(noIndex && {
       robots: {
         index: false,
