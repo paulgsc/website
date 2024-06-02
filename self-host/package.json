@@ -8,10 +8,7 @@
     "build": "pnpm build:registry && contentlayer build && next build --debug",
     "build:registry": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts && prettier --loglevel silent --write \"src/registry/**/*.{ts,tsx,mdx}\" --cache",
     "start": "next start",
-    "lint": "next lint",
-    "docker:release": "make release",
-    "docker:cleanup": "make cleanup",
-    "docker:hub": "make hub"
+    "lint": "next lint"
   },
   "author": {
     "name": "Paul Mwangi Gathondu",

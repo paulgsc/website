@@ -1,6 +1,14 @@
 # Base image
 FROM node:18-alpine AS base
 
+ARG APP_VERSION=0.0.0
+ARG APP_VERSION
+ARG IMAGE_TITLE
+ARG IMAGE_DESCRIPTION
+LABEL version=$APP_VERSION
+LABEL maintainer="pgdev https://github.com/paulgsc"
+ENV APP_VERSION=$APP_VERSION
+
 # Install pnpm globally
 RUN npm install -g pnpm
 

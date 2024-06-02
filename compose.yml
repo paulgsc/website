@@ -4,9 +4,14 @@ services:
     build:
       context: .
       dockerfile: ./self-host/Dockerfile
+      args:
+        - APP_VERSION=${APP_VERSION:-0.0.0}
+        - IMAGE_TITLE=${IMAGE_TITLE:-Default Title}
+        - IMAGE_DESCRIPTION=${IMAGE_DESCRIPTION:-Default Description}
+    image: pgathondu/self-hosting-maishatu:${APP_VERSION:-latest}
     restart: always
     environment:
-      - BUILD_VERSION=${BUILD_VERSION}
+      - BUILD_VERSION=${BUILD_VERSION:-${APP_VERSION:-0.0.0}}
       - DOCKER_BUILDKIT=1 # Enable BuildKit for this service
     # ports:
     #   - "3000:3000"
