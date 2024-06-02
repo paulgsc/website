@@ -1,5 +1,5 @@
 # Read version from package.json, fallback to 0.0.0
-VERSION := $(shell /mnt/c/Program\ Files/nodejs/npm --version)
+VERSION := $(shell node -p "require('./package.json').version")
 COMPOSE_FILE := compose.yml
 DOCKER_REPO := pgathondu/self-hosting-maishatu
 
@@ -12,6 +12,10 @@ build:
 push:
 	@echo "Pushing image $(DOCKER_REPO):$(VERSION) to Docker Hub"
 	APP_VERSION=$(VERSION) docker-compose -f $(COMPOSE_FILE) push
+	@echo "Tagging and pushing as 'latest'"
+	docker tag $(DOCKER_REPO):$(VERSION) $(DOCKER_REPO):latest
+	docker push $(DOCKER_REPO):latest
+
 
 release: build push
 

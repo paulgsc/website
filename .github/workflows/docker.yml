@@ -4,10 +4,14 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
+    branches:
+      - main
+      - self-host/dev
   release:
     types: [published]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   publish-docker:
     name: Publish Production Docker Image
@@ -15,6 +19,7 @@ jobs:
     timeout-minutes: 30
     env:
       IMAGE_NAME: self-hosting-maishatu
+      DOCKER_REPO: pgathondu/self-hosting-maishatu
 
     steps:
       - name: Checkout
@@ -36,16 +41,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build and push docker container
+      - name: Build and push Docker container
         run: |
-          docker build -t $IMAGE_NAME .
-          docker tag $IMAGE_NAME:latest pgathondu/$IMAGE_NAME:latest
-          docker push pgathondu/$IMAGE_NAME:latest
+          make build
+          make push
 
       - name: Cleanup old Docker images
         run: |
-          mapfile -t tags < <(curl -s https://registry.hub.docker.com/v2/repositories/pgathondu/$IMAGE_NAME/tags?page_size=1024 | jq -r ".results[].name" | grep -P "^\d+\.\d+\.\d+$" | sort -V | head -n -5)
-          for tag in "${tags[@]}"; do
-            docker rmi pgathondu/$IMAGE_NAME:$tag || true
-            docker push --delete pgathondu/$IMAGE_NAME:$tag || true
-          done
+          make cleanup
