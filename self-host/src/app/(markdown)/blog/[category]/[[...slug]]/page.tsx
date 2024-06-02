@@ -12,7 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 // eslint-disable-next-line import/order
 
 import Mdx from "@/components/mdx-components"
-import { DashboardTableOfContents } from "@/components/toc"
+import DashboardTableOfContents from "@/components/toc"
 
 // We add the rootPath to the params since the [[...slug]] pattern in Next.js
 // is exclusive of the path and only generates the params for the slug part.

@@ -5,17 +5,16 @@ import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages } from "next-intl/server"
 
 import { Toaster as Sonner } from "@/components/ui/sonner"
-import { Toaster as DefaultToaster } from "@/components/ui/toaster"
+import Toaster from "@/components/ui/toaster"
 import Footer from "@/components/footer/footer"
 import SiteNav from "@/components/layout-components/navbar/site-nav"
-import { ThemeProvider } from "@/components/providers"
-import { ThemeSwitcher } from "@/components/theme-switcher"
+import ThemeProvider from "@/components/providers"
+import ThemeSwitcher from "@/components/theme-switcher"
 
 import "@/styles/globals.css"
 
 import { fontSans } from "@/lib/fonts"
 import cn from "@/lib/utils/cn"
-import WithChat from "@/components/chat"
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] })
@@ -97,12 +96,11 @@ export default async function RootLayout({
                   <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
                     {children}
                   </main>
-                  <WithChat />
                   <Footer />
                 </div>
               </div>
               <ThemeSwitcher />
-              <DefaultToaster />
+              <Toaster />
               <Sonner />
             </ThemeProvider>
           </NextIntlClientProvider>

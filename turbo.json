@@ -4,7 +4,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "env": [],
+      "env": ["WWW_SERVER_URL"],
       "outputs": ["dist/**", ".next/**"]
     },
     "preview": {

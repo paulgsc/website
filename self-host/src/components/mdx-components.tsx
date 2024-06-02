@@ -9,7 +9,7 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import type { Event } from "@/lib/events"
 import cn from "@/lib/utils/cn"
 import { useConfig } from "@/hooks/use-config"
-import { Callout } from "@/components/callout"
+import Callout from "@/components/callout"
 import { ComponentExample } from "@/components/component-example"
 
 import CodeBlockWrapper from "./code-block-wrapper"

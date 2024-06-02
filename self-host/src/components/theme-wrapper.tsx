@@ -1,18 +1,20 @@
-"use client";
+"use client"
 
-import { cn } from "@/lib/utils";
-import { useConfig } from "@/hooks/use-config";
+import type { ComponentProps, CSSProperties, FC } from "react"
 
-interface ThemeWrapperProps extends React.ComponentProps<"div"> {
-  defaultTheme?: string;
-}
+import { cn } from "@/lib/utils"
+import { useConfig } from "@/hooks/use-config"
 
-export function ThemeWrapper({
+type ThemeWrapperProps = {
+  defaultTheme?: string
+} & ComponentProps<"div">
+
+const ThemeWrapper: FC<ThemeWrapperProps> = ({
   defaultTheme,
   children,
   className,
-}: ThemeWrapperProps) {
-  const config = useConfig();
+}) => {
+  const config = useConfig()
 
   return (
     <div
@@ -24,10 +26,12 @@ export function ThemeWrapper({
       style={
         {
           "--radius": `${defaultTheme ? 0.5 : config.radius}rem`,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {children}
     </div>
-  );
+  )
 }
+
+export default ThemeWrapper

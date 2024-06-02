@@ -1,0 +1,52 @@
+#Ignore the Dockerfile
+**/Dockerfile
+
+# Ignore files related to Node
+**/node_modules/
+**/npm-debug.log
+
+# Ignore files related to Git
+.git/
+.gitignore
+
+# Ignore files related to the local development environment
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# Ignore build output
+**/.next/
+**/out/
+
+# Ignore editor directories and files
+**/.vscode/
+**/*.suo
+**/*.ntvs*
+**/*.njsproj
+**/*.sln
+**/*.sw?
+
+# Ignore other files and directories
+**/.DS_Store
+**/.idea/
+**/*.log
+
+# Ignore other files and directories
+**/README.md
+**/.DS_Store
+**/.idea/
+**/*.log
+**/__tests__/
+**/test/
+**/tests/
+**/spec/
+**/coverage/
+**/.nyc_output/
+**/.tmp/
+**/tmp/
+docs/
+**/.eslintcache
+**/.next.cache/
+**/.vercel/

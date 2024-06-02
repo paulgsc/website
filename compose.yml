@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  maishatu:
+    build:
+      context: .
+      dockerfile: ./self-host/Dockerfile
+    restart: always
+    environment:
+      - BUILD_VERSION=${BUILD_VERSION}
+      - DOCKER_BUILDKIT=1 # Enable BuildKit for this service

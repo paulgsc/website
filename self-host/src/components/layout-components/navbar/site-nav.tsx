@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import Link from "@/components/link"
 import MobileNav from "@/components/mobile-nav"
-import { ModeToggle } from "@/components/mode-toggle"
+import ModeToggle from "@/components/mode-toggle"
 
 import MainNav from "./main-nav"
 

@@ -1,5 +1,5 @@
 {
-  "extends": ["../.eslintrc.json"],
+  "extends": ["next/core-web-vitals", "next", "../.eslintrc.json"],
   "settings": {
     "tailwindcss": {
       "callees": ["cn", "cva"],
