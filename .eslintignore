@@ -18,3 +18,5 @@ global.d.ts
 
 # Don't apply es lint fix to vite config files
 vite.config.js
+
+**/__registry__

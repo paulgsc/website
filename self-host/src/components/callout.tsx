@@ -1,17 +1,21 @@
-import { Alert, AlertTitle, AlertDescription } from "./ui/alert";
+import type { FC, ReactNode } from "react"
 
-interface CalloutProps {
-  icon?: string;
-  title?: string;
-  children?: React.ReactNode;
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
+
+type CalloutProps = {
+  icon?: string
+  title?: string
+  children?: ReactNode
 }
 
-export function Callout({ title, children, icon, ...props }: CalloutProps) {
+const Callout: FC<CalloutProps> = ({ title, children, icon, ...props }) => {
   return (
     <Alert {...props}>
       {icon && <span className="mr-4 text-2xl">{icon}</span>}
       {title && <AlertTitle>{title}</AlertTitle>}
       <AlertDescription>{children}</AlertDescription>
     </Alert>
-  );
+  )
 }
+
+export default Callout

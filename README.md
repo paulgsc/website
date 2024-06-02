@@ -52,3 +52,45 @@ Check the current status of your repository to see which files are staged, unsta
 ```bash
 git status
 ```
+
+### Stop all containers
+
+```sh
+docker stop $(sudo docker ps -aq)
+```
+
+#### Remove all Docker containers from your system.
+
+```sh
+# Regardless of their state (running, stopped, or exited).
+docker rm $(sudo docker ps -aq)
+```
+
+```sh
+# same for images
+ docker rmi $(sudo docker images -q)
+```
+
+### Remove All Stopped Containers
+
+```sh
+docker container prune -f
+```
+
+### Remove All Unused Images
+
+```sh
+docker image prune -a -f
+```
+
+### Removel all Unused Volumes
+
+```sh
+docker volume prune -f
+```
+
+### Remove all Unused Networks
+
+```sh
+docker network prune -f
+```

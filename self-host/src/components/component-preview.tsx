@@ -10,7 +10,7 @@ import { Icons } from "@/components/icons"
 import { styles } from "@/registry/styles"
 
 import CopyButton from "./copy-button"
-import { ThemeWrapper } from "./theme-wrapper"
+import ThemeWrapper from "./theme-wrapper"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
 type ComponentPreviewProps = {

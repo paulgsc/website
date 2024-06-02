@@ -4,27 +4,29 @@
  * The original code is licensed under the MIT License.
  */
 
-import type { FC, ComponentProps } from "react";
-import NextLink from "next/link";
+import type { ComponentProps, FC } from "react"
+import NextLink from "next/link"
 
-type LinkProps = Omit<ComponentProps<typeof NextLink>, "href"> & {
-  href?: string;
-};
+import ExternalLinkAlert from "./external-link-alert"
+
+type LinkProps = Omit<ComponentProps<typeof NextLink>, "href" | "rel"> & {
+  href?: string
+}
 
 const Link: FC<LinkProps> = ({ children, href, ...props }) => {
   if (!href || href.toString().startsWith("http")) {
     return (
-      <a href={href} {...props}>
+      <ExternalLinkAlert href={href} {...props}>
         {children}
-      </a>
-    );
+      </ExternalLinkAlert>
+    )
   }
 
   return (
     <NextLink href={href?.toString()} {...props}>
       {children}
     </NextLink>
-  );
-};
+  )
+}
 
-export default Link;
+export default Link

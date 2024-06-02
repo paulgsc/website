@@ -1,8 +1,21 @@
 import type { Metadata } from "next"
-import type { OpenGraphType } from "next/dist/lib/metadata/types/opengraph-types"
 import { siteConfig } from "@/config"
 
-import { absoluteUrl } from "./utils"
+import { absoluteUrl } from "./utils/url-utils"
+
+export type OpenGraphType =
+  | "article"
+  | "book"
+  | "music.song"
+  | "music.album"
+  | "music.playlist"
+  | "music.radio_station"
+  | "profile"
+  | "website"
+  | "video.tv_show"
+  | "video.other"
+  | "video.movie"
+  | "video.episode"
 
 export default async function constructMetadata({
   title = siteConfig.name,
@@ -52,7 +65,7 @@ export default async function constructMetadata({
       creator: "@pgdev",
     },
     icons,
-    metadataBase: new URL(absoluteUrl("")),
+    metadataBase: new URL(siteConfig.url),
     ...(noIndex && {
       robots: {
         index: false,

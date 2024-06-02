@@ -1,13 +1,17 @@
-"use client";
+"use client"
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { ThemeProviderProps } from "next-themes/dist/types";
-import { TooltipProvider } from "./ui/tooltip";
+import type { FC } from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import type { ThemeProviderProps } from "next-themes/dist/types"
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+import { TooltipProvider } from "./ui/tooltip"
+
+const ThemeProvider: FC<ThemeProviderProps> = ({ children, ...props }) => {
   return (
     <NextThemesProvider {...props}>
       <TooltipProvider>{children}</TooltipProvider>
     </NextThemesProvider>
-  );
+  )
 }
+
+export default ThemeProvider

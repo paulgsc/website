@@ -4,28 +4,5 @@
 import * as React from "react"
 
 export const Index: Record<string, any> = {
-  "default": {
-    "accordion": {
-      name: "accordion",
-      type: "components:ui",
-      registryDependencies: undefined,
-      component: React.lazy(() => import("@/registry/default/ui/accordion")),
-      source: "",
-      files: ["src/registry/default/ui/accordion.tsx"],
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-    "accordion-demo": {
-      name: "accordion-demo",
-      type: "components:example",
-      registryDependencies: ["accordion"],
-      component: React.lazy(() => import("@/registry/default/example/accordion-demo")),
-      source: "",
-      files: ["src/registry/default/example/accordion-demo.tsx"],
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-  },
+  default: {},
 }

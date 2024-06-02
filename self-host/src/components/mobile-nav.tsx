@@ -1,19 +1,22 @@
-"use client";
+"use client"
 
-import { siteNavConfig } from "@/config";
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
-import * as React from "react";
-import { Icons } from "./icons";
-import { Button } from "./ui/button";
-import { ScrollArea } from "./ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import type { ReactNode } from "react"
+import { useState } from "react"
+import type { LinkProps } from "next/link"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { siteNavConfig } from "@/config"
 
-export function MobileNav() {
-  const [open, setOpen] = React.useState(false);
+import { siteConfig } from "@/config/site"
+import cn from "@/lib/utils/cn"
 
+import { Icons } from "./icons"
+import { Button } from "./ui/button"
+import { ScrollArea } from "./ui/scroll-area"
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
+
+const MobileNav = () => {
+  const [open, setOpen] = useState(false)
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
@@ -26,7 +29,7 @@ export function MobileNav() {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="size-5"
           >
             <path
               d="M3 5H11"
@@ -59,7 +62,7 @@ export function MobileNav() {
           className="flex items-center"
           onOpenChange={setOpen}
         >
-          <Icons.logo className="mr-2 h-4 w-4" />
+          <Icons.logo className="mr-2 size-4" />
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
@@ -80,34 +83,37 @@ export function MobileNav() {
         </ScrollArea>
       </SheetContent>
     </Sheet>
-  );
+  )
 }
 
-interface MobileLinkProps extends LinkProps {
-  onOpenChange?: (open: boolean) => void;
-  children: React.ReactNode;
-  className?: string;
-}
+type MobileLinkProps = {
+  // eslint-disable-next-line no-unused-vars
+  onOpenChange?: (open: boolean) => void
+  children: ReactNode
+  className?: string
+} & LinkProps
 
-function MobileLink({
+const MobileLink = ({
   href,
   onOpenChange,
   className,
   children,
   ...props
-}: MobileLinkProps) {
-  const router = useRouter();
+}: MobileLinkProps) => {
+  const router = useRouter()
   return (
     <Link
       href={href}
       onClick={() => {
-        router.push(href.toString());
-        onOpenChange?.(false);
+        router.push(href.toString())
+        onOpenChange?.(false)
       }}
       className={cn(className)}
       {...props}
     >
       {children}
     </Link>
-  );
+  )
 }
+
+export default MobileNav

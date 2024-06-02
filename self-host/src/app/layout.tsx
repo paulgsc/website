@@ -1,17 +1,20 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { siteConfig } from "@/config"
-// eslint-disable-next-line import/order
-import { cn, fontSans } from "@/lib"
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
 
 import { Toaster as Sonner } from "@/components/ui/sonner"
-import { Toaster as DefaultToaster } from "@/components/ui/toaster"
-import Footer from "@/components/layout-components/footer/footer"
-import { SiteNav } from "@/components/layout-components/navbar/site-nav"
-import { ThemeProvider } from "@/components/providers"
-import { ThemeSwitcher } from "@/components/theme-switcher"
+import Toaster from "@/components/ui/toaster"
+import Footer from "@/components/footer/footer"
+import SiteNav from "@/components/layout-components/navbar/site-nav"
+import ThemeProvider from "@/components/providers"
+import ThemeSwitcher from "@/components/theme-switcher"
 
 import "@/styles/globals.css"
+
+import { fontSans } from "@/lib/fonts"
+import cn from "@/lib/utils/cn"
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] })
@@ -61,44 +64,46 @@ export const metadata: Metadata = {
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
 }
+
 // eslint-disable-next-line react/function-component-definition
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   // eslint-disable-next-line no-undef
   children: React.ReactNode
 }>) {
+  const locale = await getLocale()
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages()
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <head />
-        <body
-          className={cn(
-            "bg-background min-h-screen font-sans antialiased",
-            fontSans.className
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div vaul-drawer-wrapper="">
-              <div className="bg-background relative flex-col">
-                <SiteNav />
-                <div className="flex w-full min-w-0 items-center justify-center px-4 py-14 md:px-14 lg:px-28">
-                  {children}
+
+        <body className={cn("min-h-screen antialiased", fontSans.className)}>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div vault-drawer-wrapper="">
+                <div className="relative flex flex-col">
+                  <SiteNav />
+                  <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
+                    {children}
+                  </main>
+                  <Footer />
                 </div>
               </div>
-            </div>
-
-            <ThemeSwitcher />
-
-            <DefaultToaster />
-            <Sonner />
-            <Footer />
-          </ThemeProvider>
+              <ThemeSwitcher />
+              <Toaster />
+              <Sonner />
+            </ThemeProvider>
+          </NextIntlClientProvider>
         </body>
       </html>
     </>

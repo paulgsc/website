@@ -7,42 +7,25 @@ import type { NpmCommands, Style } from "@/types"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 import type { Event } from "@/lib/events"
-import { cn } from "@/lib/utils"
+import cn from "@/lib/utils/cn"
 import { useConfig } from "@/hooks/use-config"
-import { Callout } from "@/components/callout"
-import { CodeBlockWrapper } from "@/components/code-block-wrapper"
+import Callout from "@/components/callout"
 import { ComponentExample } from "@/components/component-example"
 
+import CodeBlockWrapper from "./code-block-wrapper"
 import ComponentPreview from "./component-preview"
 import ComponentSource from "./component-source"
 import CopyButton, { CopyNpmCommandButton } from "./copy-button"
 import FrameworkDocs from "./framework-docs"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion"
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
 import { AspectRatio } from "./ui/aspect-ratio"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import YoutubeBadge from "./youtube-badge"
 
 const components = {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  Alert,
-  AlertTitle,
-  AlertDescription,
   YoutubeBadge,
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn(
-        "font-heading mt-2 hidden scroll-m-20 text-4xl font-bold",
-        className
-      )}
+      className={cn("font-heading scroll-m-20 text-4xl font-bold", className)}
       {...props}
     />
   ),
@@ -67,7 +50,7 @@ const components = {
   h4: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
-        "font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
+        "font-heading scroll-m-20 text-lg font-semibold tracking-tight",
         className
       )}
       {...props}

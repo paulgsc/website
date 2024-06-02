@@ -1,4 +1,4 @@
-import { Style, Theme } from "@/types"
+import type { Style, Theme } from "@/types"
 import { create } from "zustand"
 
 type Config = {
