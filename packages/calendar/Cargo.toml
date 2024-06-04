@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.38"
+clippy = "0.0.302"
 google-calendar3 = "5.0.5"
 regex = "1.10.4"
 tesseract = "0.15.1"

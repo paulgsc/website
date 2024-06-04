@@ -1,9 +1,27 @@
-workspace = { members = ["packages/calendar"] }
-[package]
+
+
+[workspace.package]
 name = "website"
 version = "0.1.0"
 edition = "2021"
-
+license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
+[workspace.dependencies]
+
+
+[workspace]
+resolver = "2"
+members = [
+
+    "packages/calendar",
+
+   ]
+
+[workspace.lints.clippy]
+all = { level = "deny", priority = -100 }
+restriction = { level = "deny", priority = -100 }
+pedantic = { level = "deny", priority = -100 }
+nursery = { level = "deny", priority = -100 }
+cargo = { level = "deny", priority = -100 }
+
