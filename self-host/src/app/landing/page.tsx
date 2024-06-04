@@ -13,14 +13,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import GitHubCalendar from "@/components/github-calendar"
+import GitHubCalendarWrapper from "@/components/github-calendar"
 
 const Home: FC = () => {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
   return (
     <main className="flex  flex-col items-center justify-between ">
-      <GitHubCalendar username={"paulgsc"} fontSize={16} throwOnError />
+      <GitHubCalendarWrapper username={"paulgsc"} fontSize={16} throwOnError />
       <Carousel
         plugins={[plugin.current]}
         className="w-full max-w-xs"

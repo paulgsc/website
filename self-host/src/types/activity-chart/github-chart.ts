@@ -1,3 +1,4 @@
+import type { SiteConfig } from "@/config"
 import { type Props as ActivityCalendarProps } from "react-activity-calendar"
 
 /*
@@ -45,7 +46,7 @@ export type ThemeInput =
     }
 
 export interface Props extends Omit<ActivityCalendarProps, "data" | "theme"> {
-  username: string
+  username: SiteConfig["githubUsername"]
   errorMessage?: string
   theme?: ThemeInput
   throwOnError?: boolean
@@ -53,4 +54,9 @@ export interface Props extends Omit<ActivityCalendarProps, "data" | "theme"> {
   transformData?: (data: Array<Activity>) => Array<Activity>
   transformTotalCount?: boolean
   year?: Year
+}
+
+export interface FetchGithubContributionsProps {
+  username: SiteConfig["githubUsername"]
+  year: Year
 }
