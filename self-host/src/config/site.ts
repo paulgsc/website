@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "pgdev",
+  githubUsername: "paulgsc",
   author: "Paul M Gathondu",
   url: "https://maishatu.com",
   ogImage: "https://maishatu.com/og.jpg",

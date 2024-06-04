@@ -13,7 +13,7 @@ import {
   CarouselItem,
   CarouselNext,
 } from "@/components/ui/carousel"
-import GitHubCalendar from "@/components/github-calendar"
+import GitHubCalendarWrapper from "@/components/github-calendar"
 
 const Home: FC = () => {
   //@ts-expect-error Migraine inducer
