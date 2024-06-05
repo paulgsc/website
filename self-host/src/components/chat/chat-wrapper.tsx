@@ -1,7 +1,8 @@
 "use client"
 
+import { useQueryState } from "nuqs"
+
 import { cn } from "@/lib/utils"
-import useTabNavigation from "@/hooks/use-search-params"
 import {
   Popover,
   PopoverContent,
@@ -13,18 +14,13 @@ import ChatInput from "./chat-input"
 import Messages from "./messages"
 
 const ChatWrapper = () => {
-  const { handleTabClick, selectedTab } = useTabNavigation({
-    tabParam: "chat",
-    defaultTab: "off",
-  })
+  const [isChatbotOpen, setIsChatbotOpen] = useQueryState("chat")
   return (
     <div className="fixed bottom-24 right-12 z-50 w-fit bg-none">
-      <Popover open={selectedTab === "on"}>
+      <Popover open={isChatbotOpen === "on"}>
         <PopoverTrigger
           onClick={() => {
-            handleTabClick([
-              { name: "chat", value: selectedTab === "off" ? "on" : "off" },
-            ])
+            setIsChatbotOpen((prev) => (prev === "on" ? "off" : "on"))
           }}
           role="button"
           className="relative flex size-16 items-center justify-center rounded-full border bg-indigo-100 shadow-sm saturate-150 backdrop-blur-sm 2xl:size-14"
@@ -36,7 +32,7 @@ const ChatWrapper = () => {
                 " pointer-events-none absolute inset-1/4 size-7 text-cyan-600 outline-blue-800 transition-all duration-300 ease-in-out dark:text-white",
                 {
                   "-z-10 bg-muted/50 scale-90 rotate-45 opacity-0":
-                    selectedTab !== "on",
+                    isChatbotOpen !== "on",
                 }
               )}
             />
@@ -45,7 +41,8 @@ const ChatWrapper = () => {
               className={cn(
                 "pointer-events-none absolute inset-1/4 size-7 text-cyan-600 outline-blue-800 transition-all duration-300 ease-in-out dark:text-white",
                 {
-                  "-z-10 bg-muted/50 scale-90 opacity-0": selectedTab === "on",
+                  "-z-10 bg-muted/50 scale-90 opacity-0":
+                    isChatbotOpen === "on",
                 }
               )}
             />
