@@ -1,5 +1,7 @@
+import EventsTimelineWrapper from "@/components/my-events"
+
 const Page = () => {
-  return <></>
+  return <EventsTimelineWrapper />
 }
 
 export default Page
