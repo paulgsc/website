@@ -17,7 +17,7 @@ export type OpenGraphType =
   | "video.movie"
   | "video.episode"
 
-export default async function constructMetadata({
+export default function constructMetadata({
   title = siteConfig.name,
   description = siteConfig.description,
   image = siteConfig.ogImage,
@@ -33,7 +33,7 @@ export default async function constructMetadata({
   noIndex?: boolean
   url?: string | URL
   type?: OpenGraphType
-} = {}): Promise<Metadata> {
+} = {}): Metadata {
   return {
     title,
     description,
