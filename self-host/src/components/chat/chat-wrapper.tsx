@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Icons } from "@/components/icons"
 
 import ChatInput from "./chat-input"
+import ChatTopBar from "./chat-topbar"
 import Messages from "./messages"
 
 const ChatWrapper = () => {
@@ -46,16 +47,16 @@ const ChatWrapper = () => {
       </Button>
       <article
         className={cn(
-          "bg-background z-50 mb-2.5 me-6 grid  h-[calc(100vh-3.5rem-6.25rem)] w-full max-w-md grid-rows-[.5fr_4.5fr_1fr] gap-y-1.5 rounded-lg border  pe-1.5 ps-2.5 shadow-lg outline outline-1 outline-gray-300 backdrop-blur-sm backdrop-brightness-50 2xl:h-[calc(100vh-3.5rem-12rem)]",
+          "bg-background z-50 mb-2.5 me-6 grid  h-[calc(100vh-3.5rem-6.25rem)] w-full max-w-md grid-rows-[.5fr_4.5fr_1fr] gap-y-1.5 rounded-lg border shadow-lg outline outline-1 outline-gray-300 backdrop-blur-sm backdrop-brightness-50 2xl:h-[calc(100vh-3.5rem-12rem)]",
           {
             hidden: isChatbotOpen !== "on",
           }
         )}
       >
-        <header>some header</header>
+        <ChatTopBar />
         <ScrollArea
           role="article"
-          className="w-full max-w-md items-start whitespace-nowrap p-0.5 pb-2.5"
+          className="w-full max-w-md items-start whitespace-nowrap  pb-1.5 pe-1.5 ps-2.5 pt-0.5"
         >
           <Messages />
         </ScrollArea>
