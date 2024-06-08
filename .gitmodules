@@ -1,0 +1,3 @@
+[submodule "packages/ocrs"]
+	path = packages/ocrs
+	url = https://github.com/paulgsc/ocrs.git
