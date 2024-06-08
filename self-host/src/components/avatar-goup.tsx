@@ -26,7 +26,7 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
   )
 
   return (
-    <div className="flex items-center overflow-x-auto ">
+    <div className="flex -space-x-3 rtl:space-x-reverse">
       {renderAvatars.map((avatar, index) => (
         <Avatar key={index} className="size-6">
           <AvatarImage className="" src={avatar.src} />
