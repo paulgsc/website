@@ -36,7 +36,7 @@ const Footer: FC = () => {
   const openJSlink = siteNavConfig.footerLinks.at(-1)!
 
   return (
-    <footer className="bg-muted sticky bottom-0 flex w-full grow-0 items-center justify-between border border-neutral-200 py-2.5  pe-2.5 ps-2.5 dark:border-neutral-900 dark:bg-neutral-950">
+    <footer className="bg-muted absolute bottom-0 flex w-full grow-0 items-center justify-between border border-neutral-200 py-2.5  pe-2.5 ps-2.5 dark:border-neutral-900 dark:bg-neutral-950">
       <div className="flex flex-wrap content-start items-center justify-center gap-1 self-stretch">
         {siteNavConfig.footerLinks.map((item) => (
           <NavLink
