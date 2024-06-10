@@ -15,7 +15,7 @@ const ChatInput = () => {
                 rows={1}
                 ref={textareaRef}
                 autoFocus
-                value={""}
+                readOnly
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault()
