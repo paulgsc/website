@@ -17,28 +17,32 @@ import { useConfig } from "@/hooks/use-config"
 import Callout from "@/components/callout"
 import { ComponentExample } from "@/components/component-example"
 
+import { CarouselWithAutoPlay } from "./carousel-autoplay"
 import CodeBlockWrapper from "./code-block-wrapper"
 import ComponentPreview from "./component-preview"
 import ComponentSource from "./component-source"
 import CopyButton, { CopyNpmCommandButton } from "./copy-button"
 import FrameworkDocs from "./framework-docs"
+import ResponsiveTabsDrawerCloseButtons from "./landing/drawer-tab-list"
+import { BorderBeam } from "./magicui/border-beam"
 import {
-  ResponsiveDrawer,
-  ResponsiveDrawerContent,
   ResponsiveTabList,
   ResponsiveTabListTrigger,
   ResponsiveTabs,
-  ResponsiveTabsDrawerCloseBtn,
-  ResponsiveTabsDrawerTrigger,
-  ResponsiveTabsDrawerTriggerBtn,
 } from "./responsive-tabs"
 import { AspectRatio } from "./ui/aspect-ratio"
 import type { Card } from "./ui/card"
+import { CarouselContent, CarouselItem } from "./ui/carousel"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import YoutubeBadge from "./youtube-badge"
 
 const components = {
   YoutubeBadge,
+  BorderBeam,
+  CarouselWithAutoPlay,
+  CarouselContent,
+  CarouselItem,
+  ResponsiveTabsDrawerCloseButtons,
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn("font-heading scroll-m-20 text-4xl font-bold", className)}
@@ -300,28 +304,27 @@ const components = {
   }: ComponentProps<typeof TabsContent>) => (
     <TabsContent
       className={cn(
-        "relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
+        "relative w-full [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
         className
       )}
       {...props}
     />
   ),
-  ResponsiveDrawer: ({ ...props }: ComponentProps<typeof ResponsiveDrawer>) => (
-    <ResponsiveDrawer {...props} />
-  ),
-  ResponsiveTabsDrawerTrigger: ({
+  TabsContentWithBeam: ({
     className,
+    children,
     ...props
-  }: ComponentProps<typeof ResponsiveTabsDrawerTrigger>) => (
-    <ResponsiveTabsDrawerTrigger className={cn("", className)} {...props} />
-  ),
-  ResponsiveTabsDrawerTriggerBtn,
-  ResponsiveTabsDrawerCloseBtn,
-  ResponsiveDrawerContent: ({
-    className,
-    ...props
-  }: ComponentProps<typeof ResponsiveDrawerContent>) => (
-    <ResponsiveDrawerContent className={cn("", className)} {...props} />
+  }: ComponentProps<typeof TabsContent>) => (
+    <TabsContent
+      className={cn(
+        "relative w-full rounded-md [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <BorderBeam duration={30} borderWidth={3} />
+    </TabsContent>
   ),
   FrameworkDocs: ({
     className,
