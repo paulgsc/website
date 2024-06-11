@@ -80,7 +80,7 @@ function Autoplay(userOptions: AutoplayOptionsType = {}): AutoplayType {
   }
 
   function startTimer(): void {
-    if (destroyed) return
+    if (destroyed || !emblaApi) return
     if (!resume) return
     if (!playing) emblaApi.emit("autoplay:play")
     const { ownerWindow } = emblaApi.internalEngine()
