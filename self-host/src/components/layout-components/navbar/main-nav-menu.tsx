@@ -57,8 +57,11 @@ const MainNavigationMenu = () => {
               <ListItem href="/docs" title="Leafiproperties">
                 Market place to trade shares of real estate properties.
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem
+                href="/projects/image-to-calendar"
+                title="Image to Calendar"
+              >
+                Create calendar events from an image.
               </ListItem>
               <ListItem href="/docs/primitives/typography" title="Typography">
                 Styles for headings, paragraphs, lists...etc
