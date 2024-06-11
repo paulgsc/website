@@ -13,6 +13,7 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { useQueryState } from "nuqs"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -99,7 +100,6 @@ const Carousel = forwardRef<
       if (!api) return
       const { index } = api?.internalEngine() ?? {}
       if (!index) return
-      console.log(index)
       const lastIndex = api?.scrollSnapList().length - 1
       api?.scrollTo(lastIndex, false)
     }, [api])
@@ -177,7 +177,7 @@ const CarouselContent = forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="w-full overflow-hidden">
       <div
         ref={ref}
         className={cn(
@@ -192,13 +192,54 @@ const CarouselContent = forwardRef<
 })
 CarouselContent.displayName = "CarouselContent"
 
-const CarouselItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const { orientation } = useCarousel()
+type CarouselItemProps = HTMLAttributes<HTMLDivElement> & {
+  itemParam?: string
+}
+const CarouselItem = forwardRef<HTMLDivElement, CarouselItemProps>(
+  ({ className, id, itemParam, ...props }, ref) => {
+    const { api, orientation } = useCarousel()
+    const [tab, setUrl] = useQueryState(itemParam ?? "")
 
+    const foo = useCallback(
+      (api: CarouselApi) => {
+        if (!api) return
+        const slideIds = api.slideNodes().map((node) => node.id)
+        const selectedSlideId = slideIds.at(api.selectedScrollSnap()) ?? ""
+        if (itemParam) setUrl(selectedSlideId)
+      },
+      [itemParam, setUrl]
+    )
+
+    useEffect(() => {
+      if (!api) return
+
+      if (api) {
+        api.on("slidesInView", foo)
+
+        // Cleanup function to remove the event listener
+        return () => {
+          api.off("slidesInView", foo)
+        }
+      }
+    }, [api, foo])
+
+    useEffect(() => {
+      if (!api) return
+
+      const slideIds = api.slideNodes().map((node) => node.id)
+      const selectedSlideId = slideIds.at(api.selectedScrollSnap()) ?? ""
+
+      if (tab === selectedSlideId) return
+
+      const tabScrollSnap = slideIds.findIndex((id) => id === tab)
+
+      api.scrollTo(tabScrollSnap)
+      api.reInit()
+    }, [tab, api])
     return (
       <div
         ref={ref}
+        id={id}
         role="group"
         aria-roledescription="slide"
         className={cn(

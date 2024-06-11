@@ -25,62 +25,11 @@ description: Powered by amazing open source projects.
   <ResponsiveTabsTrigger value="status">Vipi</ResponsiveTabsTrigger>
   <ResponsiveTabsTrigger value="github">Contribute</ResponsiveTabsTrigger>
 </ResponsiveTabsList>
- <ResponsiveDrawer>
-      <ResponsiveTabsDrawerTrigger asChild>
-        <ResponsiveTabsDrawerTriggerBtn tabParam="tab" variant="outline" />
-      </ResponsiveTabsDrawerTrigger>
-      <ResponsiveDrawerContent>
-        <div
-          role="list"
-          className="bg-card flex w-full flex-1 flex-col items-center justify-center "
-        >
-            <ResponsiveTabsDrawerCloseBtn
-              tabParam="tab"
-              tabParamVal="welcome"
-              tabValue="Karibu"
-              variant={"ghost"}
-              className="w-full"
-            />
-             <ResponsiveTabsDrawerCloseBtn
-              tabParam="tab"
-              tabParamVal="projects"
-              tabValue="Flagship"
-              variant={"ghost"}
-              className="w-full"
-            />
-             <ResponsiveTabsDrawerCloseBtn
-              tabParam="tab"
-              tabParamVal="welcome"
-              tabValue="Karibu"
-              variant={"ghost"}
-              className="w-full"
-            />
-             <ResponsiveTabsDrawerCloseBtn
-              tabParam="tab"
-              tabParamVal="log"
-              tabValue="TLDR"
-              variant={"ghost"}
-              className="w-full"
-            />
-              <ResponsiveTabsDrawerCloseBtn
-              tabParam="tab"
-              tabParamVal="status"
-              tabValue="Vipi"
-              variant={"ghost"}
-              className="w-full"
-            />
-              <ResponsiveTabsDrawerCloseBtn
-              tabParam="tab"
-              tabParamVal="github"
-              tabValue="Contribute"
-              variant={"ghost"}
-              className="w-full"
-            />
-      
-        </div>
-      </ResponsiveDrawerContent>
-    </ResponsiveDrawer>
-<TabsContent value="welcome">
+<ResponsiveTabsDrawerCloseButtons />
+<CarouselWithAutoPlay>
+<CarouselContent>
+<CarouselItem id="welcome" tabParam="tab">
+<TabsContentWithBeam value="welcome">
     ```class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         if len(strs) == 1:
@@ -96,29 +45,39 @@ description: Powered by amazing open source projects.
             i += 1
         return checkstr
     ```
-
-  </TabsContent>
-  <TabsContent value="projects">
+  </TabsContentWithBeam>
+  </CarouselItem>
+  <CarouselItem id="projects" tabParam="tab">
+  <TabsContentWithBeam value="projects">
     ```
     ```
 
-  </TabsContent>
-  <TabsContent value="log">
+  </TabsContentWithBeam>
+  </CarouselItem >
+  <CarouselItem id="log" tabParam="tab">
+  <TabsContentWithBeam value="log">
     ```
     ```
 
-  </TabsContent>
-  <TabsContent value="status">
+  </TabsContentWithBeam>
+  </CarouselItem >
+  <CarouselItem id="status" tabParam="tab">
+  <TabsContentWithBeam value="status">
     ```
     ```
 
-  </TabsContent>
-  <TabsContent value="github">
+  </TabsContentWithBeam>
+  </CarouselItem >
+  <CarouselItem id="github" tabParam="tab">
+  <TabsContentWithBeam value="github">
     ```import js
     where did you go?
     ```
 
-  </TabsContent>
+  </TabsContentWithBeam>
+  </CarouselItem>
+  </CarouselContent>
+  </CarouselWithAutoPlay>
   </ResponsiveTabs>
 
 </Section>
