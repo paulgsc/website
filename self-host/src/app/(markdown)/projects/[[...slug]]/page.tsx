@@ -16,7 +16,7 @@ import DashboardTableOfContents from "@/components/toc"
 
 // We add the rootPath to the params since the [[...slug]] pattern in Next.js
 // is exclusive of the path and only generates the params for the slug part.
-const rootPath = ["blog"]
+const rootPath = ["projects"]
 
 generateStaticParams({ rootPath: rootPath })
 
@@ -30,7 +30,7 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   const toc = await getTableOfContents(doc.body.raw)
 
   return (
-    <div className="relative mb-2.5 mt-12 grid-cols-[.20fr_.60fr_.20fr] md:grid">
+    <div className="relative grid-cols-[.20fr_.60fr_.20fr] md:grid">
       <aside />
       <section className="mx-auto w-full min-w-0">
         <Mdx code={doc.body.code} />

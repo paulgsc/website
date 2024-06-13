@@ -3,122 +3,81 @@ title: Run JavaScript Everywhere
 description: Powered by amazing open source projects.
 ---
 
-<section>
+<Section className="">
+<div className="space-y-4 xl:me-6 xl:mt-12 ">
  <YoutubeBadge />
-  <div>
-    # Run JavaScript Everywhere
-
-#### Node.js® is a free, open-source, cross-platform JavaScript runtime environment that lets developers create servers, web apps, command line tools and scripts.
-
+  <div className="w-full max-w-lg truncate text-wrap">
+   <span className="text-end capitalize">
+    # Yet another zero user webiste!
+    </span>
+    <span>
+    #### I learn best by building, thus this site. Hosting is expensive so this site has hours of operation. Btw checkout my youtube, easier growing that than this website.
+    </span>
   </div>
 
-</section>
-
-<section>
-<Tabs defaultValue="welcome">
-
-<TabsList>
-  <TabsTrigger value="welcome">Karibu</TabsTrigger>
-  <TabsTrigger value="projects">Flagship</TabsTrigger>
-  <TabsTrigger value="log">TLDR</TabsTrigger>
-  <TabsTrigger value="status">Vipi</TabsTrigger>
-  <TabsTrigger value="github">Contribute</TabsTrigger>
-</TabsList>
-<TabsContent value="welcome">
-    ```js displayName="Create an HTTP Server"
-    // server.mjs
-    import { createServer } from 'node:http';
-
-    const server = createServer((req, res) => {
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Hello World!\n');
-    });
-
-    // starts a simple http server locally on port 3000
-    server.listen(3000, '127.0.0.1', () => {
-      console.log('Listening on 127.0.0.1:3000');
-    });
-
-    // run with `node server.mjs`
+</div>
+ 
+<ResponsiveTabs defaultValue="welcome" className="xl:flex-1">
+<ResponsiveTabsList >
+  <ResponsiveTabsTrigger value="welcome" >Karibu</ResponsiveTabsTrigger>
+  <ResponsiveTabsTrigger value="projects">Flagship</ResponsiveTabsTrigger>
+  <ResponsiveTabsTrigger value="log">TLDR</ResponsiveTabsTrigger>
+  <ResponsiveTabsTrigger value="status">Vipi</ResponsiveTabsTrigger>
+  <ResponsiveTabsTrigger value="github">Contribute</ResponsiveTabsTrigger>
+</ResponsiveTabsList>
+<ResponsiveTabsDrawerCloseButtons />
+<CarouselWithAutoPlay>
+<CarouselContent>
+<CarouselItem id="welcome" itemParam="tab">
+<TabsContentWithBeam value="welcome">
+    ```class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if len(strs) == 1:
+            return strs[0]
+        checkLen = len(strs[0])
+        check = [False for i in range(len(strs))]
+        i = 0
+        checkstr = strs[0]
+        while False in check and checkLen - i >= 0:
+            checkstr = strs[0][:checkLen - i]
+            print(checkstr)
+            check = list(map(lambda x: checkstr == x[:checkLen - i], strs))
+            i += 1
+        return checkstr
+    ```
+  </TabsContentWithBeam>
+  </CarouselItem>
+  <CarouselItem id="projects" itemParam="tab">
+  <TabsContentWithBeam value="projects">
+    ```
     ```
 
-  </TabsContent>
-  <TabsContent value="projects">
-    ```js displayName="Write Tests"
-    // tests.mjs
-    import assert from 'node:assert';
-    import test from 'node:test';
-
-    test('that 1 is equal 1', () => {
-      assert.strictEqual(1, 1);
-    });
-
-    test('that throws as 1 is not equal 2', () => {
-      // throws an exception because 1 != 2
-      assert.strictEqual(1, 2);
-    });
-
-    // run with `node tests.mjs`
+  </TabsContentWithBeam>
+  </CarouselItem >
+  <CarouselItem id="log" itemParam="tab">
+  <TabsContentWithBeam value="log">
+    ```
     ```
 
-  </TabsContent>
-  <TabsContent value="log">
-    ```js displayName="Read and Hash a File"
-    // crypto.mjs
-    import { createHash } from 'node:crypto';
-    import { readFile } from 'node:fs/promises';
-
-    const hasher = createHash('sha1');
-
-    hasher.setEncoding('hex');
-    // ensure you have a `package.json` file for this test!
-    hasher.write(await readFile('package.json'));
-    hasher.end();
-
-    const fileHash = hasher.read();
-
-    // run with `node crypto.mjs`
+  </TabsContentWithBeam>
+  </CarouselItem >
+  <CarouselItem id="status" itemParam="tab">
+  <TabsContentWithBeam value="status">
+    ```
     ```
 
-  </TabsContent>
-  <TabsContent value="status">
-    ```js displayName="Streams Pipeline"
-    // streams.mjs
-    import { pipeline } from 'node:stream/promises';
-    import { createReadStream, createWriteStream } from 'node:fs';
-    import { createGzip } from 'node:zlib';
-
-    // ensure you have a `package.json` file for this test!
-    await pipeline
-    (
-      createReadStream('package.json'),
-      createGzip(),
-      createWriteStream('package.json.gz')
-    );
-
-    // run with `node streams.mjs`
+  </TabsContentWithBeam>
+  </CarouselItem >
+  <CarouselItem id="github" itemParam="tab">
+  <TabsContentWithBeam value="github">
+    ```import js
+    where did you go?
     ```
 
-  </TabsContent>
-  <TabsContent value="github">
-    ```js displayName="Work with Threads"
-    // threads.mjs
-    import { Worker, isMainThread,
-      workerData, parentPort } from 'node:worker_threads';
+  </TabsContentWithBeam>
+  </CarouselItem>
+  </CarouselContent>
+  </CarouselWithAutoPlay>
+  </ResponsiveTabs>
 
-    if (isMainThread) {
-      const data = 'some data';
-      const worker = new Worker(import.meta.filename, { workerData: data });
-      worker.on('message', msg => console.log('Reply from Thread:', msg));
-    } else {
-      const source = workerData;
-      parentPort.postMessage(btoa(source.toUpperCase()));
-    }
-
-    // run with `node threads.mjs`
-    ```
-
-  </TabsContent>
-  </Tabs>
-  Learn more what Node.js is able to offer with our [Learning materials](/learn).
-</section>
+</Section>

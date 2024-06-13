@@ -1,6 +1,11 @@
 "use client"
 
-import type { ComponentProps, HTMLAttributes, ImgHTMLAttributes } from "react"
+import type {
+  ComponentProps,
+  ComponentPropsWithRef,
+  HTMLAttributes,
+  ImgHTMLAttributes,
+} from "react"
 import Image from "next/image"
 import Link from "next/link"
 import type { NpmCommands, Style } from "@/types"
@@ -12,17 +17,32 @@ import { useConfig } from "@/hooks/use-config"
 import Callout from "@/components/callout"
 import { ComponentExample } from "@/components/component-example"
 
+import { CarouselWithAutoPlay } from "./carousel-autoplay"
 import CodeBlockWrapper from "./code-block-wrapper"
 import ComponentPreview from "./component-preview"
 import ComponentSource from "./component-source"
 import CopyButton, { CopyNpmCommandButton } from "./copy-button"
 import FrameworkDocs from "./framework-docs"
+import ResponsiveTabsDrawerCloseButtons from "./landing/drawer-tab-list"
+import { BorderBeam } from "./magicui/border-beam"
+import {
+  ResponsiveTabList,
+  ResponsiveTabListTrigger,
+  ResponsiveTabs,
+} from "./responsive-tabs"
 import { AspectRatio } from "./ui/aspect-ratio"
+import type { Card } from "./ui/card"
+import { CarouselContent, CarouselItem } from "./ui/carousel"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import YoutubeBadge from "./youtube-badge"
 
 const components = {
   YoutubeBadge,
+  BorderBeam,
+  CarouselWithAutoPlay,
+  CarouselContent,
+  CarouselItem,
+  ResponsiveTabsDrawerCloseButtons,
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn("font-heading scroll-m-20 text-4xl font-bold", className)}
@@ -225,10 +245,28 @@ const components = {
     />
   ),
   Tabs: ({ className, ...props }: ComponentProps<typeof Tabs>) => (
-    <Tabs className={cn("relative mt-6 w-full", className)} {...props} />
+    <Tabs className={cn("w-full", className)} {...props} />
+  ),
+  ResponsiveTabs: ({
+    className,
+    ...props
+  }: ComponentProps<typeof ResponsiveTabs>) => (
+    <ResponsiveTabs className={cn("w-full", className)} {...props} />
   ),
   TabsList: ({ className, ...props }: ComponentProps<typeof TabsList>) => (
     <TabsList
+      className={cn(
+        "w-full justify-start rounded-none border-b bg-transparent p-0",
+        className
+      )}
+      {...props}
+    />
+  ),
+  ResponsiveTabsList: ({
+    className,
+    ...props
+  }: ComponentProps<typeof ResponsiveTabList>) => (
+    <ResponsiveTabList
       className={cn(
         "w-full justify-start rounded-none border-b bg-transparent p-0",
         className
@@ -248,17 +286,45 @@ const components = {
       {...props}
     />
   ),
+  ResponsiveTabsTrigger: ({
+    className,
+    ...props
+  }: ComponentProps<typeof ResponsiveTabListTrigger>) => (
+    <ResponsiveTabListTrigger
+      className={cn(
+        "text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none",
+        className
+      )}
+      {...props}
+    />
+  ),
   TabsContent: ({
     className,
     ...props
   }: ComponentProps<typeof TabsContent>) => (
     <TabsContent
       className={cn(
-        "relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
+        "relative w-full [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
         className
       )}
       {...props}
     />
+  ),
+  TabsContentWithBeam: ({
+    className,
+    children,
+    ...props
+  }: ComponentProps<typeof TabsContent>) => (
+    <TabsContent
+      className={cn(
+        "relative w-full rounded-md [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <BorderBeam duration={30} borderWidth={3} />
+    </TabsContent>
   ),
   FrameworkDocs: ({
     className,
@@ -276,6 +342,15 @@ const components = {
     <Link
       className={cn(
         "bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
+        className
+      )}
+      {...props}
+    />
+  ),
+  Section: ({ className, ...props }: ComponentPropsWithRef<typeof Card>) => (
+    <section
+      className={cn(
+        "items-center max-xl:mb-24 max-md:space-y-12 max-sm:max-w-xs xl:flex xl:flex-1 2xl:gap-x-12",
         className
       )}
       {...props}

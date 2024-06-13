@@ -9,9 +9,10 @@ import ChatSiteAvatar from "./chat-site-avatar"
 const Message = forwardRef<
   HTMLDivElement,
   { message: MessageType; isNextMessageSamePerson: boolean }
->(({ message }) => {
+>(({ message }, ref) => {
   return (
     <ScrollArea
+      ref={ref}
       role="textbox"
       className="w-full max-w-md items-start whitespace-nowrap p-0.5 pb-2.5"
     >

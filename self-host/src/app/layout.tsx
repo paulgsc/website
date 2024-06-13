@@ -90,15 +90,12 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div vault-drawer-wrapper="">
-                <div className="relative flex flex-col">
-                  <SiteNav />
-                  <main className="flex min-h-screen min-w-0 shrink-0 flex-col">
-                    {children}
-                  </main>
-                  <Footer />
-                </div>
+              <div className="relative flex min-h-screen flex-col">
+                <SiteNav />
+                <main className="min flex shrink-0 flex-col">{children}</main>
+                <Footer />
               </div>
+
               <ThemeSwitcher />
               <Toaster />
               <Sonner />
