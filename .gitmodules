@@ -1,3 +1,6 @@
 [submodule "packages/monkeytype-clone"]
 	path = packages/monkeytype-clone
 	url = https://github.com/paulgsc/monkeytype-clone.git
+[submodule "packages/Monkeytype-Nextjs"]
+	path = packages/Monkeytype-Nextjs
+	url = https://github.com/paulgsc/Monkeytype-Nextjs.git
