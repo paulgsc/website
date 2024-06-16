@@ -29,8 +29,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --countdown-timer: 235, 16%, 14%;
-    --countdown-timer-foreground: 234, 17%, 12%;
+    --countdown-timer: 236, 21%, 26%;
+    --countdown-timer-foreground: 235, 16%, 14%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
@@ -63,6 +63,9 @@
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
+    --countdown-timer: 234, 17%, 12%;
+    --countdown-timer-foreground: 235, 16%, 14%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
