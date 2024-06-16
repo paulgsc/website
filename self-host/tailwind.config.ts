@@ -54,6 +54,10 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "countdown-timer": {
+          DEFAULT: "hsl(var(--countdown-timer))",
+          foreground: "hsl(var(--countdown-timer-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

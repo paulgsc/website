@@ -1,5 +1,14 @@
+import { cn } from "@/lib"
+
 const ChallengesHome = () => {
-  return <div className="absolute inset-0 grid grid-rows-[3fr_1fr]"></div>
+  return (
+    <div
+      className={cn(
+        "bg-countdown-timer absolute inset-0",
+        "bg-[url('./assets/challenges/countdown-timer/hills.svg')] bg-bottom bg-no-repeat"
+      )}
+    ></div>
+  )
 }
 
 export default ChallengesHome

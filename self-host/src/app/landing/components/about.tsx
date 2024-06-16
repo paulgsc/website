@@ -7,7 +7,8 @@
  */
 
 import Image from "next/image"
-import { Pilot } from "@/assets"
+
+import { Pilot } from "@/styles/assets"
 
 import { Statistics } from "./statistics"
 
