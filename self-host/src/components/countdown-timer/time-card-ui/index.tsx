@@ -11,7 +11,7 @@ import {
 } from "@/components/countdown-timer/bg-card"
 
 const timeFormats = ["days", "hours", "minutes", "seconds"] as const
-const endTimeStamp = Date.now() + 86400 * 1000
+const endTimeStamp = Date.now() + 60 * 1000
 
 const TimeCardUi = () => {
   const [timeUnits, setTimeUnits] = useState({
@@ -22,30 +22,23 @@ const TimeCardUi = () => {
   })
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const updateRemainingTime = () => {
       const remainingDuration = endTimeStamp - Date.now()
-      const remObj = getTimeNumber(remainingDuration)
-      if (remObj.seconds !== timeUnits.seconds) {
-        setTimeUnits((prevState) => ({ ...prevState, seconds: remObj.seconds }))
+
+      if (remainingDuration < 0) {
+        clearInterval(interval)
+        return
       }
 
-      if (remObj.minutes !== timeUnits.minutes) {
-        setTimeUnits((prevState) => ({ ...prevState, minutes: remObj.minutes }))
-      }
+      setTimeUnits(getTimeNumber(remainingDuration))
+    }
 
-      if (remObj.hours !== timeUnits.hours) {
-        setTimeUnits((prevState) => ({ ...prevState, hours: remObj.hours }))
-      }
-
-      if (remObj.days !== timeUnits.days) {
-        setTimeUnits((prevState) => ({ ...prevState, days: remObj.days }))
-      }
-
-      if (remainingDuration <= 0) clearInterval(interval)
-    }, 1000)
+    const interval = setInterval(updateRemainingTime, 1000)
+    updateRemainingTime() // Initial call to set the state immediately
 
     return () => clearInterval(interval)
-  }, [timeUnits])
+  }, [])
+
   return (
     <>
       {timeFormats.map((time) => (
