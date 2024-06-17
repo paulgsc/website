@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from "react"
 import { forwardRef } from "react"
-import { cn } from "@/lib"
+
+import cn from "@/lib/utils/cn"
 
 const CountDownCard = forwardRef<
   HTMLDivElement,

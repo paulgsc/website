@@ -1,16 +1,51 @@
-import { cn } from "@/lib"
+"use client"
 
+import { useEffect, useState } from "react"
+
+import cn from "@/lib/utils/cn"
+import { getTimeNumber } from "@/lib/utils/time"
 import {
   CountDownCardItem,
   TimerCard,
   TimerCardContent,
 } from "@/components/countdown-timer/bg-card"
 
-//@todo remove me.
-const getDuration = () => 0
 const timeFormats = ["days", "hours", "minutes", "seconds"] as const
+const endTimeStamp = Date.now() + 86400 * 1000
 
 const TimeCardUi = () => {
+  const [timeUnits, setTimeUnits] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const remainingDuration = endTimeStamp - Date.now()
+      const remObj = getTimeNumber(remainingDuration)
+      if (remObj.seconds !== timeUnits.seconds) {
+        setTimeUnits((prevState) => ({ ...prevState, seconds: remObj.seconds }))
+      }
+
+      if (remObj.minutes !== timeUnits.minutes) {
+        setTimeUnits((prevState) => ({ ...prevState, minutes: remObj.minutes }))
+      }
+
+      if (remObj.hours !== timeUnits.hours) {
+        setTimeUnits((prevState) => ({ ...prevState, hours: remObj.hours }))
+      }
+
+      if (remObj.days !== timeUnits.days) {
+        setTimeUnits((prevState) => ({ ...prevState, days: remObj.days }))
+      }
+
+      if (remainingDuration <= 0) clearInterval(interval)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [timeUnits])
   return (
     <>
       {timeFormats.map((time) => (
@@ -28,7 +63,7 @@ const TimeCardUi = () => {
               )}
             />
             <TimerCardContent>
-              <time>{getDuration()}</time>
+              <time>{timeUnits[time]}</time>
             </TimerCardContent>
           </TimerCard>
           <p role="note" className="text-countdown-timer-foreground uppercase">
