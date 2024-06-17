@@ -13,9 +13,9 @@ const Layout = ({
   children: ReactNode
 }>) => {
   return (
-    <div className="flex min-h-screen flex-col items-center bg-zinc-50">
+    <main className="absolute inset-0 flex flex-col items-center bg-zinc-50">
       {children}
-    </div>
+    </main>
   )
 }
 
