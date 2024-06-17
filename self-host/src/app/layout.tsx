@@ -92,7 +92,7 @@ export default async function RootLayout({
             >
               <div className="relative flex min-h-screen flex-col">
                 <SiteNav />
-                <main className="min flex shrink-0 flex-col">{children}</main>
+                {children}
                 <Footer />
               </div>
 
