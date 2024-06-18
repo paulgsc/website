@@ -13,7 +13,7 @@ const Layout = ({
   children: ReactNode
 }>) => {
   return (
-    <main className="absolute inset-0 flex flex-col items-center bg-zinc-50">
+    <main className="absolute inset-0 flex flex-col items-center justify-center bg-red-500">
       {children}
     </main>
   )

@@ -11,14 +11,13 @@ import {
   CarouselIndicatorItem,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 
 const Home: FC = () => {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
   return (
-    <main className="flex  flex-col items-center justify-between ">
+    <main className="flex min-h-screen flex-col items-center justify-center ">
       <Carousel
         plugins={[plugin.current]}
         className="w-full max-w-xs"
@@ -26,8 +25,8 @@ const Home: FC = () => {
         onMouseLeave={plugin.current.play}
       >
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index}>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <CarouselItem key={index} className="">
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -39,7 +38,7 @@ const Home: FC = () => {
           ))}
         </CarouselContent>
         <CarouselIndicatorContent>
-          {Array.from({ length: 4 }).map((_, index) => (
+          {Array.from({ length: 3 }).map((_, index) => (
             <CarouselIndicatorItem
               key={index}
               aria-current="true"
@@ -49,7 +48,7 @@ const Home: FC = () => {
           ))}
         </CarouselIndicatorContent>
 
-        <CarouselPrevious />
+        <CarouselNext />
         <CarouselNext />
       </Carousel>
     </main>

@@ -1,7 +1,7 @@
-import EventsTimelineWrapper from "@/components/my-events"
+import EventCarouselCard from "@/components/my-events/event-carousel-card"
 
 const Page = () => {
-  return <EventsTimelineWrapper />
+  return <EventCarouselCard />
 }
 
 export default Page
