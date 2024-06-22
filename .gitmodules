@@ -4,3 +4,6 @@
 [submodule "packages/monkeytype-clone"]
 	path = packages/monkeytype-clone
 	url = https://github.com/paulgsc/monkeytype-clone.git
+[submodule "packages/flippy"]
+	path = packages/flippy
+	url = https://github.com/paulgsc/flippy.git
