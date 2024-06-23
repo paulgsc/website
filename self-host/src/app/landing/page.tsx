@@ -22,7 +22,9 @@ const Home: FC = () => {
         plugins={[plugin.current]}
         className="w-full max-w-xs"
         onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.play}
+        onMouseLeave={() => {
+          plugin.current.play()
+        }}
       >
         <CarouselContent>
           {Array.from({ length: 3 }).map((_, index) => (

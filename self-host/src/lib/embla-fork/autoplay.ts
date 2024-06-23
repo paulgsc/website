@@ -31,7 +31,7 @@ function Autoplay(userOptions: AutoplayOptionsType = {}): AutoplayType {
 
     if (emblaApi.scrollSnapList().length <= 1) return
 
-    jump = options.jump
+    jump = options.jump ?? false
     destroyed = false
 
     const { eventStore, ownerDocument } = emblaApi.internalEngine()

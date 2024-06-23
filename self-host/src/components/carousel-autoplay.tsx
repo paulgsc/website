@@ -15,7 +15,9 @@ const CarouselWithAutoPlay: FC<ComponentPropsWithoutRef<typeof Carousel>> = ({
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.play}
+        onMouseLeave={() => {
+          plugin.current.play()
+        }}
         {...props}
       />
     )
