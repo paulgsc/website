@@ -10,13 +10,12 @@ import {
   useRef,
   useState,
 } from "react"
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react"
 import { ArrowRight } from "lucide-react"
 import { useQueryState } from "nuqs"
 
 import { cn } from "@/lib/utils"
+import type { UseEmblaCarouselType } from "@/hooks/useEmblaCarousel"
+import useEmblaCarousel from "@/hooks/useEmblaCarousel"
 import { Button } from "@/components/ui/button"
 
 type CarouselApi = UseEmblaCarouselType[1]
