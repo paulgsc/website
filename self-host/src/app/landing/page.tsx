@@ -1,5 +1,6 @@
 "use client"
 
+// @todo remove this at some point
 import { useRef, type FC } from "react"
 import Autoplay from "embla-carousel-autoplay"
 
@@ -14,7 +15,6 @@ import {
 } from "@/components/ui/carousel"
 
 const Home: FC = () => {
-  // @todo remove this at some point
   //@ts-expect-error Migraine inducer
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
