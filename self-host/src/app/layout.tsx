@@ -82,7 +82,7 @@ export default async function RootLayout({
       <html lang={locale} suppressHydrationWarning>
         <head />
 
-        <body className={cn("min-h-screen antialiased", fontSans.className)}>
+        <body className={cn("antialiased", fontSans.className)}>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
               attribute="class"
@@ -90,12 +90,11 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="relative flex min-h-screen flex-col">
+              <div className="">
                 <SiteNav />
-                {children}
+                <div className="relative">{children}</div>
                 <Footer />
               </div>
-
               <ThemeSwitcher />
               <Toaster />
               <Sonner />
