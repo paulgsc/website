@@ -21,10 +21,8 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   }
 
   return (
-    <main className="flex w-full flex-col items-center justify-center md:absolute md:inset-0 md:max-lg:min-h-[940px] lg:max-xl:min-h-[860px] xl:grid xl:grid-cols-8 xl:max-2xl:mt-16 2xl:min-h-[560px]">
-      <div className="w-full max-xl:flex max-xl:justify-center xl:col-span-6 xl:col-start-2">
-        <Mdx code={doc.body.code} />
-      </div>
+    <main className="flex flex-1 items-center justify-center md:max-lg:min-h-[940px] lg:max-xl:min-h-[860px] xl:max-2xl:min-h-[520px] 2xl:min-h-[816px]">
+      <Mdx code={doc.body.code} />
     </main>
   )
 }

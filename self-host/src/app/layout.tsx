@@ -90,9 +90,9 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="">
+              <div className="grid size-full grid-cols-[1fr] grid-rows-[auto_1fr_auto]">
                 <SiteNav />
-                <div className="relative">{children}</div>
+                <div className="size-full">{children}</div>
                 <Footer />
               </div>
               <ThemeSwitcher />

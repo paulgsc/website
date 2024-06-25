@@ -350,7 +350,7 @@ const components = {
   Section: ({ className, ...props }: ComponentPropsWithRef<typeof Card>) => (
     <section
       className={cn(
-        "items-center max-xl:mb-24 max-md:space-y-12 max-sm:max-w-xs xl:flex xl:flex-1 2xl:gap-x-12",
+        "items-center max-sm:max-w-xs lg:flex lg:flex-1 lg:gap-x-12",
         className
       )}
       {...props}
