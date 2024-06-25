@@ -30,7 +30,7 @@ const NavLink: FC<PropsWithChildren<NavItemProps>> = ({
   <ActiveLink
     href={href}
     className={cn(
-      "inline-flex items-center gap-2 rounded px-3 py-2",
+      "inline-flex items-center gap-2 rounded px-3 py-2 dark:text-white",
       className
     )}
     allowSubPath={href.startsWith("/")}
@@ -39,7 +39,7 @@ const NavLink: FC<PropsWithChildren<NavItemProps>> = ({
     {children}
 
     {(href.startsWith("http") || target === "_blank") && showExt && (
-      <Icons.externalLink className=" text-foreground pointer-events-none size-3 opacity-50 dark:text-neutral-200" />
+      <Icons.externalLink className=" text-foreground pointer-events-none size-3 opacity-50 dark:text-white" />
     )}
   </ActiveLink>
 )

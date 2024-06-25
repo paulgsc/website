@@ -82,7 +82,12 @@ export default async function RootLayout({
       <html lang={locale} suppressHydrationWarning>
         <head />
 
-        <body className={cn("antialiased", fontSans.className)}>
+        <body
+          className={cn(
+            "relative min-h-screen antialiased",
+            fontSans.className
+          )}
+        >
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
               attribute="class"
