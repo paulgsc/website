@@ -20,7 +20,7 @@ type SocialIconProps = {
 const footerSocialIcons: Record<string, SocialIconProps> = {
   github: {
     icon: Icons.gitHub,
-    classname: "h-4 w-4 text-black",
+    classname: "h-4 w-4 text-black text-primary fill-current",
   },
   youtube: {
     icon: Icons.youtube,
@@ -28,7 +28,7 @@ const footerSocialIcons: Record<string, SocialIconProps> = {
   },
   twitter: {
     icon: Icons.twitter,
-    classname: "w-3 h-3",
+    classname: "w-3 h-3 text-primary fill-current",
   },
 }
 
@@ -73,7 +73,9 @@ const Footer: FC = () => {
                 type="footer"
                 showExt={false}
               >
-                <SocialIcon className={className} aria-label={social.link} />
+                <span className="hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <SocialIcon className={className} aria-label={social.link} />
+                </span>
               </NavItem>
             )
           })}
