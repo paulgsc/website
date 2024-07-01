@@ -15,13 +15,13 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import SkillInfoPopover from "@/components/charts/radar/skill-info-popover"
 
-import SkillInfoPopover from "./skill-info-popover"
+import ControlHeader from "./controls-header"
 
 const initialItems = [
   {
@@ -67,11 +67,8 @@ const Controls = () => {
       <CardContent>
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">SKU</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead className="w-[100px]">Size</TableHead>
+            <TableRow className="hover:bg-inherit">
+              <ControlHeader />
             </TableRow>
           </TableHeader>
           <TableBody>
