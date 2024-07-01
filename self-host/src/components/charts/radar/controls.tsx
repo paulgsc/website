@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/table"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
+import SkillInfoPopover from "./skill-info-popover"
+
 const initialItems = [
   {
     sku: "GGPC-001",
@@ -56,9 +58,10 @@ const Controls = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Stock</CardTitle>
-        <CardDescription>
-          Lipsum dolor sit amet, consectetur adipiscing elit
+        <CardTitle>Skill snapshot</CardTitle>
+        <CardDescription className="inline-flex items-center gap-0.5 text-balance ps-2.5">
+          <span>latest stats on tech skills I care about. </span>
+          <SkillInfoPopover />
         </CardDescription>
       </CardHeader>
       <CardContent>
