@@ -115,11 +115,11 @@ const RadarChartPlayground = () => {
           >
             <Controls />
           </div>
-          <div className="bg-muted/50 relative flex h-full min-h-[50vh] flex-col rounded-xl p-4 lg:col-span-2">
+          <div className="bg-muted/50 relative flex h-full flex-col rounded-xl p-4 lg:col-span-2 2xl:min-h-[75vh]">
             <Badge variant="outline" className="absolute right-3 top-3">
               Output
             </Badge>
-            <div className="flex-1" />
+            <div className="w-full flex-1" />
             <ChartContainer />
           </div>
         </main>
