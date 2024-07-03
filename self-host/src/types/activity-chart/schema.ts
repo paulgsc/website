@@ -27,5 +27,7 @@ export const apiErrorResponseSchema = z.object({
   error: z.string(),
 })
 
-export type ApiResponseSchema = z.infer<typeof apiResponseSchema>
-export type ApiErrorResponseSchema = z.infer<typeof apiErrorResponseSchema>
+export type ApiResponseActivitySchema = z.infer<typeof apiResponseSchema>
+export type ApiErrorResponseActivitySchema = z.infer<
+  typeof apiErrorResponseSchema
+>

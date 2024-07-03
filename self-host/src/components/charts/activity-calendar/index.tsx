@@ -1,22 +1,30 @@
+/**
+ * This file contains code adapted from work originally created by Jonathan Gruber.
+ * Original work Copyright (c) 2019 Jonathan Gruber
+ * Adapted under the terms of the MIT License.
+ *
+ * For the full license text:
+ * @see https://github.com/grubersjoe/react-github-calendar/blob/main/LICENSE
+ */
 import type { FunctionComponent } from "react"
-import { getGitHubContributions } from "@/actions/get-contrib"
 import Calendar from "react-activity-calendar"
 
-import { apiResponseSchema, type Props } from "@/types/activity-chart"
+import type { ApiResponseActivitySchema, Props } from "@/types/activity-chart"
 import { DEFAULT_THEME } from "@/lib/github-calendar/constants"
 import { transformData } from "@/lib/github-calendar/utils"
 
-const CalendarCard: FunctionComponent<Props> = async ({
-  username,
+type CalendarCardProps = {
+  activityData: ApiResponseActivitySchema
+} & Props
+
+const CalendarCard: FunctionComponent<CalendarCardProps> = async ({
+  activityData,
   year = "last",
   labels,
   transformData: transformFn,
   transformTotalCount = true,
   ...props
 }) => {
-  const data = await getGitHubContributions({ username, year })
-  const contribData = apiResponseSchema.parse(data)
-
   const theme = props.theme ?? DEFAULT_THEME
 
   const defaultLabels = {
@@ -26,11 +34,11 @@ const CalendarCard: FunctionComponent<Props> = async ({
   }
 
   const totalCount =
-    year === "last" ? contribData.total["lastYear"] : contribData.total[year]
+    year === "last" ? activityData.total["lastYear"] : activityData.total[year]
 
   return (
     <Calendar
-      data={transformData(contribData.contributions, transformFn)}
+      data={transformData(activityData.contributions, transformFn)}
       theme={theme}
       labels={Object.assign({}, defaultLabels, labels)}
       totalCount={transformFn && transformTotalCount ? undefined : totalCount}

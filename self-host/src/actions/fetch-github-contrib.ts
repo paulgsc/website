@@ -1,7 +1,7 @@
 import type { FetchGithubContributionsProps } from "@/types/activity-chart/github-chart"
 import type {
-  ApiErrorResponseSchema,
-  ApiResponseSchema,
+  ApiErrorResponseActivitySchema,
+  ApiResponseActivitySchema,
 } from "@/types/activity-chart/schema"
 import {
   apiErrorResponseSchema,
@@ -13,11 +13,11 @@ export async function fetchGithubContributions({
   username,
   year,
 }: FetchGithubContributionsProps): Promise<
-  ApiResponseSchema | ApiErrorResponseSchema
+  ApiResponseActivitySchema | ApiErrorResponseActivitySchema
 > {
   try {
     const response = await fetch(`${API_URL}${username}?y=${year}`)
-    const data: ApiResponseSchema | ApiErrorResponseSchema =
+    const data: ApiResponseActivitySchema | ApiErrorResponseActivitySchema =
       await response.json()
 
     if (!response.ok) {

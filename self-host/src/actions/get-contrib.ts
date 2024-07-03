@@ -1,8 +1,8 @@
-import type { FetchGithubContributionsProps } from "@/types/activity-chart"
 import type {
-  ApiErrorResponseSchema,
-  ApiResponseSchema,
-} from "@/types/activity-chart/schema"
+  ApiErrorResponseActivitySchema,
+  ApiResponseActivitySchema,
+  FetchGithubContributionsProps,
+} from "@/types/activity-chart"
 import { apiResponseSchema } from "@/types/activity-chart/schema"
 import { getCacheKey, getFromCache, setInCache } from "@/lib/cache"
 
@@ -13,7 +13,7 @@ export async function getGitHubContributions({
   username,
   year,
 }: FetchGithubContributionsProps): Promise<
-  ApiResponseSchema | ApiErrorResponseSchema
+  ApiResponseActivitySchema | ApiErrorResponseActivitySchema
 > {
   const cacheKey = getCacheKey({ username, year })
 
