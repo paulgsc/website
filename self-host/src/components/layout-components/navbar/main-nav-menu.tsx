@@ -28,7 +28,7 @@ const MainNavigationMenu = () => {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
+          <NavigationMenuTrigger>My Apps</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.8fr_1fr]">
               <li className="row-span-3">
@@ -63,8 +63,9 @@ const MainNavigationMenu = () => {
               >
                 Create calendar events from an image.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
+              <ListItem href="/apps/membame" title="Membame">
+                An activity task manager and reminder app that uses your browser
+                tabs to manage tasks.
               </ListItem>
             </ul>
           </NavigationMenuContent>

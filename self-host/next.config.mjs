@@ -59,6 +59,11 @@ const nextConfig = {
         destination: "/about",
         permanent: true,
       },
+      {
+        source: "/membame",
+        destination: "/apps/membame",
+        permanent: true,
+      },
     ]
   },
 
