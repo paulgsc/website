@@ -6,7 +6,7 @@ import { apiResponseSchema, type Props } from "@/types/activity-chart"
 import { DEFAULT_THEME } from "@/lib/github-calendar/constants"
 import { transformData } from "@/lib/github-calendar/utils"
 
-const GitHubCalendar: FunctionComponent<Props> = async ({
+const CalendarCard: FunctionComponent<Props> = async ({
   username,
   year = "last",
   labels,
@@ -40,4 +40,4 @@ const GitHubCalendar: FunctionComponent<Props> = async ({
   )
 }
 
-export default GitHubCalendar
+export default CalendarCard

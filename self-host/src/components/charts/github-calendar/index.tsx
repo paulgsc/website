@@ -4,14 +4,14 @@ import { Skeleton } from "react-activity-calendar"
 import type { Props } from "@/types/activity-chart"
 import { DEFAULT_THEME } from "@/lib/github-calendar/constants"
 
-import GitHubCalendar from "./github-calendar"
+import CalendarCard from "./components/calendar-card"
 
-const GitHubCalendarWrapper: FC<Props> = ({ ...props }) => {
+const GitHubCalendar: FC<Props> = ({ ...props }) => {
   return (
     <Suspense fallback={<Skeleton theme={DEFAULT_THEME} loading />}>
-      <GitHubCalendar {...props} />
+      <CalendarCard {...props} />
     </Suspense>
   )
 }
 
-export default GitHubCalendarWrapper
+export default GitHubCalendar
