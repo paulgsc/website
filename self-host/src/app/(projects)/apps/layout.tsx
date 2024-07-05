@@ -18,11 +18,7 @@ const Layout = ({
 }: Readonly<{
   children: ReactNode
 }>) => {
-  return (
-    <main className="flex flex-col items-center justify-center md:absolute md:inset-0">
-      {children}
-    </main>
-  )
+  return <>{children}</>
 }
 
 export default Layout

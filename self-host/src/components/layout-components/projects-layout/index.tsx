@@ -4,7 +4,8 @@
  * The original code is licensed under the MIT License.
  */
 
-import { Fragment, type FC, type PropsWithChildren } from "react"
+import type { FC, PropsWithoutRef } from "react"
+import { Fragment } from "react"
 import type { ProjectsLayoutType } from "@/types"
 
 import MembameLayout from "@/components/layout-components/components/membame-layout"
@@ -14,17 +15,16 @@ const layouts = {
   default: Fragment,
 } satisfies Record<ProjectsLayoutType, FC>
 
-type ProjectsLayoutProps<L = ProjectsLayoutType> = PropsWithChildren<{
+type ProjectsLayoutProps<L = ProjectsLayoutType> = PropsWithoutRef<{
   layout: L
 }>
 
 const ProjectsLayout: FC<ProjectsLayoutProps<ProjectsLayoutType>> = ({
   layout,
-  children,
 }) => {
   const LayoutComponent = layouts[layout]
 
-  return <LayoutComponent>{children}</LayoutComponent>
+  return <LayoutComponent />
 }
 
 export default ProjectsLayout
