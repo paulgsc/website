@@ -14,27 +14,27 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import type { Event } from "@/lib/events"
 import cn from "@/lib/utils/cn"
 import { useConfig } from "@/hooks/use-config"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import type { Card } from "@/components/ui/card"
+import { CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Callout from "@/components/callout"
+import { CarouselWithAutoPlay } from "@/components/carousel-autoplay"
+import CodeBlockWrapper from "@/components/code-block-wrapper"
 import { ComponentExample } from "@/components/component-example"
-
-import { CarouselWithAutoPlay } from "./carousel-autoplay"
-import CodeBlockWrapper from "./code-block-wrapper"
-import ComponentPreview from "./component-preview"
-import ComponentSource from "./component-source"
-import CopyButton, { CopyNpmCommandButton } from "./copy-button"
-import FrameworkDocs from "./framework-docs"
-import ResponsiveTabsDrawerCloseButtons from "./landing/drawer-tab-list"
-import { BorderBeam } from "./magicui/border-beam"
+import ComponentPreview from "@/components/component-preview"
+import ComponentSource from "@/components/component-source"
+import CopyButton, { CopyNpmCommandButton } from "@/components/copy-button"
+import FrameworkDocs from "@/components/framework-docs"
+import ResponsiveTabsDrawerCloseButtons from "@/components/landing/drawer-tab-list"
+import { BorderBeam } from "@/components/magicui/border-beam"
+import MdxCard from "@/components/mdx-card"
 import {
   ResponsiveTabList,
   ResponsiveTabListTrigger,
   ResponsiveTabs,
-} from "./responsive-tabs"
-import { AspectRatio } from "./ui/aspect-ratio"
-import type { Card } from "./ui/card"
-import { CarouselContent, CarouselItem } from "./ui/carousel"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
-import YoutubeBadge from "./youtube-badge"
+} from "@/components/responsive-tabs"
+import YoutubeBadge from "@/components/youtube-badge"
 
 const components = {
   YoutubeBadge,
@@ -356,6 +356,7 @@ const components = {
       {...props}
     />
   ),
+  Card: MdxCard,
 }
 
 type MdxProps = {

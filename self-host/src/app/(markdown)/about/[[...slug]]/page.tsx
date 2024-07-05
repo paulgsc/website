@@ -12,6 +12,7 @@ import BlogLayout from "@/components/layout-components/BlogLayout"
 // eslint-disable-next-line import/order
 
 import Mdx from "@/components/mdx-components"
+import { DocsPageHeader } from "@/components/page-header"
 import DashboardTableOfContents from "@/components/toc"
 
 // We add the rootPath to the params since the [[...slug]] pattern in Next.js
@@ -35,20 +36,23 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
 
   return (
     <BlogLayout layout={parsedLayout}>
-      <section className="mx-auto w-full min-w-0">
-        <Mdx code={doc.body.code} />
-      </section>
-      {doc.toc && (
-        <aside className="hidden text-sm xl:block">
-          <div className="sticky top-16 -mt-10 pt-4">
-            <ScrollArea className="pb-10">
-              <div className="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] py-12">
-                <DashboardTableOfContents toc={toc} />
-              </div>
-            </ScrollArea>
-          </div>
-        </aside>
-      )}
+      <main className="relative py-6 lg:gap-10 lg:py-10 xl:grid xl:grid-cols-[1fr_300px] xl:max-2xl:max-h-[calc(var(--vh)-5.8rem)] 2xl:max-h-[calc(var(--vh)-5rem)]">
+        <div className="mx-auto w-full min-w-0">
+          <DocsPageHeader heading={doc.title} text={doc.description} />
+          <Mdx code={doc.body.code} />
+        </div>
+        {doc.toc && (
+          <aside className="hidden text-sm xl:block">
+            <div className="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-10">
+              <ScrollArea className="pb-10">
+                <div className="sticky top-16 -mt-10 h-[calc(100vh-12rem)] py-12">
+                  <DashboardTableOfContents toc={toc} />
+                </div>
+              </ScrollArea>
+            </div>
+          </aside>
+        )}
+      </main>
     </BlogLayout>
   )
 }
