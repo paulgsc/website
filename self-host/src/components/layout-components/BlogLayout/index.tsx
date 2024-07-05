@@ -7,7 +7,7 @@
 import { Fragment, type FC, type PropsWithChildren } from "react"
 import type { Layouts } from "@/types"
 
-import ChannelLayout from "./channel-layout"
+import ChannelLayout from "@/components/layout-components/components/channel-layout"
 
 const layouts = {
   channel: ChannelLayout,
