@@ -3,8 +3,11 @@ import { notFound } from "next/navigation"
 import "@/styles/mdx.css"
 
 import type { ContentlayerPagePropsWithoutRootPath } from "@/types/content-layer"
-import type { Layouts } from "@/types/layout"
-import { SafeValidLayoutSchema, ValidatedLayoutSchema } from "@/types/layout"
+import type { BlogLayoutType } from "@/types/layout"
+import {
+  SafeValidBlogLayoutSchema,
+  ValidatedBlogLayoutSchema,
+} from "@/types/layout"
 import { generateStaticParams, getPageFromParams } from "@/lib/content-layer"
 import { getTableOfContents } from "@/lib/toc"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -29,9 +32,10 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   }
 
   const toc = await getTableOfContents(doc.body.raw)
-  const parsedLayout: Layouts = SafeValidLayoutSchema.safeParse(doc.layout)
-    .success
-    ? ValidatedLayoutSchema.parse(doc.layout?.trim())
+  const parsedLayout: BlogLayoutType = SafeValidBlogLayoutSchema.safeParse(
+    doc.layout
+  ).success
+    ? ValidatedBlogLayoutSchema.parse(doc.layout?.trim())
     : "default"
 
   return (

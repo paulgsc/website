@@ -5,18 +5,20 @@
  */
 
 import { Fragment, type FC, type PropsWithChildren } from "react"
-import type { BlogLayoutType } from "@/types"
+import type { ProjectsLayoutType } from "@/types"
 
-import ChannelLayout from "@/components/layout-components/components/channel-layout"
+import MembameLayout from "@/components/layout-components/components/membame-layout"
 
 const layouts = {
-  channel: ChannelLayout,
+  membame: MembameLayout,
   default: Fragment,
-} satisfies Record<BlogLayoutType, FC>
+} satisfies Record<ProjectsLayoutType, FC>
 
-type BlogLayoutProps<L = BlogLayoutType> = PropsWithChildren<{ layout: L }>
+type ProjectsLayoutProps<L = ProjectsLayoutType> = PropsWithChildren<{
+  layout: L
+}>
 
-const BlogLayout: FC<BlogLayoutProps<BlogLayoutType>> = ({
+const ProjectsLayout: FC<ProjectsLayoutProps<ProjectsLayoutType>> = ({
   layout,
   children,
 }) => {
@@ -25,4 +27,4 @@ const BlogLayout: FC<BlogLayoutProps<BlogLayoutType>> = ({
   return <LayoutComponent>{children}</LayoutComponent>
 }
 
-export default BlogLayout
+export default ProjectsLayout
