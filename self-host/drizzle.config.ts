@@ -1,7 +1,7 @@
-import dotenv from "dotenv"
+import { config } from "dotenv"
 import type { Config } from "drizzle-kit"
 
-dotenv.config()
+config({ path: ".env" })
 
 // We need to make sure the in the tsconfig.json file, we need to change the target at least to 'ES6'
 export default {
