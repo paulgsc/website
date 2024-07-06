@@ -1,7 +1,8 @@
 "use client"
 
 // @todo remove this at some point
-import { useRef, type FC } from "react"
+import type { FC } from "react"
+import { useRef } from "react"
 import Autoplay from "embla-carousel-autoplay"
 
 import { Card, CardContent } from "@/components/ui/card"
