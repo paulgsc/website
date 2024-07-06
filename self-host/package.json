@@ -8,7 +8,10 @@
     "build": "pnpm build:registry && contentlayer build && next build --debug",
     "build:registry": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts && prettier --loglevel silent --write \"src/registry/**/*.{ts,tsx,mdx}\" --cache",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:push": "drizzle-kit push:sqlite",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:studio": "drizzle-kit studio"
   },
   "author": {
     "name": "Paul Mwangi Gathondu",
