@@ -12,6 +12,7 @@ import MembameLayout from "@/components/layout-components/components/membame-lay
 
 const layouts = {
   membame: MembameLayout,
+  "membame/charts": MembameLayout,
   default: Fragment,
 } satisfies Record<ProjectsLayoutType, FC>
 
