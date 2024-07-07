@@ -4,11 +4,11 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "env": ["WWW_SERVER_URL", "DB_URL"],
+      "env": ["WWW_SERVER_URL", "DB_URL", "DRIZZLE_DB_URL"],
       "outputs": ["dist/**", ".next/**"]
     },
     "preview": {
-      "env": ["WWW_SERVER_URL", "DB_URL"],
+      "env": ["WWW_SERVER_URL", "DB_URL", "DRIZZLE_DB_URL"],
       "outputs": ["dist/**", ".next/**"]
     },
     "start": {
@@ -43,15 +43,15 @@
     },
     "db:studio": {
       "cache": false,
-      "env": ["WWW_SERVER_URL", "DB_URL"]
+      "env": ["WWW_SERVER_URL", "DB_URL", "DRIZZLE_DB_URL"]
     },
     "db:push": {
       "cache": false,
-      "env": ["WWW_SERVER_URL", "DB_URL"]
+      "env": ["WWW_SERVER_URL", "DB_URL", "DRIZZLE_DB_URL"]
     },
     "db:generate": {
       "cache": false,
-      "env": ["WWW_SERVER_URL", "DB_URL"]
+      "env": ["WWW_SERVER_URL", "DB_URL", "DRIZZLE_DB_URL"]
     }
   }
 }

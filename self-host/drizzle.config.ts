@@ -10,6 +10,6 @@ export default {
   dialect: "sqlite",
   driver: "turso",
   dbCredentials: {
-    url: process.env.DB_URL!,
+    url: process.env.DRIZZLE_DB_URL!,
   },
 } satisfies Config
