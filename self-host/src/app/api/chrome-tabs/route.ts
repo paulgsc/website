@@ -1,5 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next"
-import { revalidatePath } from "next/cache"
+import { NextResponse } from "next/server"
 import { db } from "@/db"
 import type { BrowserTab } from "@/db/schema"
 import { browserTabs } from "@/db/schema"
@@ -8,9 +7,10 @@ import type { Tab } from "@/types/api/chrome"
 import { TabSchema } from "@/types/api/chrome"
 import { KnownError } from "@/lib/errors"
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request): Promise<NextResponse> {
   try {
-    const reqBody = await req.body
+    const reqBody = await req.json()
+
     const parsedReqBody = TabSchema.safeParse(reqBody)
 
     if (!parsedReqBody.success)
@@ -22,14 +22,16 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       .values({ ...chromeTabs })
       .run()
 
-    // to apply the changes without reload the page
-    revalidatePath("/")
+    return NextResponse.json({ ok: true }, { status: 200 })
   } catch (error) {
     if (error instanceof KnownError)
-      return res.status(500).json({ error: error.message })
-
-    return res
-      .status(500)
-      .json({ msg: "Something went wrong! That's all we know" })
+      return NextResponse.json(
+        { message: error.message, ok: false },
+        { status: 500 }
+      )
+    return NextResponse.json(
+      { message: "Something went wrong! That's all we know!", ok: false },
+      { status: 500 }
+    )
   }
 }
