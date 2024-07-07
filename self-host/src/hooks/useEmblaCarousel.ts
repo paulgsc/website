@@ -5,11 +5,7 @@ import type {
   EmblaPluginType,
 } from "embla-carousel"
 import EmblaCarousel from "embla-carousel"
-import {
-  areOptionsEqual,
-  arePluginsEqual,
-  canUseDOM,
-} from "embla-carousel-reactive-utils"
+import { areOptionsEqual, canUseDOM } from "embla-carousel-reactive-utils"
 
 type EmblaViewportRefType = <ViewportElement extends HTMLElement>(
   // eslint-disable-next-line no-unused-vars
@@ -65,11 +61,12 @@ const useEmblaCarousel: UseEmblaCarouselFunction = (
     reInit()
   }, [options, reInit])
 
-  useEffect(() => {
-    if (arePluginsEqual(storedPlugins.current, plugins)) return
-    storedPlugins.current = plugins
-    reInit()
-  }, [plugins, reInit])
+  //@todo fix this1!!!
+  // useEffect(() => {
+  //   if (arePluginsEqual(storedPlugins.current, plugins)) return
+  //   storedPlugins.current = plugins
+  //   reInit()
+  // }, [plugins, reInit])
 
   return [<EmblaViewportRefType>setViewport, emblaApi]
 }
