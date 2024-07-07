@@ -1,3 +1,5 @@
+"use client"
+
 import { getChromeTabs } from "@/actions/fetch-tabs"
 import { useQuery } from "@tanstack/react-query"
 
