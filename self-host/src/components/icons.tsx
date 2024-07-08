@@ -2,30 +2,19 @@ import type { IconProps } from "@/types"
 
 export const Icons = {
   logo: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
-      <rect width="256" height="256" fill="none" />
-      <line
-        x1="208"
-        y1="128"
-        x2="128"
-        y2="208"
-        fill="currentColor"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="16"
-      />
-      <line
-        x1="192"
-        y1="40"
-        x2="40"
-        y2="192"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="16"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
+      <circle cx="50" cy="50" r="50" fill="#ffffff" /> {/* White background */}
+      <circle cx="50" cy="50" r="40" fill="#bfbfbf" /> {/* Gray owl body */}
+      <circle cx="40" cy="40" r="10" fill="#ffffff" /> {/* White eye */}
+      <circle cx="60" cy="40" r="10" fill="#ffffff" /> {/* White eye */}
+      <circle cx="40" cy="40" r="5" fill="#000000" /> {/* Black pupil */}
+      <circle cx="60" cy="40" r="5" fill="#000000" /> {/* Black pupil */}
+      <path
+        d="M40 60 Q 50 75, 60 60"
+        stroke="#000000"
+        fill="transparent"
+      />{" "}
+      {/* Beak */}
     </svg>
   ),
   twitter: (props: IconProps) => (
