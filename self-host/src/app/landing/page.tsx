@@ -2,32 +2,24 @@
 
 // @todo remove this at some point
 import type { FC } from "react"
-import { useRef } from "react"
-import Autoplay from "embla-carousel-autoplay"
 
 import { Card, CardContent } from "@/components/ui/card"
 import {
-  Carousel,
   CarouselContent,
   CarouselIndicatorContent,
   CarouselIndicatorItem,
   CarouselItem,
   CarouselNext,
 } from "@/components/ui/carousel"
+import { CarouselWithAutoPlay } from "@/components/carousel-autoplay"
 
 const Home: FC = () => {
-  //@ts-expect-error Migraine inducer
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center ">
-      <Carousel
-        plugins={[plugin.current]}
+      <CarouselWithAutoPlay
         className="w-full max-w-xs"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={() => {
-          plugin.current.play()
-        }}
+        opts={{ loop: true }}
+        autoplayOptions={{ delay: 3000, stopOnInteraction: true }}
       >
         <CarouselContent>
           {Array.from({ length: 3 }).map((_, index) => (
@@ -55,7 +47,7 @@ const Home: FC = () => {
 
         <CarouselNext />
         <CarouselNext />
-      </Carousel>
+      </CarouselWithAutoPlay>
     </main>
   )
 }
