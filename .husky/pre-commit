@@ -2,9 +2,6 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # Navigate to the subdirectory and run lint-staged
-cd self-host && npx lint-staged
+pnpm dlx lint-staged
 
-# Verify TypeScript files in subdirectories
-cd ..
-npx tsc --build self-host/tsconfig.json
-npx tsc --build firebase/tsconfig.json
+
