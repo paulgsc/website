@@ -2,9 +2,9 @@
 
 import type { ComponentPropsWithoutRef, ElementRef } from "react"
 import { forwardRef } from "react"
-import { Content, List, Root, Trigger } from "@radix-ui/react-tabs"
 
 import { cn } from "@/lib/utils"
+import { Content, List, Root, Trigger } from "@/components/tabs-radix"
 
 const Tabs = Root
 
