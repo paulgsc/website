@@ -17,8 +17,7 @@ const timelineData: Array<TimelineDay> = [
     events: [
       {
         time: "5:00 pm",
-        title:
-          "Ignite: Practical AI Implementation for Executive Decision-making in the Age of AI",
+        title: "Lorem ipsum... lorem ipsum ...",
         location: "Online",
         platform: "youtube",
         image: {

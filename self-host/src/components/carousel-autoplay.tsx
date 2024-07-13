@@ -1,26 +1,44 @@
-import { useRef, type ComponentPropsWithoutRef, type FC } from "react"
+import type { ComponentPropsWithRef } from "react"
+import { forwardRef, useRef } from "react"
+import type { AutoplayOptionsType } from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay"
 
-import Autoplay from "@/lib/embla-fork/autoplay"
 import { useMediaQuery } from "@/hooks/use-media-query"
 
 import { Carousel } from "./ui/carousel"
 
-const CarouselWithAutoPlay: FC<ComponentPropsWithoutRef<typeof Carousel>> = ({
-  ...props
-}) => {
-  const plugin = useRef(Autoplay({ delay: 30000, stopOnInteraction: true }))
+type CarouselWithAutoPlayProps = {
+  autoplayOptions?: AutoplayOptionsType
+} & ComponentPropsWithRef<typeof Carousel>
+
+const CarouselWithAutoPlay = forwardRef<
+  HTMLDivElement,
+  CarouselWithAutoPlayProps
+>(({ autoplayOptions, opts, ...props }, ref) => {
+  const plugin = useRef(
+    Autoplay({ delay: 30000, stopOnInteraction: true, ...autoplayOptions })
+  )
+
   const isDesktop = useMediaQuery("(min-width: 768px)")
+
   if (isDesktop) {
     return (
-      <Carousel
-        plugins={[plugin.current]}
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.play}
-        {...props}
-      />
+      <div ref={ref}>
+        <Carousel
+          plugins={[plugin.current]}
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={() => {
+            plugin.current.play()
+          }}
+          opts={{ loop: true, ...opts }}
+          {...props}
+        />
+      </div>
     )
   }
-  return <Carousel {...props} />
-}
+  return <Carousel ref={ref} {...props} />
+})
+
+CarouselWithAutoPlay.displayName = "CarouselWithAutoPlay"
 
 export { CarouselWithAutoPlay }

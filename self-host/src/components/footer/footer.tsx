@@ -20,7 +20,7 @@ type SocialIconProps = {
 const footerSocialIcons: Record<string, SocialIconProps> = {
   github: {
     icon: Icons.gitHub,
-    classname: "h-4 w-4 text-black",
+    classname: "h-4 w-4 text-black text-primary fill-current",
   },
   youtube: {
     icon: Icons.youtube,
@@ -28,7 +28,7 @@ const footerSocialIcons: Record<string, SocialIconProps> = {
   },
   twitter: {
     icon: Icons.twitter,
-    classname: "w-3 h-3",
+    classname: "w-3 h-3 text-primary fill-current",
   },
 }
 
@@ -36,7 +36,7 @@ const Footer: FC = () => {
   const openJSlink = siteNavConfig.footerLinks.at(-1)!
 
   return (
-    <footer className="bg-muted absolute bottom-0 flex w-full grow-0 items-center justify-between border border-neutral-200 py-2.5  pe-2.5 ps-2.5 dark:border-neutral-900 dark:bg-neutral-950">
+    <footer className="bg-muted absolute bottom-0 flex w-full grow-0 items-center justify-between border border-neutral-200 py-2.5  pe-2.5 ps-2.5 dark:border-neutral-900 ">
       <div className="flex flex-wrap content-start items-center justify-center gap-1 self-stretch">
         {siteNavConfig.footerLinks.map((item) => (
           <NavLink
@@ -73,7 +73,9 @@ const Footer: FC = () => {
                 type="footer"
                 showExt={false}
               >
-                <SocialIcon className={className} aria-label={social.link} />
+                <span className="hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <SocialIcon className={className} aria-label={social.link} />
+                </span>
               </NavItem>
             )
           })}

@@ -5,18 +5,21 @@
  */
 
 import { Fragment, type FC, type PropsWithChildren } from "react"
-import type { Layouts } from "@/types"
+import type { BlogLayoutType } from "@/types"
 
-import ChannelLayout from "./channel-layout"
+import ChannelLayout from "@/components/layout-components/components/channel-layout"
 
 const layouts = {
   channel: ChannelLayout,
   default: Fragment,
-} satisfies Record<Layouts, FC>
+} satisfies Record<BlogLayoutType, FC>
 
-type BlogLayoutProps<L = Layouts> = PropsWithChildren<{ layout: L }>
+type BlogLayoutProps<L = BlogLayoutType> = PropsWithChildren<{ layout: L }>
 
-const BlogLayout: FC<BlogLayoutProps<Layouts>> = ({ layout, children }) => {
+const BlogLayout: FC<BlogLayoutProps<BlogLayoutType>> = ({
+  layout,
+  children,
+}) => {
   const LayoutComponent = layouts[layout]
 
   return <LayoutComponent>{children}</LayoutComponent>

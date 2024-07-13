@@ -132,3 +132,5 @@ dist
 
 .contentlayer
 tsconfig.tsbuildinfo
+
+local.db

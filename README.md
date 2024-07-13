@@ -45,13 +45,26 @@ Sparse checkout allows you to clone and work with only a subset of a repository,
 
 ## Additional Useful Commands
 
+# Handling Subdirectories
+
+If you also need to move subdirectories and their contents, you will need to use a more complex command since `move` in Windows Command Prompt does not handle directories by default. You can use `xcopy` for this:
+
+## Move All Files and Directories from the Subdirectory to the Current Directory
+
+Use `xcopy` to copy everything and then remove the original subdirectory.
+
+````sh
+xcopy <dir_name>\*.* . /s /e /h
+rmdir /s /q <dir_name>
+
+
 ### Checking the Status of Your Repository
 
 Check the current status of your repository to see which files are staged, unstaged, or untracked:
 
 ```bash
 git status
-```
+````
 
 ### Stop all containers
 

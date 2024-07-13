@@ -13,6 +13,7 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import type { UseQueryStateReturn } from "nuqs"
 import { useQueryState } from "nuqs"
 
 import { cn } from "@/lib/utils"
@@ -27,6 +28,7 @@ type CarouselProps = {
   opts?: CarouselOptions
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
+  itemParam?: string
   // eslint-disable-next-line no-unused-vars
   setApi?: (api: CarouselApi) => void
 }
@@ -41,7 +43,15 @@ type CarouselContextProps = {
   canScrollNext: boolean
 } & CarouselProps
 
-const CarouselContext = createContext<CarouselContextProps | null>(null)
+type SetUrlFunction = UseQueryStateReturn<string | null, undefined>[1]
+
+type CarouselContextWithQueryStateProps = {
+  tab?: string | null
+  setUrl?: SetUrlFunction
+} & CarouselContextProps
+
+const CarouselContext =
+  createContext<CarouselContextWithQueryStateProps | null>(null)
 
 function useCarousel() {
   const context = useContext(CarouselContext)
@@ -63,6 +73,7 @@ const Carousel = forwardRef<
       opts,
       setApi,
       plugins,
+      itemParam,
       className,
       children,
       ...props
@@ -78,6 +89,8 @@ const Carousel = forwardRef<
     )
     const [canScrollPrev, setCanScrollPrev] = useState(false)
     const [canScrollNext, setCanScrollNext] = useState(false)
+
+    const [tab, setUrl] = useQueryState(itemParam ?? "")
 
     const onSelect = useCallback((api: CarouselApi) => {
       if (!api) {
@@ -152,6 +165,8 @@ const Carousel = forwardRef<
           scrollTo,
           canScrollPrev,
           canScrollNext,
+          tab: tab,
+          setUrl: setUrl,
         }}
       >
         <div
@@ -192,22 +207,18 @@ const CarouselContent = forwardRef<
 })
 CarouselContent.displayName = "CarouselContent"
 
-type CarouselItemProps = HTMLAttributes<HTMLDivElement> & {
-  itemParam?: string
-}
-const CarouselItem = forwardRef<HTMLDivElement, CarouselItemProps>(
-  ({ className, id, itemParam, ...props }, ref) => {
-    const { api, orientation } = useCarousel()
-    const [tab, setUrl] = useQueryState(itemParam ?? "")
+const CarouselItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, id, ...props }, ref) => {
+    const { api, orientation, tab, setUrl } = useCarousel()
 
     const foo = useCallback(
       (api: CarouselApi) => {
         if (!api) return
         const slideIds = api.slideNodes().map((node) => node.id)
         const selectedSlideId = slideIds.at(api.selectedScrollSnap()) ?? ""
-        if (itemParam) setUrl(selectedSlideId)
+        if (setUrl) setUrl(selectedSlideId)
       },
-      [itemParam, setUrl]
+      [setUrl]
     )
 
     useEffect(() => {
@@ -358,12 +369,12 @@ const CarouselIndicatorItem = forwardRef<
 CarouselIndicatorItem.displayName = "CarouselIndicatorItem"
 
 export {
-  type CarouselApi,
   Carousel,
   CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   CarouselIndicatorContent,
   CarouselIndicatorItem,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
 }
