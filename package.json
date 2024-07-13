@@ -129,7 +129,7 @@
       "prettier --write"
     ],
     "**/*.{ts,tsx}": [
-      "tsc-files --noEmit"
+      "tsc-files"
     ]
   }
 }
