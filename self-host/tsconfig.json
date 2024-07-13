@@ -30,7 +30,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/lib/content-layer.ts"
+    "src/lib/content-layer.ts",
+    ".contentlayer/generated"
   ],
-  "exclude": ["node_modules", ".next"]
+  "exclude": ["node_modules", ".next", "./scripts/build-registry.mts"]
 }
