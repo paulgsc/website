@@ -16,7 +16,7 @@ const CarouselWithAutoPlay = forwardRef<
   CarouselWithAutoPlayProps
 >(({ autoplayOptions, opts, ...props }, ref) => {
   const plugin = useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true, ...autoplayOptions })
+    Autoplay({ delay: 30000, stopOnInteraction: true, ...autoplayOptions })
   )
 
   const isDesktop = useMediaQuery("(min-width: 768px)")
