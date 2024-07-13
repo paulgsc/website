@@ -14,9 +14,9 @@ type CarouselWithAutoPlayProps = {
 const CarouselWithAutoPlay = forwardRef<
   HTMLDivElement,
   CarouselWithAutoPlayProps
->(({ autoplayOptions, ...props }, ref) => {
+>(({ autoplayOptions, opts, ...props }, ref) => {
   const plugin = useRef(
-    Autoplay({ delay: 30000, stopOnInteraction: true, ...autoplayOptions })
+    Autoplay({ delay: 5000, stopOnInteraction: true, ...autoplayOptions })
   )
 
   const isDesktop = useMediaQuery("(min-width: 768px)")
@@ -30,6 +30,7 @@ const CarouselWithAutoPlay = forwardRef<
           onMouseLeave={() => {
             plugin.current.play()
           }}
+          opts={{ loop: true, ...opts }}
           {...props}
         />
       </div>

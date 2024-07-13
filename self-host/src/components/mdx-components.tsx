@@ -323,7 +323,7 @@ const components = {
       {...props}
     >
       {children}
-      <BorderBeam duration={30} borderWidth={3} />
+      <BorderBeam duration={5} borderWidth={3} />
     </TabsContent>
   ),
   FrameworkDocs: ({
