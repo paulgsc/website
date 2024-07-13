@@ -20,10 +20,11 @@ const Home: FC = () => {
         className="w-full max-w-xs"
         opts={{ loop: true }}
         autoplayOptions={{ delay: 3000, stopOnInteraction: true }}
+        itemParam="test"
       >
         <CarouselContent>
           {Array.from({ length: 3 }).map((_, index) => (
-            <CarouselItem key={index} className="">
+            <CarouselItem key={index} className="" id={`${1 + index}`}>
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
