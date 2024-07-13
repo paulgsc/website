@@ -66,6 +66,12 @@ Check the current status of your repository to see which files are staged, unsta
 git status
 ````
 
+### Run docker image on port 3000
+
+```sh
+sudo docker run -d -p 3000:3000 pgathondu/self-hosting-maishatu:latest
+```
+
 ### Stop all containers
 
 ```sh
