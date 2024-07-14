@@ -2,8 +2,8 @@
 
 const foo = (bar: string): number => [bar]
 
-const test: string[] = foo(5)
+const test2: string[] = foo(5)
 
-export { test }
+export { test2 }
 
 // this should create error!
