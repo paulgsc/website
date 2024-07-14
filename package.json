@@ -114,8 +114,19 @@
     "typescript-eslint": "^7.16.0"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "tsc-files --build"
+    "**/*.{js,mjs,ts,tsx,md,mdx}": [
+      "eslint --fix",
+      "prettier --check --write"
+    ],
+    "**/*.css": [
+      "stylelint --allow-empty-input",
+      "prettier --write"
+    ],
+    "**/*.{json,yml}": [
+      "prettier --check --write"
+    ],
+    "**/*.{scss,html}": [
+      "prettier --write"
     ]
   }
 }
