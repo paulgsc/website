@@ -4,4 +4,6 @@
 # Navigate to the subdirectory and run lint-staged
 pnpm dlx lint-staged
 
+# Verify TypeScript files in subdirectories
+# npx tsc --build self-host/tsconfig.json
 

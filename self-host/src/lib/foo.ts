@@ -6,4 +6,4 @@ const test2: string[] = foo(5)
 
 export { test2 }
 
-// this should create error!
+// this should create error! this  should error!
