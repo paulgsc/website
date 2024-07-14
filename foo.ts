@@ -6,4 +6,4 @@ const test: string[] = foo(5)
 
 export { test }
 
-// this should create error! stage this edit
+// this should create error! stage this

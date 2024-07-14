@@ -127,6 +127,9 @@
     ],
     "**/*.{scss,html}": [
       "prettier --write"
+    ],
+    "**/*.{ts,tsx}": [
+      "tsc-files --build"
     ]
   }
 }
