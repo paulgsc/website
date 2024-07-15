@@ -29,7 +29,7 @@ import MdxCard from "@/components/mdx-card"
 import {
   ResponsiveTabList,
   ResponsiveTabListTrigger,
-  ResponsiveTabs,
+  SuspendedResponsiveTabs,
 } from "@/components/responsive-tabs"
 import YoutubeBadge from "@/components/youtube-badge"
 
@@ -244,8 +244,8 @@ const components = {
   ResponsiveTabs: ({
     className,
     ...props
-  }: ComponentProps<typeof ResponsiveTabs>) => (
-    <ResponsiveTabs className={cn("w-full", className)} {...props} />
+  }: ComponentProps<typeof SuspendedResponsiveTabs>) => (
+    <SuspendedResponsiveTabs className={cn("w-full", className)} {...props} />
   ),
   TabsList: ({ className, ...props }: ComponentProps<typeof TabsList>) => (
     <TabsList
