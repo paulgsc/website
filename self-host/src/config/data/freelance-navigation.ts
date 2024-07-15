@@ -5,7 +5,7 @@ export const navMenuData: Array<{
 }> = [
   {
     title: "Live Streaming Banners",
-    href: "/projects/streaming/banners",
+    href: "/streaming/banners",
     description:
       "Banners that run during live streams displaying various info (Alerts, Updates, Current topic, song etc).",
   },
