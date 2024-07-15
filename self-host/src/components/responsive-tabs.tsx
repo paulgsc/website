@@ -1,19 +1,14 @@
-import {
-  forwardRef,
-  Suspense,
-  type ComponentPropsWithoutRef,
-  type ComponentPropsWithRef,
-  type FC,
-} from "react"
+import type { ComponentPropsWithoutRef, ComponentPropsWithRef, FC } from "react"
+import { forwardRef } from "react"
 import { useSearchParams } from "next/navigation"
 import { parseAsString, useQueryState, useQueryStates } from "nuqs"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 
-import { Icons } from "./icons"
 import { Button } from "./ui/button"
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
+import withSuspense from "./withSuspense"
 
 const ResponsiveTabs: FC<ComponentPropsWithoutRef<typeof Tabs>> = ({
   defaultValue,
@@ -21,20 +16,11 @@ const ResponsiveTabs: FC<ComponentPropsWithoutRef<typeof Tabs>> = ({
 }) => {
   const [tabName, setTabName] = useQueryState("tab")
   return (
-    <Suspense
-      fallback={
-        <div className="text-muted-foreground flex w-full items-center justify-center text-sm">
-          <Icons.spinner className="mr-2 size-4 animate-spin" />
-          Loading...
-        </div>
-      }
-    >
-      <Tabs
-        value={tabName ?? defaultValue}
-        onValueChange={(val) => setTabName(val)}
-        {...props}
-      />
-    </Suspense>
+    <Tabs
+      value={tabName ?? defaultValue}
+      onValueChange={(val) => setTabName(val)}
+      {...props}
+    />
   )
 }
 
@@ -164,13 +150,16 @@ const ResponsiveTabsDrawerCloseBtn = forwardRef<
 })
 
 ResponsiveTabsDrawerCloseBtn.displayName = "ResponsiveTabDrawerCloseBtn"
+
+const SuspendedResponsiveTabs = withSuspense(ResponsiveTabs)
+
 export {
   ResponsiveDrawer,
   ResponsiveDrawerContent,
   ResponsiveTabList,
   ResponsiveTabListTrigger,
-  ResponsiveTabs,
   ResponsiveTabsDrawerCloseBtn,
   ResponsiveTabsDrawerTrigger,
   ResponsiveTabsDrawerTriggerBtn,
+  SuspendedResponsiveTabs,
 }
