@@ -4,10 +4,10 @@ export const navMenuData: Array<{
   description: string
 }> = [
   {
-    title: "Google Sheets Automation for Financial Reporting",
-    href: "/projects/google-sheets-automation",
+    title: "Live Streaming Banners",
+    href: "/projects/streaming/banners",
     description:
-      "Automated financial reporting using Google Sheets and Google Apps Script to pull data from multiple sources and generate dynamic reports.",
+      "Banners that run during live streams displaying various info (Alerts, Updates, Current topic, song etc).",
   },
   {
     title: "Web Scraping and Data Analysis",
