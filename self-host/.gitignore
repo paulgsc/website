@@ -134,3 +134,4 @@ dist
 tsconfig.tsbuildinfo
 
 local.db
+.vercel
