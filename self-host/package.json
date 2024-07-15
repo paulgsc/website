@@ -111,7 +111,6 @@
     "tailwindcss-animate": "^1.0.7",
     "ts-morph": "^22.0.0",
     "vaul": "^0.9.1",
-    "www": "link:",
     "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
