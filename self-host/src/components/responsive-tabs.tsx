@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  Suspense,
   type ComponentPropsWithoutRef,
   type ComponentPropsWithRef,
   type FC,
@@ -9,6 +10,7 @@ import { parseAsString, useQueryState, useQueryStates } from "nuqs"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 
+import { Icons } from "./icons"
 import { Button } from "./ui/button"
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
@@ -19,11 +21,20 @@ const ResponsiveTabs: FC<ComponentPropsWithoutRef<typeof Tabs>> = ({
 }) => {
   const [tabName, setTabName] = useQueryState("tab")
   return (
-    <Tabs
-      value={tabName ?? defaultValue}
-      onValueChange={(val) => setTabName(val)}
-      {...props}
-    />
+    <Suspense
+      fallback={
+        <div className="text-muted-foreground flex w-full items-center justify-center text-sm">
+          <Icons.spinner className="mr-2 size-4 animate-spin" />
+          Loading...
+        </div>
+      }
+    >
+      <Tabs
+        value={tabName ?? defaultValue}
+        onValueChange={(val) => setTabName(val)}
+        {...props}
+      />
+    </Suspense>
   )
 }
 
