@@ -9,10 +9,12 @@ import { Fragment } from "react"
 import type { ProjectsLayoutType } from "@/types"
 
 import MembameLayout from "@/components/layout-components/components/membame-layout"
+import StreamingBannersLayout from "@/components/layout-components/components/streaming-banners-layout"
 
 const layouts = {
   membame: MembameLayout,
   "membame/charts": MembameLayout,
+  "streaming/banners": StreamingBannersLayout,
   default: Fragment,
 } satisfies Record<ProjectsLayoutType, FC>
 

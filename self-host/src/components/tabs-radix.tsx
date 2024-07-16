@@ -117,13 +117,15 @@ const TAB_LIST_NAME = "TabsList"
 type TabsListElement = ElementRef<typeof Primitive.div>
 type TabsListProps = {
   loop?: RovingFocusGroupProps["loop"]
+  value?: string
 } & PrimitiveDivProps
 
 const TabsList = forwardRef<TabsListElement, TabsListProps>(
   (props: ScopedProps<TabsListProps>, forwardedRef) => {
-    const { __scopeTabs, loop = true, ...listProps } = props
+    const { __scopeTabs, loop = true, value, ...listProps } = props
     const context = useTabsContext(TAB_LIST_NAME, __scopeTabs)
     const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs)
+    const isSelected = value === context.value
     return (
       <RovingFocusGroup.Root
         asChild
@@ -135,6 +137,7 @@ const TabsList = forwardRef<TabsListElement, TabsListProps>(
         <Primitive.div
           role="tablist"
           aria-orientation={context.orientation}
+          data-state={isSelected ? "active" : "inactive"}
           {...listProps}
           ref={forwardedRef}
         />
@@ -221,6 +224,7 @@ const CONTENT_NAME = "TabsContent"
 type TabsContentElement = ElementRef<typeof Primitive.div>
 type TabsContentProps = {
   value: string
+  applyPresence?: boolean
 
   /**
    * Used to force mounting when more control is needed. Useful when
@@ -231,7 +235,14 @@ type TabsContentProps = {
 
 const TabsContent = forwardRef<TabsContentElement, TabsContentProps>(
   (props: ScopedProps<TabsContentProps>, forwardedRef) => {
-    const { __scopeTabs, value, forceMount, children, ...contentProps } = props
+    const {
+      __scopeTabs,
+      value,
+      forceMount,
+      applyPresence = false,
+      children,
+      ...contentProps
+    } = props
     const context = useTabsContext(CONTENT_NAME, __scopeTabs)
     const triggerId = makeTriggerId(context.baseId, value)
     const contentId = makeContentId(context.baseId, value)
@@ -247,7 +258,7 @@ const TabsContent = forwardRef<TabsContentElement, TabsContentProps>(
 
     return (
       <Presence present={forceMount || isSelected}>
-        {() => (
+        {({ present }) => (
           <Primitive.div
             data-state={isSelected ? "active" : "inactive"}
             data-orientation={context.orientation}
@@ -264,7 +275,7 @@ const TabsContent = forwardRef<TabsContentElement, TabsContentProps>(
                 : undefined,
             }}
           >
-            {children}
+            {applyPresence ? present && children : children}
           </Primitive.div>
         )}
       </Presence>
