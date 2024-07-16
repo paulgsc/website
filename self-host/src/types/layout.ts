@@ -37,6 +37,7 @@ export type BlogLayoutType = z.infer<typeof parseBlogLayout.validated>
 export const ProjectsLayoutSchema = z.union([
   z.literal("membame"),
   z.literal("membame/charts"),
+  z.literal("streaming/banners"),
   z.literal("default"),
 ])
 

@@ -54,6 +54,7 @@
     }
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@libsql/client": "^0.7.0",
     "@mantine/hooks": "^7.11.2",
     "@radix-ui/primitive": "^1.1.0",
@@ -109,6 +110,7 @@
     "react-activity-calendar": "^2.2.11",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.52.1",
     "react-markdown": "~8.0.7",
     "react-syntax-highlighter": "^15.5.0",
     "react-wrap-balancer": "^1.1.1",
