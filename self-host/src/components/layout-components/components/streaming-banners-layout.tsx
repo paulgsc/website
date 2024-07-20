@@ -6,7 +6,7 @@ import { BannerMarquee } from "@/components/streaming/banner-msg/banner-marquee"
 import BannerFormsCard from "@/components/streaming/banner-msg/forms"
 
 const StreamingBannersLayout: FC = () => {
-  const msg = "adding blog markdown - using nodejs.org as template"
+  const msg = "Working on chrome tabs extension"
   return (
     <div className="relative justify-center sm:h-[980px] lg:h-[1200px] xl:h-[540px] 2xl:h-[55rem]">
       <main className="absolute inset-0 flex items-center justify-center">
