@@ -33,6 +33,14 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
     <div className="relative mb-2.5 mt-12 grid-cols-[.20fr_.60fr_.20fr] md:grid">
       <aside />
       <section className="mx-auto w-full min-w-0">
+        <header className="whitespace-nowrap text-balance tracking-tight sm:mb-6 lg:mb-8">
+          <h1 className="font-extrabold capitalize leading-10 sm:text-xl md:text-2xl xl:text-3xl">
+            {doc.title}
+          </h1>
+          <h3 className="ps-2.5 sm:text-base md:text-lg lg:text-xl">
+            {doc.description}
+          </h3>
+        </header>
         <Mdx code={doc.body.code} />
       </section>
       {doc.toc && (
