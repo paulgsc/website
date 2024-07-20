@@ -1,0 +1,23 @@
+---
+title: Deprecating Dev Branch
+description: Will directly merge each feature branch to main going forwards.
+layout: channel
+---
+
+### tldr
+
+> I used to have versioning system where I used a dev branch as the branch holding my most up to date updates. Any new feature branch would be first rebased with dev branch. And after I feel the current changes in dev are stable and or needed in prod I would rebase and merge dev with main. Going forwards I'm no longer going to have a dev branch for reasons.
+
+## My Previous Workflow
+
+I version my code with github, and my workflow has been as follows. First init a proj, with main branch as root.
+Then create a dev branch, as a permanent branch where all staged changes will be rebased from and merged to.
+This means that the most "current" version of my (working) projects always live in dev branch. And then
+peridodically I would merge changes in dev to main to update production build.
+
+## Why I Used this workflow
+
+- Was more expedient.
+  - Main branch is always protected from direct push, so don't really feel like creating a pull request
+    for my own projects with every commit.
+- ## Felt I need this.
