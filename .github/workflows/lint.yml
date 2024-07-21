@@ -1,0 +1,52 @@
+name: Linting
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - main
+  release:
+    types: [published]
+
+permissions:
+  actions: write
+  contents: read
+  pull-requests: write
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  lint:
+    if: |
+      (github.event_name == 'push' || github.event_name == 'merge_group') ||
+      (github.event_name == 'pull_request_target' &&
+      github.event.label.name == 'github_actions:pull-request')
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+
+      - uses: pnpm/action-setup@v4
+        name: Add pnpm
+        id: pnpm-install
+        with:
+          version: 9.0.5
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run quality checks with `turbo`
+        if: |
+          (github.event_name == 'push' || github.event_name == 'merge_group') ||
+          (github.event_name == 'pull_request_target')
+
+        run: npx --package=turbo@latest -- turbo lint:js lint:md check-types prettier
