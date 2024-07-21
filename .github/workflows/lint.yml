@@ -8,6 +8,10 @@ on:
   release:
     types: [published]
 
+defaults:
+  run:
+    working-directory: ./
+
 permissions:
   actions: write
   contents: read
