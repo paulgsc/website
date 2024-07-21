@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 
 # Navigate to the subdirectory and run lint-staged
 cd self-host && npx lint-staged
