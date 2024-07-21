@@ -25,12 +25,26 @@
       "dependsOn": ["^build"]
     },
     "lint": {
-      "cache": false,
-      "outputs": []
+      "cache": false
     },
     "lint:fix": {
       "cache": false,
       "outputs": []
+    },
+    "lint:js": {
+      "cache": false,
+      "outputs": []
+    },
+    "lint:md": {
+      "cache": false,
+      "outputs": []
+    },
+    "lint:vercel": {
+      "cache": false,
+      "outputs": []
+    },
+    "prettier": {
+      "cache": false
     },
     "format:check": {
       "cache": false,
