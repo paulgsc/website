@@ -45,7 +45,7 @@ jobs:
 
       - name: Run quality checks with `turbo`
         if: |
-          (github.event_name == 'push' || github.event_name == 'merge_group') ||
-          (github.event_name == 'pull_request_target')
+          github.event_name == 'pull_request' ||
+          (github.event_name == 'release' && github.event.action == 'published')
 
         run: npx --package=turbo@latest -- turbo lint:js lint:md check-types prettier
