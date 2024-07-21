@@ -38,6 +38,7 @@ export const ProjectsLayoutSchema = z.union([
   z.literal("membame"),
   z.literal("membame/charts"),
   z.literal("streaming/banners"),
+  z.literal("my-superpowers"),
   z.literal("default"),
 ])
 
