@@ -1,4 +1,2 @@
 packages:
-  - "self-host/*"
-  - "packages/**"
-  - "firebase/*"
+  - "self-host"
