@@ -41,7 +41,7 @@ jobs:
         name: Add pnpm
         id: pnpm-install
         with:
-          version: 9.0.5
+          # version declared in packagemanager
           run_install: false
 
       - name: Install dependencies
