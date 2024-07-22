@@ -8,7 +8,8 @@
         "WWW_SERVER_URL",
         "NEXT_PUBLIC_APP_URL",
         "DB_URL",
-        "DRIZZLE_DB_URL"
+        "DRIZZLE_DB_URL",
+        "JWT_SECRET"
       ],
       "outputs": ["dist/**", ".next/**"]
     },
@@ -17,7 +18,8 @@
         "WWW_SERVER_URL",
         "NEXT_PUBLIC_APP_URL",
         "DB_URL",
-        "DRIZZLE_DB_URL"
+        "DRIZZLE_DB_URL",
+        "JWT_SECRET"
       ],
       "outputs": ["dist/**", ".next/**"]
     },
@@ -71,7 +73,8 @@
         "WWW_SERVER_URL",
         "NEXT_PUBLIC_APP_URL",
         "DB_URL",
-        "DRIZZLE_DB_URL"
+        "DRIZZLE_DB_URL",
+        "JWT_SECRET"
       ]
     },
     "db:push": {
@@ -80,7 +83,8 @@
         "WWW_SERVER_URL",
         "NEXT_PUBLIC_APP_URL",
         "DB_URL",
-        "DRIZZLE_DB_URL"
+        "DRIZZLE_DB_URL",
+        "JWT_SECRET"
       ]
     },
     "db:generate": {
@@ -89,7 +93,8 @@
         "WWW_SERVER_URL",
         "NEXT_PUBLIC_APP_URL",
         "DB_URL",
-        "DRIZZLE_DB_URL"
+        "DRIZZLE_DB_URL",
+        "JWT_SECRET"
       ]
     }
   }
