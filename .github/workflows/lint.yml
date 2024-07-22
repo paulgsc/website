@@ -47,6 +47,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build Contentlayer
+        run: pnpm contentlayer build
+
       - name: Run quality checks with `turbo`
         if: |
           github.event_name == 'pull_request' ||
