@@ -37,7 +37,7 @@ const Markdown: FC<MarkdownProps> = ({ markdown }) => {
           const RE = /{([\d,-]+)}/
           const metadata = node.data.meta?.replace(/\s/g, "") ?? ""
           const strlineNumbers = RE.test(metadata)
-            ? RE.exec(metadata)?.at(1) ?? ""
+            ? (RE.exec(metadata)?.at(1) ?? "")
             : "0"
           const highlightLines = rangeParser(strlineNumbers)
           const data = highlightLines.includes(applyHighlights)
