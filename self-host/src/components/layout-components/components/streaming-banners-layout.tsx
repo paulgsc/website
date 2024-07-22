@@ -1,16 +1,16 @@
 import { type FC } from "react"
+import Marquee from "react-fast-marquee"
 
 import { Separator } from "@/components/ui/separator"
 import BannerFormDrawer from "@/components/streaming/banner-msg/banner-form-drawer"
-import { BannerMarquee } from "@/components/streaming/banner-msg/banner-marquee"
 import BannerFormsCard from "@/components/streaming/banner-msg/forms"
 
 const StreamingBannersLayout: FC = () => {
   const msg = "adding blog markdown - using nodejs.org as template"
   return (
     <div className="relative justify-center sm:h-[980px] lg:h-[1200px] xl:h-[540px] 2xl:h-[55rem]">
-      <main className="absolute inset-0 flex items-center justify-center">
-        <BannerMarquee msg={msg} duration={24} />
+      <main className="absolute inset-0 flex items-start justify-center">
+        <Marquee>{msg}</Marquee>
       </main>
       <BannerFormDrawer>
         <div className="space-y-0.5">
