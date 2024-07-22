@@ -9,7 +9,7 @@ import type {
 import Image from "next/image"
 import Link from "next/link"
 import type { NpmCommands, Style } from "@/types"
-import { useMDXComponent } from "next-contentlayer/hooks"
+import { useMDXComponent } from "next-contentlayer2/hooks"
 
 import type { Event } from "@/lib/events"
 import cn from "@/lib/utils/cn"
