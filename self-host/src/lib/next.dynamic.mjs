@@ -1,12 +1,11 @@
-"use server";
+"use strict"
 
 /*
  * This file contains code adapted from the Node.js website repository,
  * available at: https://github.com/nodejs/nodejs.org
  * The original code is licensed under the MIT License.
  */
-
-import { glob } from "glob";
+import { glob } from "glob"
 
 /**
  * We create a locale cache of Glob Promises
@@ -16,7 +15,7 @@ import { glob } from "glob";
  * query as it is only needed once
  *
  * @type {Map<string, Promise<string>>} */
-const globCacheByPath = new Map();
+const globCacheByPath = new Map()
 
 /**
  * This method is responsible for retrieving a glob of all files that exist
@@ -31,14 +30,14 @@ const globCacheByPath = new Map();
  * @returns {Promise<Array<string>>} a promise containing an array of paths
  */
 const getMarkdownFiles = async (root, cwd, ignore = []) => {
-  const cacheKey = `${root}${cwd}${ignore.join("")}`;
+  const cacheKey = `${root}${cwd}${ignore.join("")}`
 
   if (!globCacheByPath.has(cacheKey)) {
-    globCacheByPath.set(cacheKey, glob("**/*.{md,mdx}", { root, cwd, ignore }));
+    globCacheByPath.set(cacheKey, glob("**/*.{md,mdx}", { root, cwd, ignore }))
   }
 
-  return globCacheByPath.get(cacheKey);
-};
+  return globCacheByPath.get(cacheKey)
+}
 
 // const DYNAMIC_ROUTES = new Map([
 //   // Provides Routes for all Blog Categories
@@ -58,27 +57,23 @@ const getMarkdownFiles = async (root, cwd, ignore = []) => {
 
 const getDynamicRouter = async () => {
   // Keeps the map of pathnames to filenames
-  const pathnameToFilename = new Map();
+  const pathnameToFilename = new Map()
 
-  const websitePages = await getMarkdownFiles(process.cwd(), `pages/`);
+  const websitePages = await getMarkdownFiles(process.cwd(), `pages/`)
 
   websitePages.forEach((filename) => {
     // This Regular Expression is used to remove the `index.md(x)` suffix
     // of a name and to remove the `.md(x)` extensions of a filename.
-    let pathname = filename.replace(/((\/)?(index))?\.mdx?$/i, "");
+    let pathname = filename.replace(/((\/)?(index))?\.mdx?$/i, "")
 
-    if (pathname.length > 1 && pathname.endsWith(sep)) {
-      pathname = pathname.substring(0, pathname.length - 1);
-    }
-
-    pathname = normalize(pathname).replace(".", "");
+    pathname = pathname.replace(".", "")
 
     // We map the pathname to the filename to be able to quickly
     // resolve the filename for a given pathname
-    pathnameToFilename.set(pathname, filename);
-  });
+    pathnameToFilename.set(pathname, filename)
+  })
 
-  return [...pathnameToFilename.keys()];
-};
+  return [...pathnameToFilename.keys()]
+}
 
-export default getDynamicRouter;
+export default getDynamicRouter

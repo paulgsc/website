@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable declaration-empty-line-before */
 [data-theme="light"] {
   display: block;
 }
@@ -20,8 +22,8 @@
 
 [data-rehype-pretty-code-fragment] code {
   @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
-  counter-reset: line;
   box-decoration-break: clone;
+  counter-reset: line;
 }
 
 [data-rehype-pretty-code-fragment] .line {
@@ -34,12 +36,12 @@
 
 [data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
   @apply text-zinc-50/40 text-xs;
-  counter-increment: line;
   content: counter(line);
+  counter-increment: line;
   display: inline-block;
-  width: 1.8rem;
   margin-right: 1.4rem;
   text-align: right;
+  width: 1.8rem;
 }
 
 [data-rehype-pretty-code-fragment] .line--highlighted {
