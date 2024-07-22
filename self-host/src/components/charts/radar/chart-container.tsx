@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  DefaultTooltipContent,
   Legend,
   PolarAngleAxis,
   PolarGrid,
@@ -8,6 +9,7 @@ import {
   Radar,
   RadarChart,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts"
 
 const data = [
@@ -53,6 +55,7 @@ const ChartContainer = () => {
   return (
     <ResponsiveContainer width={"100%"} height={"100%"}>
       <RadarChart outerRadius={"75%"} data={data}>
+        <Tooltip cursor={false} content={<DefaultTooltipContent />} />
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
         <PolarRadiusAxis angle={30} domain={[0, 150]} />
