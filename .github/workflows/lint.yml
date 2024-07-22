@@ -49,6 +49,7 @@ jobs:
 
       - name: Build Contentlayer
         run: pnpm contentlayer build
+        working-directory: self-host
 
       - name: Run quality checks with `turbo`
         if: |
