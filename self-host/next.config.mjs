@@ -4,7 +4,7 @@
  * The original code is licensed under the MIT License.
  */
 
-import { createContentlayerPlugin } from "next-contentlayer"
+import { createContentlayerPlugin } from "next-contentlayer2"
 import createNextIntlPlugin from "next-intl/plugin"
 
 const withNextIntl = createNextIntlPlugin()
