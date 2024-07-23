@@ -1,10 +1,8 @@
+import { jwtVerify, SignJWT } from "jose"
+
 import type { JWTPayload } from "@/types/auth/jwt"
 
 import "server-only"
-
-// Note: This file should only be imported in server-side code or API routes.
-// Do not import this file in client-side code or React components.
-import jwt from "jsonwebtoken"
 
 // Make sure to set this in your environment variables
 const JWT_SECRET = process.env.JWT_SECRET
@@ -13,16 +11,18 @@ if (!JWT_SECRET) {
   throw new Error("JWT_SECRET is not set in environment variables")
 }
 
-export function generateJWT(
+// Convert JWT_SECRET to Uint8Array
+const secretKey = new TextEncoder().encode(JWT_SECRET)
+
+export async function generateJWT(
   payload: JWTPayload,
   expiresIn: number = 3600
-): string {
+): Promise<string> {
   try {
-    if (!JWT_SECRET) {
-      throw new Error("JWT_SECRET is not set in environment variables")
-    }
-
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn })
+    const token = await new SignJWT(payload)
+      .setProtectedHeader({ alg: "HS256" })
+      .setExpirationTime(Math.floor(Date.now() / 1000) + expiresIn)
+      .sign(secretKey)
     return token
   } catch (error) {
     console.error("Error generating JWT:", error)
@@ -30,13 +30,10 @@ export function generateJWT(
   }
 }
 
-export function verifyJWT(token: string): jwt.JwtPayload | string {
+export async function verifyJWT(token: string): Promise<JWTPayload> {
   try {
-    if (!JWT_SECRET) {
-      throw new Error("JWT_SECRET is not set in environment variables")
-    }
-    const decoded = jwt.verify(token, JWT_SECRET)
-    return decoded
+    const { payload } = await jwtVerify(token, secretKey)
+    return payload as JWTPayload
   } catch (error) {
     console.error("Error verifying JWT:", error)
     throw new Error("Invalid token")
