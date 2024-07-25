@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) David Jerleke. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ * It is adapted from @see https://github.com/davidjerleke/embla-carousel
+ *
+ */
+
 import fs from "fs"
 import path from "path"
 import babel from "@rollup/plugin-babel"
