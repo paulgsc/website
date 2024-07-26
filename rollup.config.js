@@ -28,7 +28,7 @@ const CONFIG_GLOBALS = {
 }
 
 const CONFIG_EXTERNAL_MODULES = {
-  moduleDirectories: ["node_modules", utilsPackageJson.name],
+  moduleDirectories: ["node_modules"],
 }
 
 const CONFIG_BABEL = {
