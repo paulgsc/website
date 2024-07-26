@@ -44,3 +44,4 @@ tsconfig.tsbuildinfo
 **/*/index.d.ts
 **/*/esm
 **/*/cjs
+**/*/*.umd.js
