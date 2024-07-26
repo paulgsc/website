@@ -14,11 +14,17 @@ import resolve from "@rollup/plugin-node-resolve"
 import terser from "@rollup/plugin-terser"
 import typescript from "@rollup/plugin-typescript"
 
+import rootPackageJson from "./package.json"
+
 const FOLDERS = {
   ESM: "esm",
   CJS: "cjs",
   UMD: "umd",
   OUT: "./",
+}
+
+const CONFIG_GLOBALS = {
+  [rootPackageJson.name]: kebabToPascalCase(rootPackageJson.name),
 }
 
 const CONFIG_EXTERNAL_MODULES = {
@@ -194,6 +200,7 @@ export {
   FOLDERS,
   CONFIG_BABEL,
   CONFIG_TYPESCRIPT,
+  CONFIG_GLOBALS,
   CONFIG_EXTERNAL_MODULES,
   CONFIG_EXTERNAL_MODULE_SUPPRESS,
   babel,

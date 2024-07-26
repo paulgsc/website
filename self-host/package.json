@@ -100,6 +100,7 @@
     "contentlayer2": "^0.4.6",
     "drizzle-orm": "^0.31.4",
     "embla-carousel-autoplay": "^8.1.7",
+    "embla-carousel-circular": "workspace:*",
     "embla-carousel-react": "^8.1.7",
     "embla-carousel-reactive-utils": "^8.1.7",
     "geist": "1.3.0",
