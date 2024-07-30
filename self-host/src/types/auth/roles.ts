@@ -62,4 +62,18 @@ export type JWTPayload = {
   scope: Partial<RoleAccessPairs>
 }
 
+const createEnumSchema = <T extends string>(values: Array<T>) =>
+  z.enum(values as [T, ...Array<T>])
+
+const referrerSchema = createEnumSchema<JWTReferrer>([])
+const utmMediumSchema = createEnumSchema<UTMMedium>([])
+
+export const jwtPayloadSchema = z.object({
+  referrer: referrerSchema,
+  utm_medium: utmMediumSchema,
+  scope: roleAccessPairSchema.partial(),
+})
+
+export type UserRoleJWTPayload = z.infer<typeof jwtPayloadSchema>
+
 export type JWTRoleRequiredAction = "reset" | "new" | "keep" | "refresh"
