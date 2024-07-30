@@ -8,7 +8,9 @@ import {
   deleteJwtCookie,
   generateJWT,
   generateJwtPayload,
+  getJwtCookie,
   getValidRoleAcessPair,
+  getValidRoleFromExpiredToken,
   getValidRoleFromParam,
   setJwtCookie,
 } from "./jwt"
@@ -49,6 +51,20 @@ export async function applyJwtCookieAction<
       await resetJwt(response, "jwt_token_for_role")
       break
     }
+    case "refresh": {
+      const refreshJwt = pipe(getJwtCookie)
+        .pipe((token) => getValidRoleFromExpiredToken(token))
+        .pipe((role) => getValidRoleAcessPair(role))
+        .pipe((access) => generateJwtPayload(access))
+        .pipe(async (payload) => await generateJWT(payload))
+        .pipe(
+          async (token) =>
+            await setJwtCookie(response, "jwt_token_for_role", token)
+        )
+
+      await refreshJwt(request, "jwt_token_for_role")
+      break
+    }
     case "new": {
       const setJwt = pipe(getValidRoleFromParam)
         .pipe((role) => getValidRoleAcessPair(role))
@@ -62,7 +78,7 @@ export async function applyJwtCookieAction<
       break
     }
     default:
-      throw new Error(`Action '${action}' is not known`)
+      throw new Error(`Action '${action satisfies never}' is not known`)
   }
 
   return

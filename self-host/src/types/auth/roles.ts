@@ -35,6 +35,22 @@ export const allowedRoleAccess: Record<
   superuser: ["blog", "events", "fundme", "personal", "portfolio", "trial"],
 } as const satisfies Record<AppUserRole, ReadonlyArray<AppUserAccess>>
 
+export const roleAccessPairSchema = z
+  .object(
+    Object.fromEntries(
+      Object.entries(allowedRoleAccess).map(([role, accesses]) => [
+        role as typeof roleSchema._type, // Explicitly type the role as roleSchema._type
+        z
+          .array(accessSchema)
+          .refine((arr) => arr.every((val) => accesses.includes(val))),
+      ])
+    ) as unknown as Record<
+      typeof roleSchema._type,
+      z.ZodArray<typeof accessSchema>
+    >
+  )
+  .strict()
+
 export type RoleAccessPairs = typeof allowedRoleAccess
 
 export type JWTCookeSessionKeys = "jwt_token_for_role"
@@ -46,4 +62,4 @@ export type JWTPayload = {
   scope: Partial<RoleAccessPairs>
 }
 
-export type JWTRoleRequiredAction = "reset" | "new" | "keep"
+export type JWTRoleRequiredAction = "reset" | "new" | "keep" | "refresh"

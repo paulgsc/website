@@ -1,5 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server"
-import { jwtVerify, SignJWT } from "jose"
+import { decodeJwt, errors, jwtVerify, SignJWT } from "jose"
 
 import type {
   AppUserRole,
@@ -8,9 +8,15 @@ import type {
   JWTRoleRequiredAction,
   RoleAccessPairs,
 } from "@/types/auth/roles"
-import { allowedRoleAccess, roleSchema } from "@/types/auth/roles"
+import {
+  allowedRoleAccess,
+  roleAccessPairSchema,
+  roleSchema,
+} from "@/types/auth/roles"
 
 import "server-only"
+
+import { KnownError } from "@/lib/errors"
 
 // Make sure to set this in your environment variables
 const JWT_SECRET = process.env.JWT_SECRET
@@ -43,7 +49,8 @@ export async function verifyJWT(token: string): Promise<JWTPayload> {
     const { payload } = await jwtVerify(token, secretKey)
     return payload as JWTPayload
   } catch (error) {
-    console.error("Error verifying JWT:", error)
+    if (error instanceof errors.JWTExpired)
+      throw new KnownError("Token expired")
     throw new Error("Invalid token")
   }
 }
@@ -82,6 +89,7 @@ export async function getJwtCookieAction(
     await verifyJWT(token)
     return "keep"
   } catch (error) {
+    if (error instanceof KnownError) return "refresh"
     return "reset"
   }
 }
@@ -90,6 +98,17 @@ export function getValidRoleFromParam(request: NextRequest): AppUserRole {
   const { searchParams } = new URL(request.url)
   const roleParam = searchParams.get("referrer") ?? ("unknown" as AppUserRole)
   return roleSchema.parse(roleParam)
+}
+
+export function getValidRoleFromExpiredToken(
+  token: string | undefined
+): AppUserRole {
+  if (!token) throw new KnownError("Token is not set!")
+
+  const payload = decodeJwt(token)
+  const { scope } = payload
+  const validatedScope = roleAccessPairSchema.partial().parse(scope)
+  return roleSchema.parse(Object.keys(validatedScope)[0])
 }
 
 export function getValidRoleAcessPair(
