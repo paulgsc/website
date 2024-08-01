@@ -99,11 +99,13 @@ const utmMediumSchema = createEnumSchema<UTMMedium>([
   "sponsor",
 ])
 
-export const jwtPayloadSchema = z.object({
-  referrer: referrerSchema,
-  utm_medium: utmMediumSchema,
-  scope: roleAccessPairSchema,
-})
+export const jwtPayloadSchema = z
+  .object({
+    referrer: referrerSchema,
+    utm_medium: utmMediumSchema,
+    scope: roleAccessPairSchema.partial(),
+  })
+  .strict()
 
 export type UserRoleJWTPayload = z.infer<typeof jwtPayloadSchema>
 
