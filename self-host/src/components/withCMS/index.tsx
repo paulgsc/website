@@ -26,7 +26,7 @@ function createCMSComponent<P extends object>(
 
   Component.isAlive = () => {
     const userRole = Component.getUserRole!()
-    return userRole in requiredRoles
+    return requiredRoles.includes(userRole)
   }
 
   return Component
