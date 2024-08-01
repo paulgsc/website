@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { arraysEqualIgnoringOrder } from "@/lib/utils/arr-utils"
+
 type APP_USER_ROLES =
   | "subscriber"
   | "github"
@@ -53,19 +55,12 @@ export const roleAccessPairSchema = z
   .object(
     Object.fromEntries(
       Object.entries(allowedRoleAccess).map(([role, accesses]) => [
-        role as APP_USER_ROLES, // Explicitly type the role as roleSchema._type
+        role as APP_USER_ROLES,
         z
           .array(accessSchema)
-          .refine((arr) =>
-            arr.every((val) =>
-              (accesses as Array<APP_USER_ACCESS>).includes(val)
-            )
-          ),
+          .refine((arr) => arraysEqualIgnoringOrder(arr, Array.from(accesses))),
       ])
-    ) as unknown as Record<
-      typeof roleSchema._type,
-      z.ZodArray<typeof accessSchema>
-    >
+    ) as unknown as Record<APP_USER_ROLES, z.ZodArray<typeof accessSchema>>
   )
   .strict()
 
@@ -92,8 +87,17 @@ export type JWTPayload = {
   scope: Partial<RoleAccessPairs>
 }
 
-const referrerSchema = createEnumSchema<JWTReferrer>([])
-const utmMediumSchema = createEnumSchema<UTMMedium>([])
+const referrerSchema = createEnumSchema<JWTReferrer>([
+  "github",
+  "notion",
+  "twitter",
+  "youtube",
+])
+const utmMediumSchema = createEnumSchema<UTMMedium>([
+  "member",
+  "recruiter",
+  "sponsor",
+])
 
 export const jwtPayloadSchema = z.object({
   referrer: referrerSchema,
