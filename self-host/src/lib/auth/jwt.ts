@@ -100,6 +100,15 @@ export function getValidRoleFromParam(request: NextRequest): AppUserRole {
   return roleSchema.parse(roleParam)
 }
 
+export function getValidRoleFromToken(token: string | undefined): AppUserRole {
+  if (!token) throw new KnownError("Token is not set!")
+
+  const payload = decodeJwt(token)
+  const { scope } = payload
+  const validatedScope = roleAccessPairSchema.partial().parse(scope)
+  return roleSchema.parse(Object.keys(validatedScope)[0])
+}
+
 export function getValidRoleFromExpiredToken(
   token: string | undefined
 ): AppUserRole {

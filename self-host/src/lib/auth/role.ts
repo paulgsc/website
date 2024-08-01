@@ -80,6 +80,5 @@ export async function applyJwtCookieAction<
     default:
       throw new Error(`Action '${action satisfies never}' is not known`)
   }
-
   return
 }
