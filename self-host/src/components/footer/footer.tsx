@@ -9,6 +9,7 @@ import { siteNavConfig } from "@/config"
 import type { IconProps } from "@/types"
 
 import { Icons } from "@/components/icons"
+import SearchBar from "@/components/search-bar"
 
 import { default as NavItem, default as NavLink } from "./nav-link"
 
@@ -37,7 +38,7 @@ const Footer: FC = () => {
 
   return (
     <footer className="bg-muted absolute bottom-0 flex w-full grow-0 items-center justify-between border border-neutral-200 py-2.5  pe-2.5 ps-2.5 dark:border-neutral-900 ">
-      <div className="flex flex-wrap content-start items-center justify-center gap-1 self-stretch">
+      <div className="flex h-full content-center justify-center gap-1">
         {siteNavConfig.footerLinks.map((item) => (
           <NavLink
             type="footer"
@@ -52,6 +53,8 @@ const Footer: FC = () => {
           </NavLink>
         ))}
       </div>
+
+      <SearchBar />
 
       <div className="flex flex-col items-center gap-1 md:flex-row">
         {Array.isArray(openJSlink) && (
