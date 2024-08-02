@@ -16,7 +16,7 @@ type APP_USER_ACCESS =
   | "personal"
   | "events"
 
-const createEnumSchema = <T extends string>(values: Array<T>) =>
+export const createEnumSchema = <T extends string>(values: Array<T>) =>
   z.enum(values as [T, ...Array<T>])
 
 export const roleSchema = createEnumSchema<APP_USER_ROLES>([
