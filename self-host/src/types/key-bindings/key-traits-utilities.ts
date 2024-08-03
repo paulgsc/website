@@ -7,7 +7,7 @@ type KeyBindings<T extends ASCII, K extends keyof WindowEventMap> = {
   eventName: K
 }
 
-type SingleKeyBindings = KeyBindings<ASCII, keyof WindowEventMap>
+export type SingleKeyBindings = KeyBindings<ASCII, keyof WindowEventMap>
 
 export type ImplForKeyBinding<
   K extends SingleKeyBindings["keyBinding"],
@@ -22,10 +22,3 @@ export type ImplForKeyBinding<
 }
 
 export type SearchBarKeyBinding = KeyBindings<ASCII.SLASH, "keydown">
-
-export function createKeyBindingImpl<
-  K extends SingleKeyBindings["keyBinding"],
-  E extends SingleKeyBindings["eventName"],
->(impl: ImplForKeyBinding<K, E>): ImplForKeyBinding<K, E> {
-  return impl
-}
