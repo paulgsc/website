@@ -26,8 +26,6 @@ function withSuspense<P extends object>(
     )
   }
 
-  WithSuspenseWrapper.displayName = `WithSuspense(${WrappedComponent.displayName || WrappedComponent.name || "Component"})`
-
   return WithSuspenseWrapper
 }
 
