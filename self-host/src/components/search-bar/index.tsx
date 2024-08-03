@@ -1,7 +1,8 @@
 "use client"
 
+import type { SearchBarRenderType } from "@/types"
 import { searchBarRenderSchema } from "@/types"
-import { useQueryState } from "nuqs"
+import { parseAsStringLiteral, useQueryState } from "nuqs"
 
 import { type SearchBarKeyBinding } from "@/types/key-bindings/key-traits-utilities"
 import { ASCII } from "@/types/key-bindings/keys"
@@ -10,10 +11,16 @@ import { useEventListener } from "@/hooks/useEventListener"
 
 import WithSearchBar from "./with-search-bar"
 
-// @todo implmenent the onevent listener of keydown "/" to show searchbar
 // @todo maybe make it animate?
 const SearchBar = () => {
-  const [showSearch, setShowSearch] = useQueryState("seshow")
+  const sortOrder: Array<SearchBarRenderType> = [
+    "fragment",
+    "searchbar",
+  ] as const
+  const [showSearch, setShowSearch] = useQueryState(
+    "seshow",
+    parseAsStringLiteral(sortOrder).withDefault("fragment")
+  )
 
   const contextFromParam =
     searchBarRenderSchema.safeParse(showSearch).data ?? "fragment"
@@ -24,7 +31,7 @@ const SearchBar = () => {
   >({
     apply: (event) => {
       event.preventDefault()
-      setShowSearch("/")
+      setShowSearch("searchbar")
     },
     eventName: "keydown",
     keyBinding: ASCII.SLASH,
@@ -34,7 +41,17 @@ const SearchBar = () => {
 
   useEventListener(slashKeyBinding.eventName, (event: KeyboardEvent) => {
     if (slashKeyBinding.isActive?.(event, slashKeyBinding.keyBinding)) {
-      slashKeyBinding.apply(event)
+      switch (contextFromParam) {
+        case "fragment": {
+          slashKeyBinding.apply(event)
+          break
+        }
+        case "searchbar":
+          break
+        default:
+          contextFromParam satisfies never
+          return
+      }
     }
   })
   return <WithSearchBar showSearch={contextFromParam} />
