@@ -3,11 +3,9 @@
 import { searchBarRenderSchema } from "@/types"
 import { useQueryState } from "nuqs"
 
-import {
-  createKeyBindingImpl,
-  type SearchBarKeyBinding,
-} from "@/types/key-bindings/key-traits"
+import { type SearchBarKeyBinding } from "@/types/key-bindings/key-traits-utilities"
 import { ASCII } from "@/types/key-bindings/keys"
+import { createKeyBindingImpl } from "@/lib/key-bindings"
 import { useEventListener } from "@/hooks/useEventListener"
 
 import WithSearchBar from "./with-search-bar"
