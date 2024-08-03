@@ -2,7 +2,7 @@
 
 import type { ASCII } from "./keys"
 
-export type KeyBindings<T extends ASCII, K extends keyof WindowEventMap> = {
+type KeyBindings<T extends ASCII, K extends keyof WindowEventMap> = {
   keyBinding: T
   eventName: K
 }
@@ -13,18 +13,19 @@ export type ImplForKeyBinding<
   K extends SingleKeyBindings["keyBinding"],
   E extends SingleKeyBindings["eventName"],
 > = {
-  apply(key: K, event: E): void
+  // eslint-disable-next-line no-unused-vars
+  apply: (event: WindowEventMap[E]) => void
+  keyBinding: K
+  eventName: E
+  // eslint-disable-next-line no-unused-vars
+  isActive?: (event: WindowEventMap[E], keyBinding: K) => boolean
 }
 
-export type WindowEventName = keyof WindowEventMap
+export type SearchBarKeyBinding = KeyBindings<ASCII.SLASH, "keydown">
 
-export type SearchBarKeyBinding = KeyBindings<ASCII.BACKSLASH, "keydown">
-
-export const incorrectImplementation2: ImplForKeyBinding<
-  SearchBarKeyBinding["keyBinding"],
-  SearchBarKeyBinding["eventName"]
-> = {
-  apply: (key, event) => console.log(`this impl ${key} binding for ${event}`),
-
-  // Missing isActive method
+export function createKeyBindingImpl<
+  K extends SingleKeyBindings["keyBinding"],
+  E extends SingleKeyBindings["eventName"],
+>(impl: ImplForKeyBinding<K, E>): ImplForKeyBinding<K, E> {
+  return impl
 }
