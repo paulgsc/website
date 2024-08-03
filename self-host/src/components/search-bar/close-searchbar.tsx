@@ -13,7 +13,7 @@ const CloseSearchBarBtn = forwardRef<
     "fragment",
     "searchbar",
   ] as const
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+
   const [_, setShowSearch] = useQueryState(
     "seshow",
     parseAsStringLiteral(sortOrder)
