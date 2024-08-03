@@ -1,8 +1,10 @@
+import { describe, expect, it } from "vitest"
+
 import type { JWTPayload } from "@/types/auth/roles"
 import { jwtPayloadSchema } from "@/types/auth/roles"
 
 describe("jwtPayloadSchema", () => {
-  test("should pass for valid payload", () => {
+  it("should pass for valid payload", () => {
     const validPayload: JWTPayload = {
       referrer: "github",
       utm_medium: "member",
@@ -21,7 +23,7 @@ describe("jwtPayloadSchema", () => {
     expect(result.success).toBe(true)
   })
 
-  test("should fail for invalid referrer", () => {
+  it("should fail for invalid referrer", () => {
     const invalidPayload = {
       referrer: "invalidReferrer",
       utm_medium: "member",
@@ -40,7 +42,7 @@ describe("jwtPayloadSchema", () => {
     expect(result.success).toBe(false)
   })
 
-  test("should fail for invalid utm_medium", () => {
+  it("should fail for invalid utm_medium", () => {
     const invalidPayload = {
       referrer: "github",
       utm_medium: "invalidMedium",
@@ -59,7 +61,7 @@ describe("jwtPayloadSchema", () => {
     expect(result.success).toBe(false)
   })
 
-  test("should fail for invalid scope structure", () => {
+  it("should fail for invalid scope structure", () => {
     const invalidPayload = {
       referrer: "github",
       utm_medium: "member",
@@ -71,7 +73,7 @@ describe("jwtPayloadSchema", () => {
     expect(result.success).toBe(false)
   })
 
-  test("should fail for missing keys", () => {
+  it("should fail for missing keys", () => {
     const invalidPayload = {
       referrer: "github",
       utm_medium: "member",
@@ -80,7 +82,7 @@ describe("jwtPayloadSchema", () => {
     expect(result.success).toBe(false)
   })
 
-  test("should fail for additional keys", () => {
+  it("should fail for additional keys", () => {
     const invalidPayload = {
       referrer: "github",
       utm_medium: "member",
