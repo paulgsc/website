@@ -164,7 +164,7 @@ const components = {
     __withMeta__,
     __src__,
     __event__,
-    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+
     __style__,
     ...props
   }: HTMLAttributes<HTMLPreElement> & {

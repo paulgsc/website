@@ -15,7 +15,6 @@ import {
   setJwtCookie,
 } from "./jwt"
 
-// eslint-disable-next-line no-unused-vars
 type FunctionWithArgs<T extends Array<unknown>, R> = (...args: T) => R
 
 // Generalized pipe function

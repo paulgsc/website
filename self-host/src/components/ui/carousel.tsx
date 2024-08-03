@@ -29,7 +29,7 @@ type CarouselProps = {
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   itemParam?: string
-  // eslint-disable-next-line no-unused-vars
+
   setApi?: (api: CarouselApi) => void
 }
 

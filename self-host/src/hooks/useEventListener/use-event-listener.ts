@@ -1,5 +1,4 @@
 /* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
 /*
  * This file contains code adapted from the Node.js website repository,
  * available at: https://github.com/nodejs/nodejs.org

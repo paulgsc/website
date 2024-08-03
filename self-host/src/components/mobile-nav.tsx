@@ -87,7 +87,6 @@ const MobileNav = () => {
 }
 
 type MobileLinkProps = {
-  // eslint-disable-next-line no-unused-vars
   onOpenChange?: (open: boolean) => void
   children: ReactNode
   className?: string
