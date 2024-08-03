@@ -45,6 +45,6 @@ export async function fetchGithubContributions({
       return { error: `Invalid response format: ${errorDetails}` }
     }
   } catch (error) {
-    return { error: "Internal Server Error" }
+    return { error: `Internal Server Error: ${error}` }
   }
 }
