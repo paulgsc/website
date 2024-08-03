@@ -9,9 +9,13 @@ on:
   pull_request:
     branches: ["main"]
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
-  build:
+  vitest:
+    name: Frontend Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     strategy:
       matrix:
