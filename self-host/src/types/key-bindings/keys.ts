@@ -1,4 +1,3 @@
-// Enum for all ASCII characters
 export enum ASCII {
   NULL = 0,
   START_OF_HEADING = 1,
