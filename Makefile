@@ -7,11 +7,11 @@ DOCKER_REPO := pgathondu/self-hosting-maishatu
 
 build:
 	@echo "Building Docker image with version $(VERSION)"
-	APP_VERSION=$(VERSION) docker-compose -f $(COMPOSE_FILE) build
+	APP_VERSION=$(VERSION) docker compose -f $(COMPOSE_FILE) build
 
 push:
 	@echo "Pushing image $(DOCKER_REPO):$(VERSION) to Docker Hub"
-	APP_VERSION=$(VERSION) docker-compose -f $(COMPOSE_FILE) push
+	APP_VERSION=$(VERSION) docker compose -f $(COMPOSE_FILE) push
 	@echo "Tagging and pushing as 'latest'"
 	docker tag $(DOCKER_REPO):$(VERSION) $(DOCKER_REPO):latest
 	docker push $(DOCKER_REPO):latest
@@ -36,13 +36,13 @@ hub: release cleanup
 
 # Development commands
 up:
-	APP_VERSION=$(VERSION) docker-compose -f $(COMPOSE_FILE) up -d
+	APP_VERSION=$(VERSION) docker compose -f $(COMPOSE_FILE) up -d
 
 down:
-	docker-compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down
 
 logs:
-	docker-compose -f $(COMPOSE_FILE) logs -f maishatu
+	docker compose -f $(COMPOSE_FILE) logs -f maishatu
 
 shell:
-	docker-compose -f $(COMPOSE_FILE) exec maishatu sh
+	docker compose -f $(COMPOSE_FILE) exec maishatu sh
