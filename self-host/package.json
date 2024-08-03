@@ -18,8 +18,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "vitest"
   },
   "author": {
     "name": "Paul Mwangi Gathondu",
@@ -139,21 +138,19 @@
   },
   "devDependencies": {
     "@shikijs/compat": "^1.11.0",
-    "@testing-library/jest-dom": "~6.4.7",
+    "@testing-library/react": "^16.0.0",
     "@types/better-sqlite3": "^7.6.11",
-    "@types/jest": "29.5.12",
     "@types/node": "^20.14.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@vitejs/plugin-react": "^4.3.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.22.8",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
     "eslint-plugin-jest": "^28.6.0",
-    "jest": "29.7.0",
-    "jest-environment-jsdom": "29.7.0",
-    "jest-junit": "16.0.0",
+    "jsdom": "^24.1.1",
     "mdast-util-toc": "^7.1.0",
     "node-mocks-http": "^1.15.0",
     "postcss": "^8.4.39",
@@ -170,6 +167,8 @@
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
     "unist-builder": "3.0.0",
-    "unist-util-visit": "^4.1.2"
+    "unist-util-visit": "^4.1.2",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^2.0.5"
   }
 }
