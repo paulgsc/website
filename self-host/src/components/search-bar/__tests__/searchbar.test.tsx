@@ -10,13 +10,14 @@ describe("SearchBar component", () => {
     vi.mock("@/hooks/useEventListener", () => ({
       useEventListener: vi.fn(),
     }))
-
     vi.mock("nuqs", () => ({
       useQueryState: vi.fn(),
       parseAsStringLiteral: vi.fn(() => ({
         withDefault: vi.fn().mockReturnValue({
+          withOptions: vi.fn(), // Add this if it's part of the actual API
           parse: vi.fn(),
         }),
+        withOptions: vi.fn(), // Add this if it's part of the actual API
       })),
     }))
   })
