@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 
+import { CloseSearchBarBtn } from "./close-searchbar"
 import SearchBarContextMenu from "./search-context-menu"
 
 const SearchBarForm = () => {
@@ -10,9 +11,9 @@ const SearchBarForm = () => {
       className="bg-primary-foreground flex h-14 flex-1 items-center rounded-full"
     >
       <section className="relative size-full">
-        <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-          <Icons.magnifyGlass className="text-muted-foreground size-3 shrink-0" />
-        </div>
+        <CloseSearchBarBtn role="status">
+          <Icons.cross className="text-muted-foreground size-3 shrink-0 transition-transform hover:scale-105 hover:text-pink-500" />
+        </CloseSearchBarBtn>
         <input
           type="text"
           className="bg-card size-full rounded-l-full p-2.5 ps-10 text-sm text-gray-900 outline-none focus:ring-1 dark:text-white"
@@ -20,10 +21,11 @@ const SearchBarForm = () => {
           required
         />
         <Button
+          type="submit"
           variant={"ghost"}
-          className="absolute inset-y-0 end-0 flex size-fit h-full items-center rounded-none border-none p-0 px-2.5"
+          className="absolute inset-y-0 end-0 flex size-fit h-full items-center rounded-none border-none p-0 px-6"
         >
-          <Icons.cross className="size-4" />
+          <Icons.magnifyGlass className="size-4" />
         </Button>
       </section>
       <SearchBarContextMenu />
