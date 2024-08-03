@@ -25,14 +25,10 @@
       "plugins": ["import"],
       "extends": ["eslint:recommended", "next", "next/core-web-vitals"],
       "rules": {
-        "@next/next/no-html-link-for-pages": "off"
+        "@next/next/no-html-link-for-pages": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error" // just to be sure
       }
-    },
-    {
-      "files": ["**/*.{js,mjs,ts,tsx,mdx}"],
-      "env": { "es6": true, "node": true },
-      "plugins": ["import"],
-      "extends": ["eslint:recommended", "next", "next/core-web-vitals"]
     },
     {
       "files": ["**/*.{mdx,tsx}"],
