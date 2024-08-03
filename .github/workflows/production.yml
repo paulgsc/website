@@ -2,6 +2,7 @@ name: Vercel Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   push:
     branches:
@@ -10,6 +11,9 @@ jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      matrix:
+        vercel-cli-version: ["vercel@latest"]
 
     steps:
       - uses: actions/checkout@v4
@@ -33,11 +37,8 @@ jobs:
         run: pnpm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
-        working-directory: ./self-host
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
-        working-directory: ./self-host
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        working-directory: ./self-host
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
