@@ -9,7 +9,6 @@ import { decodeJwtPayload } from "@/lib/auth/client"
 
 interface AuthState {
   userRolePayload: UserRoleJWTPayload | null
-  // eslint-disable-next-line no-unused-vars
   setUserRolePayload: (userRolePayload: UserRoleJWTPayload) => void
   loadUserRolePayload: () => void
 }

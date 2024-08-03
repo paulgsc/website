@@ -10,9 +10,8 @@ type InitialState = {
 
 // Define the actions type
 type Actions = {
-  // eslint-disable-next-line no-unused-vars
   addMessage: (message: MessageType) => void
-  // eslint-disable-next-line no-unused-vars
+
   setLoading: (loading: boolean) => void
 }
 

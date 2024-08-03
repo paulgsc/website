@@ -39,7 +39,6 @@ export type AppUserRole = z.infer<typeof roleSchema>
 export type AppUserAccess = z.infer<typeof accessSchema>
 
 type PossibleRoleAccess<T extends string, P extends string> = {
-  // eslint-disable-next-line no-unused-vars
   [K in T]: Array<P>
 }
 

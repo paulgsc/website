@@ -13,11 +13,10 @@ export type ImplForKeyBinding<
   K extends SingleKeyBindings["keyBinding"],
   E extends SingleKeyBindings["eventName"],
 > = {
-  // eslint-disable-next-line no-unused-vars
   apply: (event: WindowEventMap[E]) => void
   keyBinding: K
   eventName: E
-  // eslint-disable-next-line no-unused-vars
+
   isActive?: (event: WindowEventMap[E], keyBinding: K) => boolean
 }
 

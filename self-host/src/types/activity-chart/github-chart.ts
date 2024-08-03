@@ -50,7 +50,6 @@ export interface Props extends Omit<ActivityCalendarProps, "data" | "theme"> {
   errorMessage?: string
   theme?: ThemeInput
   throwOnError?: boolean
-  // eslint-disable-next-line no-unused-vars
   transformData?: (data: Array<Activity>) => Array<Activity>
   transformTotalCount?: boolean
   year?: Year

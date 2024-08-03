@@ -26,7 +26,7 @@ const useRovingFocusGroupScope = createRovingFocusGroupScope()
 type TabsContextValue = {
   baseId: string
   value?: string
-  // eslint-disable-next-line no-unused-vars
+
   onValueChange: (value: string) => void
   orientation?: TabsProps["orientation"]
   dir?: TabsProps["dir"]
@@ -47,7 +47,7 @@ type TabsProps = {
   /** The value of the tab to select by default, if uncontrolled */
   defaultValue?: string
   /** A function called when a new tab is selected */
-  // eslint-disable-next-line no-unused-vars
+
   onValueChange?: (value: string) => void
   /**
    * The orientation the tabs are layed out.
