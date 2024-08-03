@@ -24,7 +24,10 @@ jobs:
         id: pnpm-install
         with:
           # version declared in packagemanager
-          run_install: true
+          run_install: false
+
+      - name: Install Dependencies
+        run: pnpm install
 
       - name: Install Vercel CLI
         run: pnpm install --global vercel@latest
