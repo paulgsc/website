@@ -29,13 +29,12 @@ RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
     else echo "Lockfile not found." && exit 1; \
     fi
 
+# Change the working directory to self-host
+WORKDIR /self-host
+
 # Install self-host dependencies
-RUN cd self-host && \
-    if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm install --frozen-lockfile; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+# Since self-host is part of the monorepo, dependencies are already installed at the root level
+# No need to re-install them specifically for the self-host directory
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -50,12 +49,7 @@ COPY tsconfig.json .eslintrc.json .eslintignore prettier.config.cjs turbo.json .
 COPY ./self-host/ ./self-host/
 
 # Build the project
-RUN cd self-host && \
-    if [ -f yarn.lock ]; then yarn run build; \
-    elif [ -f package-lock.json ]; then npm run build; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+RUN pnpm --filter self-host run build
 
 # Production image
 FROM base AS runner
