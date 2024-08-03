@@ -38,3 +38,4 @@ tsconfig.tsbuildinfo
 # Added by cargo
 
 /target
+*/.vercel
