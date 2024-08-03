@@ -19,7 +19,7 @@ RUN apk add --no-cache libc6-compat g++ make cmake
 WORKDIR /app
 
 # Copy dependency files
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* pnpm-workspace.yaml* ./
 COPY ./self-host/package.json ./self-host/yarn.lock* ./self-host/package-lock.json* ./self-host/pnpm-lock.yaml* ./self-host/
 
 # Install root dependencies
@@ -29,12 +29,8 @@ RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
     else echo "Lockfile not found." && exit 1; \
     fi
 
-# Change the working directory to self-host
-WORKDIR /self-host
-
 # Install self-host dependencies
-# Since self-host is part of the monorepo, dependencies are already installed at the root level
-# No need to re-install them specifically for the self-host directory
+RUN pnpm install --filter ./self-host
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -49,7 +45,7 @@ COPY tsconfig.json .eslintrc.json .eslintignore prettier.config.cjs turbo.json .
 COPY ./self-host/ ./self-host/
 
 # Build the project
-RUN pnpm --filter self-host run build
+RUN pnpm --filter ./self-host run build
 
 # Production image
 FROM base AS runner
