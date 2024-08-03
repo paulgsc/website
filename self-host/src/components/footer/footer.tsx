@@ -10,8 +10,11 @@ import type { IconProps } from "@/types"
 
 import { Icons } from "@/components/icons"
 import SearchBar from "@/components/search-bar"
+import withSuspense from "@/components/withSuspense"
 
 import { default as NavItem, default as NavLink } from "./nav-link"
+
+const SuspendedSearchBar = withSuspense(SearchBar)
 
 type SocialIconProps = {
   classname: string
@@ -54,7 +57,7 @@ const Footer: FC = () => {
         ))}
       </div>
 
-      <SearchBar />
+      <SuspendedSearchBar />
 
       <div className="flex flex-col items-center gap-1 md:flex-row">
         {Array.isArray(openJSlink) && (
