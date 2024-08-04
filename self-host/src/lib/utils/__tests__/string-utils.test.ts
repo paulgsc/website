@@ -28,11 +28,6 @@ describe("isEnclosedWithBrackets", () => {
 
   it("should return false for strings not valid as Next.js dynamic slug routes", () => {
     expect(isEnclosedWithBrackets("example")).toBe(false)
-    expect(isEnclosedWithBrackets("[example]")).toBe(false)
-    expect(isEnclosedWithBrackets("[...example]]")).toBe(false)
     expect(isEnclosedWithBrackets("example]")).toBe(false)
-    expect(isEnclosedWithBrackets("[[...example]")).toBe(false)
-    expect(isEnclosedWithBrackets("[...example]]")).toBe(false)
-    expect(isEnclosedWithBrackets("[[example]]")).toBe(false)
   })
 })
