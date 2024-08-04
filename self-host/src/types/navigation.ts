@@ -33,3 +33,8 @@ export interface NavigationConfig {
   socialLinks: Array<SocialLink>
   sideNavigation: SideNavigation
 }
+
+export type SiteAppRoutes = {
+  title: string
+  href: string
+}

@@ -36,5 +36,5 @@
     "jest.config.js",
     "src/lib/utils/arr-utils.mts"
   ],
-  "exclude": ["node_modules", ".next", "./scripts/build-routes.mts"]
+  "exclude": ["node_modules", ".next"]
 }

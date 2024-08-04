@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "pnpm contentlayer2 build && next build --debug",
-    "build:routes": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-routes.mts && prettier --loglevel silent --write \"src/registry/**/*.{ts,tsx,mdx}\" --cache",
+    "build:routes": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-routes.ts --cache",
     "start": "next start",
     "lint": "next lint",
     "lint:vercel": "next lint",
