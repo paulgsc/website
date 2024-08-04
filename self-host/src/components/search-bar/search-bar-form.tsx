@@ -1,3 +1,6 @@
+import { useRef } from "react"
+import { useIsomorphicLayoutEffect } from "usehooks-ts"
+
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 
@@ -5,6 +8,11 @@ import { CloseSearchBarBtn } from "./close-searchbar"
 import SearchBarContextMenu from "./search-context-menu"
 
 const SearchBarForm = () => {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useIsomorphicLayoutEffect(() => {
+    if (inputRef.current) inputRef.current.focus()
+  }, [])
   return (
     <form
       role="search"
@@ -15,6 +23,7 @@ const SearchBarForm = () => {
           <Icons.cross className="text-muted-foreground size-3 shrink-0 transition-transform hover:scale-105 hover:text-pink-500" />
         </CloseSearchBarBtn>
         <input
+          ref={inputRef}
           type="text"
           className="bg-card size-full rounded-l-full p-2.5 ps-10 text-sm text-gray-900 outline-none focus:ring-1 dark:text-white"
           placeholder="Search"
