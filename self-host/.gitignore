@@ -138,3 +138,6 @@ tsconfig.tsbuildinfo
 
 local.db
 .vercel
+
+# Routes script output
+routes.constants.config.json
