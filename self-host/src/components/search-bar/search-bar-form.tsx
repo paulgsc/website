@@ -8,7 +8,7 @@ const SearchBarForm = () => {
   return (
     <form
       role="search"
-      className="bg-primary-foreground flex h-14 flex-1 items-center rounded-full"
+      className="bg-primary-foreground hidden h-14 flex-1 items-center rounded-full md:flex"
     >
       <section className="relative size-full">
         <CloseSearchBarBtn role="status">
