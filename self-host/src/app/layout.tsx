@@ -95,7 +95,7 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="grid size-full grid-cols-[1fr] grid-rows-[auto_1fr_auto]">
+              <div className="grid size-full min-h-screen grid-cols-[1fr] grid-rows-[auto_1fr_auto]">
                 <SiteNav />
                 <div className="size-full">{children}</div>
                 <Footer />
