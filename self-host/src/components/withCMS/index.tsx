@@ -1,4 +1,4 @@
-import type { ComponentType, FC, ReactNode } from "react"
+import { Fragment, type ComponentType, type FC } from "react"
 import { cookies } from "next/headers"
 
 import type { AppUserRole, JWTCookeSessionKeys } from "@/types/auth/roles"
@@ -13,13 +13,17 @@ type CMSComponent = {
 function createCMSComponent<P extends object>(
   requiredRoles: Array<AppUserRole>,
   WrappedComponent: ComponentType<P>,
-  fallback: ReactNode
+  Fallback: FC = Fragment
 ): FC<P> & CMSComponent {
   const Component: FC<P> & CMSComponent = (props: P) => {
     const isAlive = Component.isAlive!()
     const { ...componentProps } = props
 
-    return isAlive ? <WrappedComponent {...(componentProps as P)} /> : fallback
+    return isAlive ? (
+      <WrappedComponent {...(componentProps as P)} />
+    ) : (
+      <Fallback />
+    )
   }
 
   Component.getUserRole = () => getUserRole()
