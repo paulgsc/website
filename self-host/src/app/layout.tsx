@@ -7,7 +7,6 @@ import { getLocale, getMessages } from "next-intl/server"
 import { Toaster as Sonner } from "@/components/ui/sonner"
 import Toaster from "@/components/ui/toaster"
 import Footer from "@/components/footer/footer"
-import SiteNav from "@/components/layout-components/navbar/site-nav"
 import ThemeProvider from "@/components/providers"
 import ThemeSwitcher from "@/components/theme-switcher"
 
@@ -15,6 +14,7 @@ import "@/styles/globals.css"
 
 import { fontSans } from "@/lib/fonts"
 import cn from "@/lib/utils/cn"
+import AuthorizedSiteNav from "@/components/layout-components/navbar/site-nav-with-cms"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] })
@@ -95,9 +95,11 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="grid size-full min-h-screen grid-cols-[1fr] grid-rows-[auto_1fr_auto]">
-                <SiteNav />
-                <div className="size-full">{children}</div>
+              <div className="grid size-full min-h-screen grid-cols-[1fr] grid-rows-[1fr_auto]">
+                <div className="grid size-full grid-cols-[1fr] grid-rows-[auto_1fr]">
+                  <AuthorizedSiteNav />
+                  <div className="size-full">{children}</div>
+                </div>
                 <Footer />
               </div>
               <ThemeSwitcher />
