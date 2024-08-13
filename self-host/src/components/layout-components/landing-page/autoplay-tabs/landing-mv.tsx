@@ -1,3 +1,6 @@
+import { RequiredAccess, RoleWithAllAccess } from "@/types/auth/roles"
+import { createCMSComponent } from "@/components/withCMS"
+
 const LandingVideo = () => {
   const videoPath = "/video/landing-vidya.mp4"
   return (
@@ -16,4 +19,10 @@ const LandingVideo = () => {
   )
 }
 
-export default LandingVideo
+const requiredRoles: Array<
+  RoleWithAllAccess<Array<RequiredAccess<"waitlist">>>
+> = ["unknown", "recruiter"]
+
+const AuthorizedLandingVideo = createCMSComponent(requiredRoles, LandingVideo)
+
+export default AuthorizedLandingVideo
