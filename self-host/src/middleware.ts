@@ -7,7 +7,7 @@ import { applyJwtCookieAction, pipe } from "./lib/auth/role"
 
 export async function middleware(request: NextRequest) {
   const getJwtRequiredAction = pipe(getJwtCookie).pipe(
-    async (token) => await getJwtCookieAction(token)
+    async (token) => await getJwtCookieAction(token, request)
   )
 
   const response = NextResponse.next()

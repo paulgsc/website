@@ -15,6 +15,8 @@ type APP_USER_ACCESS =
   | "trial"
   | "personal"
   | "events"
+  | "waitlist"
+  | "hidden"
 
 export const createEnumSchema = <T extends string>(values: Array<T>) =>
   z.enum(values as [T, ...Array<T>])
@@ -33,6 +35,8 @@ export const accessSchema = createEnumSchema<APP_USER_ACCESS>([
   "personal",
   "portfolio",
   "trial",
+  "waitlist",
+  "hidden",
 ])
 
 export type AppUserRole = z.infer<typeof roleSchema>
@@ -43,11 +47,20 @@ type PossibleRoleAccess<T extends string, P extends string> = {
 }
 
 export const allowedRoleAccess = {
-  subscriber: ["portfolio", "blog", "events"],
-  github: ["portfolio", "blog"],
-  unknown: ["trial"],
-  recruiter: ["portfolio"],
-  superuser: ["blog", "events", "fundme", "personal", "portfolio", "trial"],
+  subscriber: ["portfolio", "blog", "events", "personal", "trial", "fundme"],
+  github: ["portfolio", "blog", "events", "trial", "fundme"],
+  unknown: ["events", "waitlist"],
+  recruiter: ["portfolio", "waitlist"],
+  superuser: [
+    "blog",
+    "events",
+    "fundme",
+    "personal",
+    "portfolio",
+    "trial",
+    "waitlist",
+    "hidden",
+  ],
 } satisfies PossibleRoleAccess<APP_USER_ROLES, APP_USER_ACCESS>
 
 export const roleAccessPairSchema = z
