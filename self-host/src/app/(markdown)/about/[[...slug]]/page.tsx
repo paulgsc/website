@@ -2,6 +2,9 @@ import { notFound } from "next/navigation"
 
 import "@/styles/mdx.css"
 
+import { Fragment } from "react"
+
+import { RequiredAccess, RoleWithAllAccess } from "@/types/auth/roles"
 import type { ContentlayerPagePropsWithoutRootPath } from "@/types/content-layer"
 import type { BlogLayoutType } from "@/types/layout"
 import {
@@ -11,18 +14,25 @@ import {
 import { generateStaticParams, getPageFromParams } from "@/lib/content-layer"
 import { getTableOfContents } from "@/lib/toc"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import WithRedirect from "@/components/ui/with-redirect"
 import BlogLayout from "@/components/layout-components/BlogLayout"
 // eslint-disable-next-line import/order
 
 import Mdx from "@/components/mdx-components"
 import { DocsPageHeader } from "@/components/page-header"
 import DashboardTableOfContents from "@/components/toc"
+import { createCMSComponent } from "@/components/withCMS"
 
 // We add the rootPath to the params since the [[...slug]] pattern in Next.js
 // is exclusive of the path and only generates the params for the slug part.
 const rootPath = ["about"]
 
 generateStaticParams({ rootPath: rootPath })
+
+const requiredRoles: Array<RoleWithAllAccess<Array<RequiredAccess<"hidden">>>> =
+  ["superuser"]
+
+const CMSRedirect = createCMSComponent(requiredRoles, Fragment, WithRedirect)
 
 const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
   const doc = await getPageFromParams({ params, rootPath })
@@ -57,6 +67,7 @@ const Page = async ({ params }: ContentlayerPagePropsWithoutRootPath) => {
           </aside>
         )}
       </main>
+      <CMSRedirect />
     </BlogLayout>
   )
 }

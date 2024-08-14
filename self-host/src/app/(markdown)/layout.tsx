@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import { type ReactNode } from "react"
 import type { Metadata } from "next"
 import { constructMetadata, getPageFromParams } from "@/lib"
 import type { ContentlayerPagePropsWithoutRootPath } from "@/types"
